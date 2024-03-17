@@ -61,7 +61,8 @@ fun MainScreen() {
         AppNavGraph(
             navHostController = navigationState.navHostController,
             homeScreenContent = {
-                if (commentsToPost.value == null) {
+                val feedPost = commentsToPost.value
+                if (feedPost == null) {
                     NewsScreen(
                         paddingValues = paddingValues,
                         onCommentClickListener = {
@@ -69,7 +70,9 @@ fun MainScreen() {
                         }
                     )
                 } else {
-                    CommentsScreen {
+                    CommentsScreen(
+                        feedPost =  feedPost
+                    ) {
                         commentsToPost.value = null
                     }
                 }

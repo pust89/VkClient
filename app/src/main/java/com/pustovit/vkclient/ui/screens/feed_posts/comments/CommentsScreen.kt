@@ -2,6 +2,7 @@
 
 package com.pustovit.vkclient.ui.screens.feed_posts.comments
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,15 +22,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.pustovit.vkclient.domain.FeedPost
 import com.pustovit.vkclient.domain.PostComment
 
 @Composable
 fun CommentsScreen(
+    feedPost: FeedPost,
     onBackPressed: () -> Unit,
 ) {
-    val viewModel: CommentsViewModel = viewModel()
+    val viewModel: CommentsViewModel = viewModel(
+        factory = CommentsViewModel.Factory(feedPost = feedPost)
+    )
+
     val screenState = viewModel.screenState.collectAsState()
     val currentState = screenState.value
+
+    BackHandler {
+        onBackPressed.invoke()
+    }
 
     if (currentState is CommentsScreenState.Comments) {
         Scaffold(
