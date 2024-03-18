@@ -15,12 +15,15 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavBackStackEntry
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.pustovit.vkclient.domain.FeedPost
 import com.pustovit.vkclient.navigation.AppNavGraph
 import com.pustovit.vkclient.ui.screens.feed_posts.comments.CommentsScreen
 import com.pustovit.vkclient.ui.screens.feed_posts.NewsScreen
-import com.pustovit.vkclient.navigation.NavigationItem
+import com.pustovit.vkclient.navigation.tabs.NavigationTab
+import com.pustovit.vkclient.navigation.screens.Screen
 import com.pustovit.vkclient.navigation.rememberNavigationState
 
 @Composable
@@ -36,45 +39,52 @@ fun MainScreen() {
             BottomAppBar {
 
                 val navBackStackEntry by navigationState.navHostController.currentBackStackEntryAsState()
-                val currentRout = navBackStackEntry?.destination?.route
 
-                val items = listOf(
-                    NavigationItem.News,
-                    NavigationItem.Favourite,
-                    NavigationItem.Profile
+                val tabs = listOf(
+                    NavigationTab.Home,
+                    NavigationTab.Favourite,
+                    NavigationTab.Profile
                 )
-                items.forEach { item ->
+
+                tabs.forEach { tab ->
+                    val isSelected = tab.isSelected(navBackStackEntry)
+
                     NavigationBarItem(
-                        selected = currentRout == item.screen.route,
-                        onClick = { navigationState.navigateTo(item.screen.route) },
+                        selected = isSelected,
+                        onClick = {
+                            if (isSelected.not()) {
+                                navigationState.navigateToTab(tab)
+                            }
+                        },
                         icon = {
-                            Icon(item.icon, contentDescription = null)
+                            Icon(tab.icon, contentDescription = null)
                         },
                         label = {
-                            Text(text = stringResource(id = item.titleResId))
+                            Text(text = stringResource(id = tab.titleResId))
                         },
                     )
                 }
             }
         }
     ) { paddingValues ->
+        val feedPost = commentsToPost.value
+
         AppNavGraph(
             navHostController = navigationState.navHostController,
-            homeScreenContent = {
-                val feedPost = commentsToPost.value
-                if (feedPost == null) {
-                    NewsScreen(
-                        paddingValues = paddingValues,
-                        onCommentClickListener = {
-                            commentsToPost.value = it
-                        }
-                    )
-                } else {
-                    CommentsScreen(
-                        feedPost =  feedPost
-                    ) {
-                        commentsToPost.value = null
+            newsFeedScreenContent = {
+                NewsScreen(
+                    paddingValues = paddingValues,
+                    onCommentClickListener = {
+                        commentsToPost.value = it
+                        navigationState.navigateToScreen(Screen.Comments)
                     }
+                )
+            },
+            commentsScreenContent = {
+                CommentsScreen(
+                    feedPost = feedPost!!
+                ) {
+                    navigationState.navHostController.popBackStack()
                 }
             },
             favouriteScreenContent = { TextCounter(name = "Favourite") },
@@ -95,4 +105,11 @@ private fun TextCounter(name: String) {
         color = Color.Black
     )
 }
+
+private fun NavigationTab.isSelected(navBackStackEntry: NavBackStackEntry?): Boolean {
+    return navBackStackEntry?.destination?.hierarchy?.any {
+        it.route == this.graph.route
+    } ?: false
+}
+
 

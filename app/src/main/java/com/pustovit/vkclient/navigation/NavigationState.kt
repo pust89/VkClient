@@ -2,21 +2,29 @@ package com.pustovit.vkclient.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.pustovit.vkclient.navigation.screens.Screen
+import com.pustovit.vkclient.navigation.tabs.NavigationTab
 
 class NavigationState(
     val navHostController: NavHostController
 ) {
 
-    fun navigateTo(route: String) {
-        navHostController.navigate(route) {
-            popUpTo(navHostController.graph.startDestinationId) {
+
+    fun navigateToTab(tab: NavigationTab) {
+        navHostController.navigate(tab.graph.route) {
+            popUpTo(navHostController.graph.findStartDestination().id) {
                 saveState = true
             }
             launchSingleTop = true
             restoreState = true
         }
+    }
+
+    fun navigateToScreen(screen: Screen) {
+        navHostController.navigate(screen.route)
     }
 }
 

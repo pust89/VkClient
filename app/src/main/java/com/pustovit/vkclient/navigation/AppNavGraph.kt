@@ -3,27 +3,30 @@ package com.pustovit.vkclient.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
+import com.pustovit.vkclient.navigation.graphs.NavigationGraph
+import com.pustovit.vkclient.navigation.graphs.favouriteNavigation
+import com.pustovit.vkclient.navigation.graphs.homeNavigation
+import com.pustovit.vkclient.navigation.graphs.profileNavigation
 
 @Composable
 fun AppNavGraph(
     navHostController: NavHostController,
-    homeScreenContent: @Composable () -> Unit,
+    newsFeedScreenContent: @Composable () -> Unit,
+    commentsScreenContent: @Composable () -> Unit,
     favouriteScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit,
 ) {
     NavHost(
         navController = navHostController,
-        startDestination = Screen.NewsFeed.route
+        startDestination = NavigationGraph.Home.route
     ) {
-        composable(Screen.NewsFeed.route) {
-            homeScreenContent()
-        }
-        composable(Screen.Favourite.route) {
-            favouriteScreenContent()
-        }
-        composable(Screen.Profile.route) {
-            profileScreenContent()
-        }
+        homeNavigation(
+            newsFeedScreenContent = newsFeedScreenContent,
+            commentsScreenContent = commentsScreenContent,
+        )
+
+        favouriteNavigation { favouriteScreenContent() }
+
+        profileNavigation { profileScreenContent() }
     }
 }
