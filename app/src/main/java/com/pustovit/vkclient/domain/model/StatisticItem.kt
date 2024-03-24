@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.domain
+package com.pustovit.vkclient.domain.model
 
 data class StatisticItem(
     val type: StatisticType,

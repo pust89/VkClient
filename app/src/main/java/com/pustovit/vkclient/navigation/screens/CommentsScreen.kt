@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.navigation.screens
 
 import androidx.navigation.NamedNavArgument
-import com.pustovit.vkclient.domain.FeedPost
+import com.pustovit.vkclient.domain.model.FeedPost
 
 /**
  * Created by Pustovit V.V.

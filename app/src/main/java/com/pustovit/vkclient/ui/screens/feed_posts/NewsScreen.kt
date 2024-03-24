@@ -2,6 +2,7 @@
 
 package com.pustovit.vkclient.ui.screens.feed_posts
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +15,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SwipeToDismissBox
 import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.rememberSwipeToDismissBoxState
@@ -24,7 +26,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pustovit.vkclient.domain.FeedPost
+import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.ui.common.LoadingItem
+import com.pustovit.vkclient.ui.common.LoadingScreen
 import com.pustovit.vkclient.ui.screens.PostCard
 
 @Composable
@@ -37,6 +41,7 @@ fun NewsScreen(
 
     when (val currentState = screenState.value) {
         is NewsFeedScreenState.Posts -> {
+
             FeedPosts(
                 viewModel = viewModel,
                 paddingValues = paddingValues,
@@ -45,9 +50,7 @@ fun NewsScreen(
             )
         }
 
-        NewsFeedScreenState.Initial -> {
-
-        }
+        NewsFeedScreenState.Loading -> LoadingScreen(paddingValues)
     }
 }
 
@@ -74,32 +77,21 @@ private fun FeedPosts(
         ) { feedPost ->
 
 
-            val swipeToDismissBoxState = rememberSwipeToDismissBoxState(
-                confirmValueChange = {
-                    if (it == SwipeToDismissBoxValue.EndToStart) {
-                        viewModel.remove(feedPost)
-                        true
-                    } else {
-                        false
-                    }
+            val swipeToDismissBoxState = rememberSwipeToDismissBoxState()
+            when (swipeToDismissBoxState.currentValue) {
+                SwipeToDismissBoxValue.EndToStart -> {
+                    viewModel.remove(feedPost)
                 }
-            )
+
+                else -> Unit
+            }
+
 
             SwipeToDismissBox(
                 modifier = Modifier.animateItemPlacement(),
                 state = swipeToDismissBoxState,
-                backgroundContent = {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxSize(0.95f)
-                            .background(
-                                color = Color.Red,
-                                shape = RoundedCornerShape(16.dp)
-                            )
-                    ) {
-                        CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-                    }
-                }) {
+                enableDismissFromStartToEnd = false,
+                backgroundContent = { LoadingItem() }) {
                 PostCard(
                     feedPost = feedPost,
                     onViewsClickListener = { statisticItem ->

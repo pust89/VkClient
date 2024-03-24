@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.ui.screens.feed_posts.comments
 
-import com.pustovit.vkclient.domain.FeedPost
-import com.pustovit.vkclient.domain.PostComment
+import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.domain.model.PostComment
 
 sealed class CommentsScreenState {
 

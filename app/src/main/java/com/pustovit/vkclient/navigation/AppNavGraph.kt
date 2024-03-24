@@ -3,7 +3,7 @@ package com.pustovit.vkclient.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.pustovit.vkclient.domain.FeedPost
+import com.pustovit.vkclient.domain.model.FeedPost
 import com.pustovit.vkclient.navigation.graph.NavigationGraph
 import com.pustovit.vkclient.navigation.graph.favouriteNavigation
 import com.pustovit.vkclient.navigation.graph.homeNavigation

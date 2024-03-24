@@ -5,9 +5,8 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.pustovit.vkclient.domain.FeedPost
+import com.pustovit.vkclient.domain.model.FeedPost
 import com.pustovit.vkclient.navigation.screens.CommentsScreen
-import com.pustovit.vkclient.navigation.screens.Screen
 import com.pustovit.vkclient.navigation.tabs.NavigationTab
 
 class NavigationState(

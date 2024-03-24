@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.domain
+package com.pustovit.vkclient.domain.model
 
 import com.pustovit.vkclient.R
 

@@ -17,9 +17,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.pustovit.vkclient.domain.FeedPost
-import com.pustovit.vkclient.domain.StatisticItem
-import com.pustovit.vkclient.domain.StatisticType
+import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.domain.model.StatisticItem
+import com.pustovit.vkclient.domain.model.StatisticType
 import com.pustovit.vkclient.R
 
 

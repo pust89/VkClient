@@ -22,8 +22,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pustovit.vkclient.domain.FeedPost
-import com.pustovit.vkclient.domain.PostComment
+import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.domain.model.PostComment
 
 @Composable
 fun CommentsScreen(
