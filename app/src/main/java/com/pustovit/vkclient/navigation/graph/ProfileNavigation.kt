@@ -1,10 +1,10 @@
-package com.pustovit.vkclient.navigation.graphs
+package com.pustovit.vkclient.navigation.graph
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.pustovit.vkclient.navigation.screens.Screen
+import com.pustovit.vkclient.navigation.screens.ProfileScreen
 
 /**
  * Created by Pustovit V.V.
@@ -16,10 +16,10 @@ fun NavGraphBuilder.profileNavigation(
     profileScreenContent: @Composable () -> Unit,
 ) {
     navigation(
-        startDestination = Screen.Profile.route,
+        startDestination = ProfileScreen.route,
         route = NavigationGraph.Profile.route
     ) {
-        composable(Screen.Profile.route) {
+        composable(ProfileScreen.route) {
             profileScreenContent()
         }
     }

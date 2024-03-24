@@ -6,7 +6,7 @@ import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.pustovit.vkclient.R
-import com.pustovit.vkclient.navigation.graphs.NavigationGraph
+import com.pustovit.vkclient.navigation.graph.NavigationGraph
 
 sealed class NavigationTab(
     val graph: NavigationGraph,

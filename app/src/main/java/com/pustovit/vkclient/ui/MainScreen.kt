@@ -18,21 +18,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.pustovit.vkclient.domain.FeedPost
 import com.pustovit.vkclient.navigation.AppNavGraph
 import com.pustovit.vkclient.ui.screens.feed_posts.comments.CommentsScreen
 import com.pustovit.vkclient.ui.screens.feed_posts.NewsScreen
 import com.pustovit.vkclient.navigation.tabs.NavigationTab
-import com.pustovit.vkclient.navigation.screens.Screen
 import com.pustovit.vkclient.navigation.rememberNavigationState
 
 @Composable
 fun MainScreen() {
     val navigationState = rememberNavigationState()
-
-    val commentsToPost: MutableState<FeedPost?> = remember {
-        mutableStateOf(null)
-    }
 
     Scaffold(
         bottomBar = {
@@ -67,22 +61,18 @@ fun MainScreen() {
             }
         }
     ) { paddingValues ->
-        val feedPost = commentsToPost.value
 
         AppNavGraph(
             navHostController = navigationState.navHostController,
             newsFeedScreenContent = {
                 NewsScreen(
                     paddingValues = paddingValues,
-                    onCommentClickListener = {
-                        commentsToPost.value = it
-                        navigationState.navigateToScreen(Screen.Comments)
-                    }
+                    onCommentClickListener = navigationState::navigateToCommentsScreen
                 )
             },
-            commentsScreenContent = {
+            commentsScreenContent = {feedPost ->
                 CommentsScreen(
-                    feedPost = feedPost!!
+                    feedPost = feedPost
                 ) {
                     navigationState.navHostController.popBackStack()
                 }

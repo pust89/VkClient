@@ -1,10 +1,10 @@
-package com.pustovit.vkclient.navigation.graphs
+package com.pustovit.vkclient.navigation.graph
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import com.pustovit.vkclient.navigation.screens.Screen
+import com.pustovit.vkclient.navigation.screens.FavouriteScreen
 
 /**
  * Created by Pustovit V.V.
@@ -15,10 +15,10 @@ fun NavGraphBuilder.favouriteNavigation(
     favouriteScreenContent: @Composable () -> Unit,
 ) {
     navigation(
-        startDestination = Screen.Favourite.route,
+        startDestination = FavouriteScreen.route,
         route = NavigationGraph.Favorite.route
     ) {
-        composable(Screen.Favourite.route) {
+        composable(FavouriteScreen.route) {
             favouriteScreenContent()
         }
     }

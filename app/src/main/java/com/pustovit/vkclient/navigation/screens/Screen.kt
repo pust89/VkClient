@@ -1,19 +1,67 @@
 package com.pustovit.vkclient.navigation.screens
 
-sealed class Screen(
-    val route: String
-) {
-    object NewsFeed : Screen(ROUTE_NEWS_FEED)
-    object Comments : Screen(ROUTE_COMMENTS)
+import androidx.navigation.NamedNavArgument
+import androidx.navigation.NavArgumentBuilder
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 
-    object Favourite : Screen(ROUTE_FAVOURITE)
-    object Profile : Screen(ROUTE_PROFILE)
+abstract class Screen {
+    abstract val screenName: String
+    abstract val route: String
+    open val arguments: List<NamedNavArgument>
+        get() = emptyList()
 
-    private companion object {
-        const val ROUTE_NEWS_FEED = "news_feed"
-        const val ROUTE_COMMENTS = "comments"
+    protected fun buildRouteWithArgs(vararg arguments: String): String {
+        return buildString {
+            append(screenName)
+            arguments.forEach { argumentName ->
+                appendArgumentToRoute(argumentName)
+            }
+        }
+    }
 
-        const val ROUTE_FAVOURITE = "favourite"
-        const val ROUTE_PROFILE = "profile"
+    protected fun MutableList<NamedNavArgument>.addIntArgument(
+        argName: String,
+        builder: NavArgumentBuilder.() -> Unit = {}
+    ) {
+        this += navArgument(
+            argName
+        ) {
+            type = NavType.IntType
+            builder()
+        }
+    }
+
+    protected fun MutableList<NamedNavArgument>.addStringArgument(
+        argName: String,
+        builder: NavArgumentBuilder.() -> Unit = {}
+    ) {
+        this += navArgument(
+            argName
+        ) {
+            type = NavType.StringType
+            builder()
+        }
+    }
+
+    /**
+     * Add argument like "/{argName}"
+     *
+     * @param argName argument's name
+     * @return [StringBuilder]
+     */
+    private fun StringBuilder.appendArgumentToRoute(argName: String): StringBuilder {
+        return this.apply {
+            append(DASH)
+            append(LEFT_BRACE)
+            append(argName)
+            append(RIGHT_BRACE)
+        }
+    }
+
+    companion object {
+        const val DASH = "/"
+        const val LEFT_BRACE = "{"
+        const val RIGHT_BRACE = "}"
     }
 }
