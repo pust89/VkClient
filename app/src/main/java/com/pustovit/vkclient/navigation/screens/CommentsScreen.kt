@@ -2,6 +2,7 @@ package com.pustovit.vkclient.navigation.screens
 
 import androidx.navigation.NamedNavArgument
 import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.navigation.args.encodeAndAppend
 
 /**
  * Created by Pustovit V.V.
@@ -30,7 +31,7 @@ object CommentsScreen : Screen() {
             append(DASH)
             append(feedPost.id)
             append(DASH)
-            append(feedPost.contentText)
+            encodeAndAppend(feedPost.contentText)
         }
     }
 }

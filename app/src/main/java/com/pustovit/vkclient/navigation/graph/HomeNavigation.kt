@@ -6,6 +6,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.navigation.args.getDecodedString
 import com.pustovit.vkclient.navigation.screens.CommentsScreen
 import com.pustovit.vkclient.navigation.screens.NewsFeedScreen
 
@@ -32,9 +33,8 @@ fun NavGraphBuilder.homeNavigation(
         ) { navBackStackEntry ->
             val feedPostId =
                 navBackStackEntry.arguments?.getInt(CommentsScreen.ARG_FEED_POST_ID) ?: 99
-
             val feedPosContentText =
-                navBackStackEntry.arguments?.getString(CommentsScreen.ARG_FEED_POST_CONTENT_TEXT)
+                navBackStackEntry.arguments?.getDecodedString(CommentsScreen.ARG_FEED_POST_CONTENT_TEXT)
             Log.d("navTag", "homeNavigation: feedPosContentText=$feedPosContentText")
             commentsScreenContent(FeedPost(id = feedPostId))
         }

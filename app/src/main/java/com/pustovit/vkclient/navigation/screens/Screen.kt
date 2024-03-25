@@ -1,13 +1,17 @@
 package com.pustovit.vkclient.navigation.screens
 
+import android.net.Uri
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavArgumentBuilder
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
+import java.net.URI
+import java.util.Base64
 
 abstract class Screen {
     abstract val screenName: String
     abstract val route: String
+
     open val arguments: List<NamedNavArgument>
         get() = emptyList()
 
@@ -59,9 +63,11 @@ abstract class Screen {
         }
     }
 
+
     companion object {
         const val DASH = "/"
         const val LEFT_BRACE = "{"
         const val RIGHT_BRACE = "}"
+
     }
 }
