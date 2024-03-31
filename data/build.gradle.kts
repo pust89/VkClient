@@ -8,7 +8,6 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 dependencies {
-    implementation(project(mapOf("path" to ":data")))
-    api(project(mapOf("path" to ":models")))
+    implementation(project(mapOf("path" to ":models")))
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1-Beta")
 }

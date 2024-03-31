@@ -1,6 +1,6 @@
 package com.pustovit.vkclient.news_impl.feed_posts
 
-import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.models.post.FeedPost
 
 sealed class NewsFeedScreenState {
 

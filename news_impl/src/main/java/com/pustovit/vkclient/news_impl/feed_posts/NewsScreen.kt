@@ -17,7 +17,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.ui_common.compose.LoadingItem
 import com.pustovit.vkclient.ui_common.compose.LoadingScreen
 

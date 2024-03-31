@@ -14,7 +14,7 @@ import com.pustovit.vkclient.news_api.screens.CommentsScreen
 fun AppNavGraph(
     navHostController: NavHostController,
     newsFeedScreenContent: @Composable () -> Unit,
-    commentsScreenContent: @Composable (com.pustovit.vkclient.news_api.screens.CommentsScreen.Args) -> Unit,
+    commentsScreenContent: @Composable (CommentsScreen.Args) -> Unit,
     favouriteScreenContent: @Composable () -> Unit,
     profileScreenContent: @Composable () -> Unit,
 ) {

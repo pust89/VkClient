@@ -2,8 +2,8 @@ package com.pustovit.vkclient.news_impl.comments
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pustovit.vkclient.domain.model.FeedPost
-import com.pustovit.vkclient.domain.model.PostComment
+import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.models.post.PostComment
 import com.pustovit.vkclient.news_api.screens.CommentsScreen
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

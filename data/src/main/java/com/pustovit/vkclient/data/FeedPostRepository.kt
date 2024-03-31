@@ -1,6 +1,6 @@
-package com.pustovit.vkclient.domain.repository
+package com.pustovit.vkclient.data
 
-import com.pustovit.vkclient.domain.model.FeedPost
+import com.pustovit.vkclient.models.post.FeedPost
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.flowOn
  * Date: 24.03.2024
  * Time: 16:20
  */
-object FeedPostRepository {
+internal object FeedPostRepositoryImpl : FeedPostRepository {
 
     private val mock = mutableListOf<FeedPost>().apply {
         repeat(5) {
@@ -20,16 +20,21 @@ object FeedPostRepository {
         }
     }
 
-    fun getAll(): Flow<List<FeedPost>> {
+    override fun getAll(): Flow<List<FeedPost>> {
         return flow {
             delay(3000)
             emit(mock.toList())
         }.flowOn(Dispatchers.IO)
     }
 
-    fun remove(feedPost: FeedPost): Flow<Boolean> {
+    override fun remove(feedPost: FeedPost): Flow<Boolean> {
         return flow {
             emit(mock.remove(feedPost))
         }.flowOn(Dispatchers.IO)
     }
+}
+
+interface FeedPostRepository {
+    fun getAll(): Flow<List<FeedPost>>
+    fun remove(feedPost: FeedPost): Flow<Boolean>
 }

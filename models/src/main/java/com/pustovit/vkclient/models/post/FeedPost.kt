@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.domain.model
+package com.pustovit.vkclient.models.post
 
 
 data class FeedPost(

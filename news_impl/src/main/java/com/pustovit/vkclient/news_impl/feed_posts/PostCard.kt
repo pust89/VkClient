@@ -17,10 +17,10 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.pustovit.vkclient.domain.model.FeedPost
-import com.pustovit.vkclient.domain.model.StatisticItem
-import com.pustovit.vkclient.domain.model.StatisticType
-import com.pustovit.vkclient.ui_common.CR_DRAWABLE
+import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.models.post.StatisticItem
+import com.pustovit.vkclient.models.post.StatisticType
+import com.pustovit.vkclient.ui_common.CORE_R_DRAWABLE
 
 
 @Composable
@@ -112,7 +112,7 @@ private fun Statistics(
         ) {
             val viewsItem = statistics.getItemByType(StatisticType.VIEWS)
             IconWithText(
-                iconResId = CR_DRAWABLE.ic_views_count,
+                iconResId = CORE_R_DRAWABLE.ic_views_count,
                 text = viewsItem.count.toString(),
                 onItemClickListener = {
                     onViewsClickListener(viewsItem)
@@ -125,7 +125,7 @@ private fun Statistics(
         ) {
             val sharesItem = statistics.getItemByType(StatisticType.SHARES)
             IconWithText(
-                iconResId = CR_DRAWABLE.ic_share,
+                iconResId = CORE_R_DRAWABLE.ic_share,
                 text = sharesItem.count.toString(),
                 onItemClickListener = {
                     onShareClickListener(sharesItem)
@@ -133,7 +133,7 @@ private fun Statistics(
             )
             val commentItem = statistics.getItemByType(StatisticType.COMMENTS)
             IconWithText(
-                iconResId = CR_DRAWABLE.ic_comment,
+                iconResId = CORE_R_DRAWABLE.ic_comment,
                 text = commentItem.count.toString(),
                 onItemClickListener = {
                     onCommentClickListener(commentItem)
@@ -141,7 +141,7 @@ private fun Statistics(
             )
             val likesItem = statistics.getItemByType(StatisticType.LIKES)
             IconWithText(
-                iconResId = CR_DRAWABLE.ic_like,
+                iconResId = CORE_R_DRAWABLE.ic_like,
                 text = likesItem.count.toString(),
                 onItemClickListener = {
                     onLikeClickListener(likesItem)

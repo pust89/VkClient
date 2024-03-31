@@ -5,4 +5,4 @@ package com.pustovit.vkclient.ui_common
  * Date: 25.03.2024
  * Time: 22:38
  */
-typealias CR_DRAWABLE = R.drawable
+typealias CORE_R_DRAWABLE = R.drawable

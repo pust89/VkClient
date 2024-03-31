@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
-import com.pustovit.vkclient.domain.model.PostComment
+import com.pustovit.vkclient.models.post.PostComment
 import com.pustovit.vkclient.news_api.screens.CommentsScreen
 
 @Composable
