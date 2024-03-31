@@ -14,11 +14,18 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "VkClient"
+
+
+// Core
 include(":app")
-include(":navigation")
-include(":ui_common")
-include(":domain")
-include(":news_api")
-include(":news_impl")
+include(":assambly")
 include(":data")
 include(":models")
+include(":domain")
+include(":ui_common")
+include(":navigation")
+
+// Features
+include(":news_api")
+include(":news_impl")
+

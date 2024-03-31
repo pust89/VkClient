@@ -52,6 +52,8 @@ android {
 dependencies {
     implementation(project(mapOf("path" to ":ui_common")))
     implementation(project(mapOf("path" to ":navigation")))
+    implementation(project(mapOf("path" to ":models")))
+    implementation(project(mapOf("path" to ":data")))
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":news_api")))
     implementation(project(mapOf("path" to ":news_impl")))
