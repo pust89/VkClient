@@ -44,10 +44,8 @@ android {
 }
 
 dependencies {
-    api(project(mapOf("path" to ":ui_common")))
-    api(project(mapOf("path" to ":domain")))
-    api(project(mapOf("path" to ":news_api")))
-
+    implementation(project(mapOf("path" to ":models")))
+    implementation(project(mapOf("path" to ":news_api")))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

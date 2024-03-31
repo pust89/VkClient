@@ -5,7 +5,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.pustovit.vkclient.news_api.screens.CommentsScreen
-import com.pustovit.vkclient.news_api.screens.NewsFeedScreen
+import com.pustovit.vkclient.news_api.screens.NewsScreen
 import com.pustovit.vkclient.ui_common.screen.getDecodedString
 
 /**
@@ -18,10 +18,10 @@ fun NavGraphBuilder.homeNavigation(
     commentsScreenContent: @Composable (CommentsScreen.Args) -> Unit,
 ) {
     navigation(
-        startDestination = NewsFeedScreen.route,
+        startDestination = NewsScreen.route,
         route = NavigationGraph.Home.route
     ) {
-        composable(NewsFeedScreen.route) {
+        composable(NewsScreen.route) {
             newsFeedScreenContent()
         }
         composable(

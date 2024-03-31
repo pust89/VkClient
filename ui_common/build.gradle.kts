@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -44,6 +45,8 @@ android {
 }
 
 dependencies {
+    api(project(mapOf("path" to ":injector")))
+
     api("androidx.core:core-ktx:1.12.0")
     api("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     api("androidx.activity:activity-compose:1.8.2")

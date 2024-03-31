@@ -12,20 +12,20 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-
 rootProject.name = "VkClient"
-
 
 // Core
 include(":app")
-include(":assambly")
-include(":data")
+include(":data_impl")
 include(":models")
-include(":domain")
+include(":domain_impl")
 include(":ui_common")
 include(":navigation")
+include(":injector")
 
 // Features
 include(":news_api")
 include(":news_impl")
 
+include(":data_api")
+include(":domain_api")

@@ -19,10 +19,10 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.pustovit.vkclient.navigation.AppNavGraph
-import com.pustovit.vkclient.news_impl.feed_posts.NewsScreen
+import com.pustovit.vkclient.news_impl.presentation.feed_posts.NewsScreen
 import com.pustovit.vkclient.navigation.tabs.NavigationTab
 import com.pustovit.vkclient.navigation.rememberNavigationState
-import com.pustovit.vkclient.news_impl.comments.CommentsScreen
+import com.pustovit.vkclient.news_impl.presentation.comments.CommentsScreen
 
 @Composable
 fun MainScreen() {

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -39,6 +40,10 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":news_api")))
+    implementation(project(mapOf("path" to ":domain_impl")))
+
+    implementation( "com.google.dagger:dagger:2.42")
+    kapt("com.google.dagger:dagger-compiler:2.42")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
