@@ -14,19 +14,30 @@ import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.news_impl.di.DaggerNewsFeatureComponent
+import com.pustovit.vkclient.news_impl.di.NewsFeatureComponent
+import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
 import com.pustovit.vkclient.ui_common.compose.LoadingItem
 import com.pustovit.vkclient.ui_common.compose.LoadingScreen
+import javax.inject.Inject
 
 @Composable
 fun NewsScreen(
     paddingValues: PaddingValues,
     onCommentClickListener: (FeedPost) -> Unit
 ) {
-    val viewModel: NewsFeedViewModel = viewModel()
+
+    val component: NewsFeatureComponent = remember {
+        NewsFeatureComponentHolder.component
+    }
+
+    val viewModel: NewsFeedViewModel = viewModel(factory = component.newsFeedViewModelFactory)
+
     val screenState = viewModel.screenState.collectAsState()
 
     when (val currentState = screenState.value) {

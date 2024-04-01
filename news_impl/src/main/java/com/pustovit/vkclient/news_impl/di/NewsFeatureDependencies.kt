@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.news_impl.di
 
-import com.pustovit.vkclient.domain_impl.news.GetAllPostsUseCase
-import com.pustovit.vkclient.domain_impl.news.RemovePostUseCase
+import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
+import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
 
 /**

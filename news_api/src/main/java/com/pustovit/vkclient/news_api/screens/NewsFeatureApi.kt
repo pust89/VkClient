@@ -7,9 +7,7 @@ import com.pustovit.vkclient.injector.FeatureApi
  * Date: 31.03.2024
  * Time: 12:35
  */
-interface NewsApi : FeatureApi {
-
+interface NewsFeatureApi : FeatureApi {
 //    fun newsFeedScreen(): NewsScreen
 //    fun commentScreen(args: CommentsScreen.Args): CommentsScreen
-
 }

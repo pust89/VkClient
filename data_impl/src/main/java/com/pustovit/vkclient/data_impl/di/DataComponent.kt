@@ -12,6 +12,4 @@ import dagger.Component
  */
 @FeatureScope
 @Component(modules = [RepositoryModule::class])
-interface DataComponent : DataFeatureApi {
-    fun newsFeedPostRepository(): FeedPostRepository
-}
+interface DataComponent : DataFeatureApi

@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.pustovit.vkclient.domain_impl.news.GetAllPostsUseCase
-import com.pustovit.vkclient.domain_impl.news.RemovePostUseCase
+import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
+import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.StatisticItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
-class NewsFeedViewModel @Inject constructor(
+internal class NewsFeedViewModel @Inject constructor(
     private val getAllPostsUseCase: GetAllPostsUseCase,
     private val removePostUseCase: RemovePostUseCase
 ) : ViewModel() {

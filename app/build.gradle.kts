@@ -51,17 +51,17 @@ android {
 }
 
 dependencies {
-    implementation( "com.google.dagger:dagger:2.42")
-    kapt("com.google.dagger:dagger-compiler:2.42")
+    implementation( "com.google.dagger:dagger:2.51.1")
+    kapt("com.google.dagger:dagger-compiler:2.51.1")
+
     implementation(project(mapOf("path" to ":injector")))
-    implementation(project(mapOf("path" to ":ui_common")))
-    implementation(project(mapOf("path" to ":navigation")))
     implementation(project(mapOf("path" to ":models")))
     implementation(project(mapOf("path" to ":data_api")))
     implementation(project(mapOf("path" to ":data_impl")))
     implementation(project(mapOf("path" to ":domain_api")))
     implementation(project(mapOf("path" to ":domain_impl")))
-
+    implementation(project(mapOf("path" to ":ui_common")))
+    implementation(project(mapOf("path" to ":navigation")))
 
     implementation(project(mapOf("path" to ":news_api")))
     implementation(project(mapOf("path" to ":news_impl")))

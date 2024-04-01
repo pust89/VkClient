@@ -1,9 +1,10 @@
 package com.pustovit.vkclient.domain_impl.di
 
-import com.pustovit.vkclient.domain_impl.news.GetAllPostsUseCase
+import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
+import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.domain_impl.news.GetAllPostsUseCaseImpl
-import com.pustovit.vkclient.domain_impl.news.RemovePostUseCase
 import com.pustovit.vkclient.domain_impl.news.RemovePostUseCaseImpl
+import com.pustovit.vkclient.injector.FeatureScope
 import dagger.Binds
 import dagger.Module
 import javax.inject.Singleton
@@ -16,9 +17,9 @@ import javax.inject.Singleton
 @Module
 internal interface UseCaseModule {
     @Binds
-    @Singleton
+    @FeatureScope
     fun bindGetAllPostsUseCase(useCase: GetAllPostsUseCaseImpl): GetAllPostsUseCase
     @Binds
-    @Singleton
-    fun bindGetAllPostsUseCase(useCase: RemovePostUseCaseImpl): RemovePostUseCase
+    @FeatureScope
+    fun bindRemovePostUseCase(useCase: RemovePostUseCaseImpl): RemovePostUseCase
 }

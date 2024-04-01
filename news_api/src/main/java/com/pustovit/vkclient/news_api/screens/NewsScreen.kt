@@ -11,4 +11,6 @@ object NewsScreen : Screen() {
     override val screenName = "news"
     override val route: String
         get() = screenName
+
+
 }
