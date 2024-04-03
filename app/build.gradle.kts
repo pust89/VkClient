@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -19,6 +21,18 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+        val vkIdClientId = properties.getProperty("VKIDClientID")
+        val vkIdClientSecret = properties.getProperty("VKIDClientSecret")
+
+        addManifestPlaceholders(mapOf(
+            "VKIDRedirectHost" to "vk.com", // обычно vk.com
+            "VKIDRedirectScheme" to "vk51894847", // обычно vk{ID приложения}
+            "VKIDClientID" to vkIdClientId,
+            "VKIDClientSecret" to vkIdClientSecret
+        ))
     }
 
     buildTypes {
@@ -56,16 +70,19 @@ dependencies {
 
     implementation(project(mapOf("path" to ":injector")))
     implementation(project(mapOf("path" to ":models")))
+    implementation(project(mapOf("path" to ":data_local_source_api")))
+    implementation(project(mapOf("path" to ":data_local_source_impl")))
     implementation(project(mapOf("path" to ":data_api")))
     implementation(project(mapOf("path" to ":data_impl")))
     implementation(project(mapOf("path" to ":domain_api")))
     implementation(project(mapOf("path" to ":domain_impl")))
     implementation(project(mapOf("path" to ":ui_common")))
     implementation(project(mapOf("path" to ":navigation")))
+    implementation(project(mapOf("path" to ":feature_news_api")))
+    implementation(project(mapOf("path" to ":feature_news_impl")))
 
-    implementation(project(mapOf("path" to ":news_api")))
-    implementation(project(mapOf("path" to ":news_impl")))
-
+    // Если используете One Tap на Compose, укажите эту зависимость.
+    implementation("com.vk.id:onetap-compose:1.3.1")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

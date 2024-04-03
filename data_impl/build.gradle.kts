@@ -10,7 +10,6 @@ java {
 }
 dependencies {
     implementation(project(mapOf("path" to ":data_api")))
-
     implementation( "com.google.dagger:dagger:2.51.1")
     kapt("com.google.dagger:dagger-compiler:2.51.1")
 }

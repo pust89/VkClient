@@ -1,7 +1,6 @@
 package com.pustovit.vkclient.data_impl.di
 
-import com.pustovit.vkclient.data_api.DataFeatureApi
-import com.pustovit.vkclient.data_api.repository.FeedPostRepository
+import com.pustovit.vkclient.data_api.DataApi
 import com.pustovit.vkclient.injector.FeatureScope
 import dagger.Component
 
@@ -11,5 +10,8 @@ import dagger.Component
  * Time: 13:03
  */
 @FeatureScope
-@Component(modules = [RepositoryModule::class])
-interface DataComponent : DataFeatureApi
+@Component(
+    dependencies = [DataDependencies::class],
+    modules = [RepositoryModule::class]
+)
+interface DataComponent : DataApi

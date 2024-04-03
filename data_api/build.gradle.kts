@@ -10,5 +10,6 @@ java {
 dependencies {
     api(project(mapOf("path" to ":models")))
     api(project(mapOf("path" to ":injector")))
+    api(project(mapOf("path" to ":data_local_source_api")))
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.1-Beta")
 }

@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pustovit.vkclient.news_impl"
+    namespace = "com.pustovit.vkclient.data_local_source_impl"
     compileSdk = 34
 
     defaultConfig {
@@ -19,27 +19,10 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
-    }
-
-    packaging {
-        resources {
-            excludes += "/META-INF/{AL2.0,LGPL2.1}"
-        }
-    }
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":news_api")))
+    implementation(project(mapOf("path" to ":data_local_source_api")))
     implementation( "com.google.dagger:dagger:2.51.1")
     kapt("com.google.dagger:dagger-compiler:2.51.1")
 

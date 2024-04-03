@@ -45,7 +45,7 @@ android {
 
 dependencies {
     implementation(project(mapOf("path" to ":models")))
-    implementation(project(mapOf("path" to ":news_api")))
+    implementation(project(mapOf("path" to ":feature_news_api")))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

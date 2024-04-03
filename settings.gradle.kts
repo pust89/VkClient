@@ -1,3 +1,11 @@
+import java.net.URI
+
+include(":data_local_source_impl")
+
+
+include(":data_local_source_api")
+
+
 pluginManagement {
     repositories {
         google()
@@ -10,9 +18,14 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven {
+            url = URI("https://artifactory-external.vkpartner.ru/artifactory/vkid-sdk-andorid/")
+        }
     }
 }
+
 rootProject.name = "VkClient"
+include(":secrets.gradle.kts")
 
 // Core
 include(":app")
@@ -24,8 +37,8 @@ include(":navigation")
 include(":injector")
 
 // Features
-include(":news_api")
-include(":news_impl")
+include(":feature_news_api")
+include(":feature_news_impl")
 
 include(":data_api")
 include(":domain_api")

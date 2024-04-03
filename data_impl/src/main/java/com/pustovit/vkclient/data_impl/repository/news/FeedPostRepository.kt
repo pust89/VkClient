@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.data_impl.repository
+package com.pustovit.vkclient.data_impl.repository.news
 
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
 import com.pustovit.vkclient.models.post.FeedPost

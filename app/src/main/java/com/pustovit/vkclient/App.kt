@@ -51,11 +51,11 @@ private fun setNewsFeatureDependencies(allApi: AllApi) {
         override val dependencies: NewsFeatureDependencies
             get() = object : NewsFeatureDependencies {
                 override fun getAllPostsUseCase(): GetAllPostsUseCase {
-                    return allApi.domainFeatureApi.getAllPostsUseCase()
+                    return allApi.domainApi.getAllPostsUseCase()
                 }
 
                 override fun removePostUseCase(): RemovePostUseCase {
-                    return allApi.domainFeatureApi.removePostUseCase()
+                    return allApi.domainApi.removePostUseCase()
                 }
 
                 override val dependencyHolder: DependencyHolder<out FeatureDependencies>

@@ -15,8 +15,9 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
+        ApiDependenciesModule::class,
         ApiModule::class,
-        ApiDependenciesModule::class
+        FeatureApiModule::class
     ]
 )
 interface AppComponent {

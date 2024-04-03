@@ -1,14 +1,17 @@
 package com.pustovit.vkclient.di
 
-import com.pustovit.vkclient.data_api.DataFeatureApi
+import com.pustovit.vkclient.data_api.DataApi
 import com.pustovit.vkclient.data_impl.di.DaggerDataComponent
-import com.pustovit.vkclient.domain_api.news.DomainFeatureApi
+import com.pustovit.vkclient.data_impl.di.DataDependencies
+import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
+import com.pustovit.vkclient.data_local_source_impl.di.DaggerLocalDataSourceComponent
+import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependencies
+//import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
+//import com.pustovit.vkclient.data_local_source_impl.di.DaggerLocalDataSourceComponent
+//import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependencies
+import com.pustovit.vkclient.domain_api.news.DomainApi
 import com.pustovit.vkclient.domain_impl.di.DaggerDomainComponent
 import com.pustovit.vkclient.domain_impl.di.DomainDependencies
-import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
-import com.pustovit.vkclient.news_impl.di.DaggerNewsFeatureComponent
-import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
-import com.pustovit.vkclient.news_impl.di.NewsFeatureDependencies
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -23,22 +26,29 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideDataFeatureApi(): DataFeatureApi {
-        return DaggerDataComponent.create()
-    }
-
-    @Provides
-    @Singleton
-    fun provideDomainFeatureApi(domainDependencies: DomainDependencies): DomainFeatureApi {
-        return DaggerDomainComponent
+    fun provideLocalDataSourceApi(dependencies: LocalDataSourceDependencies): LocalDataSourceApi {
+        return DaggerLocalDataSourceComponent
             .builder()
-            .domainDependencies(domainDependencies)
+            .localDataSourceDependencies(dependencies)
             .build()
     }
 
     @Provides
     @Singleton
-    fun provideNewsFeatureApi(): NewsFeatureApi {
-        return NewsFeatureComponentHolder.get()
+    fun provideDataApi(dependencies: DataDependencies): DataApi {
+        return DaggerDataComponent
+            .builder()
+            .dataDependencies(dependencies)
+            .build()
     }
+
+    @Provides
+    @Singleton
+    fun provideDomainFeatureApi(dependencies: DomainDependencies): DomainApi {
+        return DaggerDomainComponent
+            .builder()
+            .domainDependencies(dependencies)
+            .build()
+    }
+
 }

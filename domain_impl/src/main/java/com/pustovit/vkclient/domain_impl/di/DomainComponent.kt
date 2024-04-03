@@ -1,8 +1,6 @@
 package com.pustovit.vkclient.domain_impl.di
 
-import com.pustovit.vkclient.domain_api.news.DomainFeatureApi
-import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
-import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
+import com.pustovit.vkclient.domain_api.news.DomainApi
 import com.pustovit.vkclient.injector.FeatureScope
 import dagger.Component
 
@@ -16,4 +14,4 @@ import dagger.Component
     modules = [UseCaseModule::class],
     dependencies = [DomainDependencies::class]
 )
-interface DomainComponent : DomainFeatureApi
+interface DomainComponent : DomainApi

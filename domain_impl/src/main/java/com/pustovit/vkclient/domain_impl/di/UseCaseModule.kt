@@ -7,7 +7,6 @@ import com.pustovit.vkclient.domain_impl.news.RemovePostUseCaseImpl
 import com.pustovit.vkclient.injector.FeatureScope
 import dagger.Binds
 import dagger.Module
-import javax.inject.Singleton
 
 /**
  * Created by Pustovit V.V.
