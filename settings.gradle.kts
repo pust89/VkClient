@@ -1,10 +1,5 @@
 import java.net.URI
 
-include(":data_local_source_impl")
-
-
-include(":data_local_source_api")
-
 
 pluginManagement {
     repositories {
@@ -29,6 +24,8 @@ include(":secrets.gradle.kts")
 
 // Core
 include(":app")
+include(":data_local_source_impl")
+include(":data_local_source_api")
 include(":data_impl")
 include(":models")
 include(":domain_impl")
@@ -39,6 +36,9 @@ include(":injector")
 // Features
 include(":feature_news_api")
 include(":feature_news_impl")
+include(":feature_auth_impl")
+include(":feature_auth_api")
+
 
 include(":data_api")
 include(":domain_api")

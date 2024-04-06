@@ -14,7 +14,7 @@ import dagger.Module
  * Time: 13:10
  */
 @Module
-internal interface UseCaseModule {
+internal interface NewsUseCaseModule {
     @Binds
     @FeatureScope
     fun bindGetAllPostsUseCase(useCase: GetAllPostsUseCaseImpl): GetAllPostsUseCase

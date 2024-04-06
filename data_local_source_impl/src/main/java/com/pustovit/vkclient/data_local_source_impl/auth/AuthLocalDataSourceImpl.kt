@@ -17,5 +17,6 @@ internal class AuthLocalDataSourceImpl(private val sharedPreferences: SharedPref
     }
 
     override suspend fun saveVkAccessToken(token: VkAccessToken) {
+
     }
 }

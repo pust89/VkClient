@@ -3,7 +3,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
 }
 
 android {
@@ -17,22 +17,21 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+        val vkIDRedirectScheme = properties.getProperty("VKIDRedirectScheme")
+        val vkIdClientId = properties.getProperty("VKIDClientID")
+        val vkIdClientSecret = properties.getProperty("VKIDClientSecret")
+
+        manifestPlaceholders["VKIDRedirectHost"] = "vk.com"
+        manifestPlaceholders["VKIDRedirectScheme"] = vkIDRedirectScheme
+        manifestPlaceholders["VKIDClientID"] = vkIdClientId
+        manifestPlaceholders["VKIDClientSecret"] = vkIdClientSecret
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
-
-        val properties = Properties()
-        properties.load(project.rootProject.file("local.properties").inputStream())
-        val vkIdClientId = properties.getProperty("VKIDClientID")
-        val vkIdClientSecret = properties.getProperty("VKIDClientSecret")
-
-        addManifestPlaceholders(mapOf(
-            "VKIDRedirectHost" to "vk.com", // обычно vk.com
-            "VKIDRedirectScheme" to "vk51894847", // обычно vk{ID приложения}
-            "VKIDClientID" to vkIdClientId,
-            "VKIDClientSecret" to vkIdClientSecret
-        ))
     }
 
     buildTypes {
@@ -65,7 +64,7 @@ android {
 }
 
 dependencies {
-    implementation( "com.google.dagger:dagger:2.51.1")
+    implementation("com.google.dagger:dagger:2.51.1")
     kapt("com.google.dagger:dagger-compiler:2.51.1")
 
     implementation(project(mapOf("path" to ":injector")))
@@ -78,11 +77,11 @@ dependencies {
     implementation(project(mapOf("path" to ":domain_impl")))
     implementation(project(mapOf("path" to ":ui_common")))
     implementation(project(mapOf("path" to ":navigation")))
+
     implementation(project(mapOf("path" to ":feature_news_api")))
     implementation(project(mapOf("path" to ":feature_news_impl")))
-
-    // Если используете One Tap на Compose, укажите эту зависимость.
-    implementation("com.vk.id:onetap-compose:1.3.1")
+    implementation(project(mapOf("path" to ":feature_auth_api")))
+    implementation(project(mapOf("path" to ":feature_auth_impl")))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

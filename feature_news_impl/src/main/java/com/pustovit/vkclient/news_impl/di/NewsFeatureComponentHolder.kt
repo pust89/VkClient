@@ -17,7 +17,6 @@ object NewsFeatureComponentHolder : ComponentHolder<NewsFeatureApi, NewsFeatureD
             NewsFeatureComponent> { dependencies ->
         DaggerNewsFeatureComponent.builder().newsFeatureDependencies(dependencies)
             .build()
-
     }
 
     override fun get(): NewsFeatureApi {

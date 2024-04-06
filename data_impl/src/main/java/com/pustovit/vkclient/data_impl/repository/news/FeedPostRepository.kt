@@ -22,16 +22,13 @@ internal class FeedPostRepositoryImpl @Inject constructor() : FeedPostRepository
         }
     }
 
-    override fun getAll(): Flow<List<FeedPost>> {
-        return flow {
-            delay(3000)
-            emit(mock.toList())
-        }.flowOn(Dispatchers.IO)
-    }
+    override fun getAll(): Flow<List<FeedPost>> = flow {
+        delay(3000)
+        emit(mock.toList())
+    }.flowOn(Dispatchers.IO)
 
-    override fun remove(feedPost: FeedPost): Flow<Boolean> {
-        return flow {
-            emit(mock.remove(feedPost))
-        }.flowOn(Dispatchers.IO)
-    }
+    override fun remove(feedPost: FeedPost): Flow<Boolean> = flow {
+        emit(mock.remove(feedPost))
+    }.flowOn(Dispatchers.IO)
+
 }

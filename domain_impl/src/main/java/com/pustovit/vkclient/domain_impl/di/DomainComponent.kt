@@ -1,6 +1,6 @@
 package com.pustovit.vkclient.domain_impl.di
 
-import com.pustovit.vkclient.domain_api.news.DomainApi
+import com.pustovit.vkclient.domain_api.DomainApi
 import com.pustovit.vkclient.injector.FeatureScope
 import dagger.Component
 
@@ -11,7 +11,8 @@ import dagger.Component
  */
 @FeatureScope
 @Component(
-    modules = [UseCaseModule::class],
-    dependencies = [DomainDependencies::class]
+    dependencies = [DomainDependencies::class],
+    modules = [NewsUseCaseModule::class,
+        AuthUseCaseModule::class],
 )
 interface DomainComponent : DomainApi

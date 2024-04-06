@@ -77,6 +77,7 @@ internal class NewsFeedViewModel @Inject constructor(
         private val getAllPostsUseCase: GetAllPostsUseCase,
         private val removePostUseCase: RemovePostUseCase
     ) : ViewModelProvider.Factory {
+        @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return NewsFeedViewModel(
                 getAllPostsUseCase = getAllPostsUseCase,

@@ -4,6 +4,7 @@ import android.app.Application
 import com.pustovit.vkclient.di.AllApi
 import com.pustovit.vkclient.di.AppComponent
 import com.pustovit.vkclient.di.DaggerAppComponent
+import com.pustovit.vkclient.di.setFeatureDependencies
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.DependencyHolder
@@ -42,28 +43,3 @@ class App : Application() {
 //    }
 }
 
-private fun setFeatureDependencies(allApi: AllApi) {
-    setNewsFeatureDependencies(allApi)
-}
-
-private fun setNewsFeatureDependencies(allApi: AllApi) {
-    class NewsFeatureDependenciesHolder : DependencyHolder<NewsFeatureDependencies> {
-        override val dependencies: NewsFeatureDependencies
-            get() = object : NewsFeatureDependencies {
-                override fun getAllPostsUseCase(): GetAllPostsUseCase {
-                    return allApi.domainApi.getAllPostsUseCase()
-                }
-
-                override fun removePostUseCase(): RemovePostUseCase {
-                    return allApi.domainApi.removePostUseCase()
-                }
-
-                override val dependencyHolder: DependencyHolder<out FeatureDependencies>
-                    get() = this@NewsFeatureDependenciesHolder
-            }
-    }
-
-    NewsFeatureComponentHolder.dependencyProvider = {
-        NewsFeatureDependenciesHolder().dependencies
-    }
-}

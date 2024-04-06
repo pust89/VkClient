@@ -9,7 +9,7 @@ import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependenci
 //import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
 //import com.pustovit.vkclient.data_local_source_impl.di.DaggerLocalDataSourceComponent
 //import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependencies
-import com.pustovit.vkclient.domain_api.news.DomainApi
+import com.pustovit.vkclient.domain_api.DomainApi
 import com.pustovit.vkclient.domain_impl.di.DaggerDomainComponent
 import com.pustovit.vkclient.domain_impl.di.DomainDependencies
 import dagger.Module

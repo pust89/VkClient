@@ -1,5 +1,7 @@
 package com.pustovit.vkclient.di
 
+import com.pustovit.vkclient.auth_api.AuthFeatureApi
+import com.pustovit.vkclient.auth_impl.di.AuthFeatureComponentHolder
 import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
 import dagger.Module
@@ -18,5 +20,11 @@ class FeatureApiModule {
     @Singleton
     fun provideNewsFeatureApi(): NewsFeatureApi {
         return NewsFeatureComponentHolder.get()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthFeatureApi(): AuthFeatureApi {
+        return AuthFeatureComponentHolder.get()
     }
 }

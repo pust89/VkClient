@@ -2,6 +2,7 @@ package com.pustovit.vkclient.di
 
 import android.content.Context
 import com.pustovit.vkclient.data_api.DataApi
+import com.pustovit.vkclient.data_api.repository.AuthRepository
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
 import com.pustovit.vkclient.data_impl.di.DataDependencies
 import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
@@ -41,13 +42,16 @@ class ApiDependenciesModule {
         }
     }
 
-
     @Provides
     @Singleton
     fun provideDomainDependencies(dataApi: DataApi): DomainDependencies {
         return object : DomainDependencies {
             override fun feedPostRepository(): FeedPostRepository {
                 return dataApi.feedPostRepository()
+            }
+
+            override fun authRepository(): AuthRepository {
+                return dataApi.authRepository()
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.pustovit.vkclient.domain_impl.di
 
+import com.pustovit.vkclient.data_api.repository.AuthRepository
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
 
 /**
@@ -10,4 +11,5 @@ import com.pustovit.vkclient.data_api.repository.FeedPostRepository
 
 interface DomainDependencies {
     fun feedPostRepository(): FeedPostRepository
+    fun authRepository(): AuthRepository
 }

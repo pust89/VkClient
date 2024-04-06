@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="auth_screen_title">Welcome!</string>
+    <string name="auth_screen_body">To continue using the application, you need to log in using your VK account.</string>
+</resources>

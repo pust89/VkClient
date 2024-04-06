@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.data_api.repository
 
 import com.pustovit.vkclient.models.auth.VkAccessToken
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Pustovit V.V.
@@ -8,6 +9,6 @@ import com.pustovit.vkclient.models.auth.VkAccessToken
  * Time: 21:42
  */
 interface AuthRepository {
-    suspend fun getVkAccessToken(): VkAccessToken?
-    suspend fun saveVkAccessToken(token: VkAccessToken)
+    fun getVkAccessToken(): Flow<VkAccessToken?>
+    fun saveVkAccessToken(token: VkAccessToken): Flow<Unit>
 }

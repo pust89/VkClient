@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.data_local_api.auth
 
 import com.pustovit.vkclient.models.auth.VkAccessToken
+import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Pustovit V.V.
