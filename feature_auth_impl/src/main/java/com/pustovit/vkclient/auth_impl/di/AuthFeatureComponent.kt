@@ -17,6 +17,6 @@ import dagger.Component
 )
 internal interface AuthFeatureComponent : AuthFeatureApi {
 
-    val authViewModelFactory: AuthViewModel.Factory
+    fun authViewModelFactory(): AuthViewModel.Factory
 
 }

@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.ui_common.screen
 
 import android.os.Bundle
+import androidx.lifecycle.ViewModel
 import java.util.Base64
 
 fun String.encode(): String {
@@ -22,3 +23,6 @@ fun Bundle.getDecodedString(key: String): String? {
 fun Bundle.getDecodedString(key: String, defaultValue: String): String {
     return getDecodedString(key) ?: defaultValue
 }
+
+val <T>T.TAG: String where T : Any
+    get() = this::class.qualifiedName ?: "TAG"

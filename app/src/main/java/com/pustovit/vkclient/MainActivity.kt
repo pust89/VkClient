@@ -3,7 +3,7 @@ package com.pustovit.vkclient
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.pustovit.vkclient.ui.MainScreen
+import com.pustovit.vkclient.splash_impl.presentation.SplashScreen
 import com.pustovit.vkclient.ui_common.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -11,7 +11,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
-                MainScreen()
+                SplashScreen()
             }
         }
     }

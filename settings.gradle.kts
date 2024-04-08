@@ -34,10 +34,13 @@ include(":navigation")
 include(":injector")
 
 // Features
-include(":feature_news_api")
-include(":feature_news_impl")
+include(":feature_splash_api")
+include(":feature_splash_impl")
 include(":feature_auth_impl")
 include(":feature_auth_api")
+include(":feature_news_api")
+include(":feature_news_impl")
+
 
 
 include(":data_api")

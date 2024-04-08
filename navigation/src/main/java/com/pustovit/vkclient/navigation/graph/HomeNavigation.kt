@@ -13,7 +13,7 @@ import com.pustovit.vkclient.ui_common.screen.getDecodedString
  * Date: 18.03.2024
  * Time: 19:47
  */
-fun NavGraphBuilder.homeNavigation(
+fun NavGraphBuilder.newsNavigation(
     newsFeedScreenContent: @Composable () -> Unit,
     commentsScreenContent: @Composable (CommentsScreen.Args) -> Unit,
 ) {

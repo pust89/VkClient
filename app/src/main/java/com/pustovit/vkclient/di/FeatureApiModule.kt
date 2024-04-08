@@ -4,6 +4,8 @@ import com.pustovit.vkclient.auth_api.AuthFeatureApi
 import com.pustovit.vkclient.auth_impl.di.AuthFeatureComponentHolder
 import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
+import com.pustovit.vkclient.splash_api.SplashFeatureApi
+import com.pustovit.vkclient.splash_impl.di.SplashFeatureComponentHolder
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -26,5 +28,11 @@ class FeatureApiModule {
     @Singleton
     fun provideAuthFeatureApi(): AuthFeatureApi {
         return AuthFeatureComponentHolder.get()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSplashFeatureApi(): SplashFeatureApi {
+        return SplashFeatureComponentHolder.get()
     }
 }

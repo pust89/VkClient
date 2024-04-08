@@ -78,10 +78,12 @@ dependencies {
     implementation(project(mapOf("path" to ":ui_common")))
     implementation(project(mapOf("path" to ":navigation")))
 
-    implementation(project(mapOf("path" to ":feature_news_api")))
-    implementation(project(mapOf("path" to ":feature_news_impl")))
+    implementation(project(mapOf("path" to ":feature_splash_api")))
+    implementation(project(mapOf("path" to ":feature_splash_impl")))
     implementation(project(mapOf("path" to ":feature_auth_api")))
     implementation(project(mapOf("path" to ":feature_auth_impl")))
+    implementation(project(mapOf("path" to ":feature_news_api")))
+    implementation(project(mapOf("path" to ":feature_news_impl")))
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -35,7 +35,7 @@ fun AuthScreen() {
         AuthFeatureComponentHolder.component
     }
 
-    val viewModel: AuthViewModel = viewModel(factory = component.authViewModelFactory)
+    val viewModel: AuthViewModel = viewModel(factory = component.authViewModelFactory())
 
     Scaffold { paddingValues ->
         Column(

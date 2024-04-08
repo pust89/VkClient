@@ -17,6 +17,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.pustovit.vkclient.splash_impl.presentation.SplashScreen
 import com.pustovit.vkclient.auth_impl.presentation.AuthScreen
 import com.pustovit.vkclient.navigation.AppNavGraph
 import com.pustovit.vkclient.news_impl.presentation.feed_posts.NewsScreen
@@ -64,6 +65,7 @@ fun MainScreen() {
 
         AppNavGraph(
             navHostController = navigationState.navHostController,
+            splashScreenContent = { SplashScreen() },
             authScreenContent = { AuthScreen() },
             newsFeedScreenContent = {
                 NewsScreen(
