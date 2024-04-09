@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
+import com.pustovit.vkclient.models.auth.VkAccessToken
 import com.pustovit.vkclient.ui_common.screen.TAG
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -20,10 +22,19 @@ class SplashViewModel(
 
     init {
         getVkAccessTokenUseCase.invoke()
-            .onEach {
-                Log.d(TAG, "vkAccessToken = $it ")
+            .onEach(::onVkAccessToke)
+            .catch {
+                Log.e(TAG, "init: ", it)
             }
             .launchIn(viewModelScope)
+    }
+
+    private fun onVkAccessToke(vkAccessToken: VkAccessToken?) {
+        if (vkAccessToken != null) {
+            //TODO  навигируемся к новостям
+        } else {
+            //TODO  навигируемся в авторизацию
+        }
     }
 
     class Factory(private val getVkAccessTokenUseCase: GetVkAccessTokenUseCase) :
