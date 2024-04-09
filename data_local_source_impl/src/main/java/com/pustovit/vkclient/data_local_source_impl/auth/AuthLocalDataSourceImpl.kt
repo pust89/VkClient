@@ -2,7 +2,9 @@ package com.pustovit.vkclient.data_local_source_impl.auth
 
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import com.pustovit.vkclient.data_local_api.auth.AuthLocalDataSource
+import com.pustovit.vkclient.data_local_source_impl.auth.mapper.AuthLocalDataSourceMapper
 import com.pustovit.vkclient.models.auth.VkAccessToken
 
 /**
@@ -10,13 +12,28 @@ import com.pustovit.vkclient.models.auth.VkAccessToken
  * Date: 03.04.2024
  * Time: 22:13
  */
-internal class AuthLocalDataSourceImpl(private val sharedPreferences: SharedPreferences) :
+internal class AuthLocalDataSourceImpl(
+    private val sharedPreferences: SharedPreferences,
+    private val mapper: AuthLocalDataSourceMapper
+) :
     AuthLocalDataSource {
     override suspend fun getVkAccessToken(): VkAccessToken? {
-        return null
+        return sharedPreferences.getString(VK_ACCESS_TOKEN_LOCAL_KEY, "")
+            .run(mapper::mapLocal)
+            .run(mapper::mapDomain)
     }
 
     override suspend fun saveVkAccessToken(token: VkAccessToken) {
+        sharedPreferences.edit(true) {
+            putString(
+                VK_ACCESS_TOKEN_LOCAL_KEY,
+                token.run(mapper::mapLocal)
+                    .run(mapper::mapString)
+            )
+        }
+    }
 
+    private companion object {
+        const val VK_ACCESS_TOKEN_LOCAL_KEY = "VK_ACCESS_TOKEN_LOCAL_KEY"
     }
 }
