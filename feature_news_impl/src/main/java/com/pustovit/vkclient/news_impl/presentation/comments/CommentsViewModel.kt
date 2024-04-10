@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.PostComment
-import com.pustovit.vkclient.news_api.screens.CommentsScreen
+import com.pustovit.vkclient.screens.CommentsScreen
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -27,6 +27,10 @@ class CommentsViewModel(private val args: CommentsScreen.Args) : ViewModel() {
             feedPost = FeedPost(id = feedPostId),
             comments = comments
         )
+    }
+
+    fun onBackPressed() {
+
     }
 
     class Factory(private val args: CommentsScreen.Args) : ViewModelProvider.Factory {

@@ -1,9 +1,12 @@
 package com.pustovit.vkclient.splash_impl.di
 
-import com.pustovit.vkclient.splash_impl.presentation.SplashViewModel
+import androidx.compose.runtime.Composable
 import com.pustovit.vkclient.injector.FeatureScope
 import com.pustovit.vkclient.splash_api.SplashFeatureApi
+import com.pustovit.vkclient.splash_impl.presentation.SplashViewModel
+import dagger.BindsInstance
 import dagger.Component
+
 
 /**
  * Created by Pustovit V.V.
@@ -18,4 +21,5 @@ import dagger.Component
 interface SplashFeatureComponent : SplashFeatureApi {
 
     fun splashViewModelFactory(): SplashViewModel.Factory
+
 }

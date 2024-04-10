@@ -12,6 +12,8 @@ import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependenci
 import com.pustovit.vkclient.domain_api.DomainApi
 import com.pustovit.vkclient.domain_impl.di.DaggerDomainComponent
 import com.pustovit.vkclient.domain_impl.di.DomainDependencies
+import com.pustovit.vkclient.navigation.ScreenNavigatorImpl
+import com.pustovit.vkclient.screens.core.ScreenNavigator
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -49,6 +51,12 @@ class ApiModule {
             .builder()
             .domainDependencies(dependencies)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideScreenNavigator(): ScreenNavigator {
+        return ScreenNavigatorImpl()
     }
 
 }

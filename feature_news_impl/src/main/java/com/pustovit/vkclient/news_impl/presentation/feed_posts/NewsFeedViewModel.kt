@@ -73,6 +73,10 @@ internal class NewsFeedViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
+    fun onCommentClick(feedPost: FeedPost) {
+
+    }
+
     class Factory(
         private val getAllPostsUseCase: GetAllPostsUseCase,
         private val removePostUseCase: RemovePostUseCase

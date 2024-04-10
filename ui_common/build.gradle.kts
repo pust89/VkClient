@@ -56,7 +56,6 @@ dependencies {
     api("androidx.compose.ui:ui-tooling-preview")
     api("androidx.compose.material3:material3")
 
-    api("androidx.navigation:navigation-compose:2.7.7")
     api("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     api("io.coil-kt:coil-compose:2.1.0")
 

@@ -1,15 +1,15 @@
-package com.pustovit.vkclient.news_api.screens
+package com.pustovit.vkclient.screens
 
 import androidx.navigation.NamedNavArgument
-import com.pustovit.vkclient.ui_common.screen.Screen
-import com.pustovit.vkclient.ui_common.screen.encodeAndAppend
+import com.pustovit.vkclient.screens.Screen.Companion.DASH
+import com.pustovit.vkclient.screens.core.encodeAndAppend
 
 /**
  * Created by Pustovit V.V.
  * Date: 24.03.2024
  * Time: 13:52
  */
-object CommentsScreen : Screen() {
+object CommentsScreen : Screen {
     override val screenName = "comments"
     const val ARG_FEED_POST_ID = "feed_post_id"
     const val ARG_FEED_POST_CONTENT_TEXT = "content_text"

@@ -22,12 +22,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.pustovit.vkclient.models.post.PostComment
-import com.pustovit.vkclient.news_api.screens.CommentsScreen
+import com.pustovit.vkclient.screens.CommentsScreen
 
 @Composable
 fun CommentsScreen(
-    args: CommentsScreen.Args,
-    onBackPressed: () -> Unit,
+    args: CommentsScreen.Args
 ) {
     val viewModel: CommentsViewModel = viewModel(
         factory = CommentsViewModel.Factory(args = args)
@@ -37,7 +36,7 @@ fun CommentsScreen(
     val currentState = screenState.value
 
     BackHandler {
-        onBackPressed.invoke()
+        viewModel.onBackPressed()
     }
 
     if (currentState is CommentsScreenState.Comments) {
@@ -48,7 +47,7 @@ fun CommentsScreen(
                         Text(text = "Comments for FeedPost Id: ${currentState.feedPost.id}")
                     },
                     navigationIcon = {
-                        IconButton(onClick = { onBackPressed() }) {
+                        IconButton(onClick = { viewModel.onBackPressed() }) {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                                 contentDescription = null

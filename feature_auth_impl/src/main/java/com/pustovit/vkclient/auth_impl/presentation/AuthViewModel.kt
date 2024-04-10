@@ -7,12 +7,11 @@ import androidx.lifecycle.viewModelScope
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.models.auth.VKIDUser
 import com.pustovit.vkclient.models.auth.VkAccessToken
-import com.pustovit.vkclient.ui_common.screen.TAG
+import com.pustovit.vkclient.screens.TAG
 import com.vk.id.AccessToken
 import com.vk.id.VKIDAuthFail
 import com.vk.id.onetap.common.OneTapOAuth
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 

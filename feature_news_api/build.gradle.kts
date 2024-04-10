@@ -49,5 +49,6 @@ android {
 
 dependencies {
     api(project(mapOf("path" to ":ui_common")))
+    api(project(mapOf("path" to ":screens")))
     api(project(mapOf("path" to ":domain_api")))
 }

@@ -10,6 +10,7 @@ import com.pustovit.vkclient.injector.DependencyHolder
 import com.pustovit.vkclient.injector.FeatureDependencies
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
 import com.pustovit.vkclient.news_impl.di.NewsFeatureDependencies
+import com.pustovit.vkclient.screens.core.ScreenNavigator
 import com.pustovit.vkclient.splash_impl.di.SplashFeatureComponentHolder
 import com.pustovit.vkclient.splash_impl.di.SplashFeatureDependencies
 
@@ -74,6 +75,10 @@ private fun setSplashFeatureDependencies(allApi: AllApi) {
 
                 override val dependencyHolder: DependencyHolder<out FeatureDependencies>
                     get() = this@SplashFeatureDependenciesHolder
+
+                override fun getScreenNavigator(): ScreenNavigator {
+                    return allApi.screenNavigator
+                }
             }
     }
     SplashFeatureComponentHolder.dependencyProvider = {

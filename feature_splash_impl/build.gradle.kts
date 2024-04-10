@@ -44,11 +44,9 @@ android {
 
 dependencies {
 
-    // Если используете One Tap на Compose, укажите эту зависимость.
-    implementation(project(mapOf("path" to ":feature_splash_api")))
+    implementation(project(":feature_splash_api"))
 
     implementation( "com.google.dagger:dagger:2.51.1")
-    implementation(project(":feature_splash_api"))
     kapt("com.google.dagger:dagger-compiler:2.51.1")
 
 

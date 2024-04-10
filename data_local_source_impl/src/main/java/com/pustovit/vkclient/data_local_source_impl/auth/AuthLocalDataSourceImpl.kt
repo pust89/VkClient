@@ -15,8 +15,8 @@ import com.pustovit.vkclient.models.auth.VkAccessToken
 internal class AuthLocalDataSourceImpl(
     private val sharedPreferences: SharedPreferences,
     private val mapper: AuthLocalDataSourceMapper
-) :
-    AuthLocalDataSource {
+) : AuthLocalDataSource {
+
     override suspend fun getVkAccessToken(): VkAccessToken? {
         return sharedPreferences.getString(VK_ACCESS_TOKEN_LOCAL_KEY, "")
             .run(mapper::mapLocal)

@@ -2,6 +2,7 @@ package com.pustovit.vkclient.di
 
 import android.content.Context
 import com.pustovit.vkclient.App
+import com.pustovit.vkclient.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -17,12 +18,15 @@ import javax.inject.Singleton
     modules = [
         ApiDependenciesModule::class,
         ApiModule::class,
-        FeatureApiModule::class
+        FeatureApiModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent {
 
     fun inject(app: App)
+
+    fun inject(mainActivity: MainActivity)
 
     @Component.Builder
     interface Builder {

@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.ui_common.screen
+package com.pustovit.vkclient.screens
 
 import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavArgumentBuilder
@@ -10,14 +10,14 @@ import androidx.navigation.navArgument
  * Date: 25.03.2024
  * Time: 21:18
  */
-abstract class Screen {
-    abstract val screenName: String
-    abstract val route: String
+sealed interface Screen {
+     val screenName: String
+     val route: String
 
-    open val arguments: List<NamedNavArgument>
+     val arguments: List<NamedNavArgument>
         get() = emptyList()
 
-    protected fun buildRouteWithArgs(vararg arguments: String): String {
+     fun buildRouteWithArgs(vararg arguments: String): String {
         return buildString {
             append(screenName)
             arguments.forEach { argumentName ->
@@ -26,7 +26,7 @@ abstract class Screen {
         }
     }
 
-    protected fun MutableList<NamedNavArgument>.addIntArgument(
+     fun MutableList<NamedNavArgument>.addIntArgument(
         argName: String,
         builder: NavArgumentBuilder.() -> Unit = {}
     ) {
@@ -38,7 +38,7 @@ abstract class Screen {
         }
     }
 
-    protected fun MutableList<NamedNavArgument>.addStringArgument(
+     fun MutableList<NamedNavArgument>.addStringArgument(
         argName: String,
         builder: NavArgumentBuilder.() -> Unit = {}
     ) {

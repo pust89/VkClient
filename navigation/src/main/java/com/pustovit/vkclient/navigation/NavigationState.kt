@@ -5,11 +5,13 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.pustovit.vkclient.auth_api.AuthScreen
 import com.pustovit.vkclient.models.post.FeedPost
-import com.pustovit.vkclient.news_api.screens.CommentsScreen
 import com.pustovit.vkclient.navigation.tabs.NavigationTab
-import com.pustovit.vkclient.splash_api.SplashScreen
+import com.pustovit.vkclient.screens.AuthScreen
+import com.pustovit.vkclient.screens.CommentsScreen
+import com.pustovit.vkclient.screens.NewsScreen
+import com.pustovit.vkclient.screens.Screen
+import com.pustovit.vkclient.screens.SplashScreen
 
 class NavigationState(
     val navHostController: NavHostController
@@ -23,21 +25,8 @@ class NavigationState(
             restoreState = true
         }
     }
-
-    fun navigateToCommentsScreen(feedPost: FeedPost) {
-        val args = CommentsScreen.Args(
-            feedPostId = feedPost.id,
-            feedPostComment = feedPost.contentText,
-        )
-        navHostController.navigate(CommentsScreen.getRouteWithArgs(args))
-    }
-
-    fun navigateToAuthScreen() {
-        navHostController.navigate(AuthScreen.route)
-    }
-
-    fun navigateToSplashScreen() {
-        navHostController.navigate(SplashScreen.route)
+    fun navigateTo(screen: Screen) {
+        navHostController.navigate(screen.route)
     }
 }
 

@@ -2,6 +2,7 @@ package com.pustovit.vkclient.splash_impl.di
 
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
+import com.pustovit.vkclient.screens.core.ScreenNavigator
 
 /**
  * Created by Pustovit V.V.
@@ -10,4 +11,7 @@ import com.pustovit.vkclient.injector.FeatureDependencies
  */
 interface SplashFeatureDependencies : FeatureDependencies {
     fun getVkAccessTokenUseCase(): GetVkAccessTokenUseCase
+
+    fun getScreenNavigator(): ScreenNavigator
+
 }

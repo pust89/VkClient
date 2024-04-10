@@ -1,6 +1,8 @@
 import java.net.URI
 
 
+
+
 pluginManagement {
     repositories {
         google()
@@ -26,10 +28,13 @@ include(":secrets.gradle.kts")
 include(":app")
 include(":data_local_source_impl")
 include(":data_local_source_api")
+include(":data_api")
 include(":data_impl")
 include(":models")
+include(":domain_api")
 include(":domain_impl")
 include(":ui_common")
+include(":screens")
 include(":navigation")
 include(":injector")
 
@@ -43,5 +48,3 @@ include(":feature_news_impl")
 
 
 
-include(":data_api")
-include(":domain_api")

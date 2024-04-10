@@ -1,13 +1,11 @@
-package com.pustovit.vkclient.splash_api
-
-import com.pustovit.vkclient.ui_common.screen.Screen
+package com.pustovit.vkclient.screens
 
 /**
  * Created by Pustovit V.V.
  * Date: 08.04.2024
  * Time: 21:27
  */
-object SplashScreen: Screen() {
+object SplashScreen : Screen {
 
     override val screenName: String
         get() = "splash"

@@ -75,6 +75,7 @@ dependencies {
     implementation(project(mapOf("path" to ":data_impl")))
     implementation(project(mapOf("path" to ":domain_api")))
     implementation(project(mapOf("path" to ":domain_impl")))
+    implementation(project(mapOf("path" to ":screens")))
     implementation(project(mapOf("path" to ":ui_common")))
     implementation(project(mapOf("path" to ":navigation")))
 

@@ -23,7 +23,7 @@ class App : Application() {
     @Inject
     lateinit var allApi: AllApi
 
-    private val appComponent: AppComponent by lazy {
+    internal val appComponent: AppComponent by lazy {
         DaggerAppComponent.builder()
             .applicationContext(this)
             .build()

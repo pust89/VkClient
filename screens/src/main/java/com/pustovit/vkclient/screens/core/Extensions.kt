@@ -1,7 +1,6 @@
-package com.pustovit.vkclient.ui_common.screen
+package com.pustovit.vkclient.screens.core
 
 import android.os.Bundle
-import androidx.lifecycle.ViewModel
 import java.util.Base64
 
 fun String.encode(): String {

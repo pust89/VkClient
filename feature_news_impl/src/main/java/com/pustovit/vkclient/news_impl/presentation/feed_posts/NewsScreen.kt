@@ -27,10 +27,7 @@ import com.pustovit.vkclient.ui_common.compose.LoadingScreen
 import javax.inject.Inject
 
 @Composable
-fun NewsScreen(
-    paddingValues: PaddingValues,
-    onCommentClickListener: (FeedPost) -> Unit
-) {
+fun NewsScreen() {
 
     val component: NewsFeatureComponent = remember {
         NewsFeatureComponentHolder.component
@@ -45,25 +42,22 @@ fun NewsScreen(
 
             FeedPosts(
                 viewModel = viewModel,
-                paddingValues = paddingValues,
                 posts = currentState.posts,
-                onCommentClickListener = onCommentClickListener
+                onCommentClickListener = viewModel::onCommentClick
             )
         }
 
-        NewsFeedScreenState.Loading -> LoadingScreen(paddingValues)
+        NewsFeedScreenState.Loading -> LoadingScreen()
     }
 }
 
 @Composable
 private fun FeedPosts(
     viewModel: NewsFeedViewModel,
-    paddingValues: PaddingValues,
     posts: List<FeedPost>,
     onCommentClickListener: (FeedPost) -> Unit
 ) {
     LazyColumn(
-        modifier = Modifier.padding(paddingValues),
         contentPadding = PaddingValues(
             top = 16.dp,
             start = 8.dp,
