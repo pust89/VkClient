@@ -7,7 +7,9 @@ import androidx.lifecycle.viewModelScope
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.models.auth.VKIDUser
 import com.pustovit.vkclient.models.auth.VkAccessToken
-import com.pustovit.vkclient.screens.TAG
+import com.pustovit.vkclient.screens.NewsScreen
+import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.ui_common.ext.TAG
 import com.vk.id.AccessToken
 import com.vk.id.VKIDAuthFail
 import com.vk.id.onetap.common.OneTapOAuth
@@ -20,7 +22,10 @@ import kotlinx.coroutines.flow.onEach
  * Date: 06.04.2024
  * Time: 19:06
  */
-class AuthViewModel(private val saveVkAccessTokenUseCase: SaveVkAccessTokenUseCase) : ViewModel() {
+class AuthViewModel(
+    private val saveVkAccessTokenUseCase: SaveVkAccessTokenUseCase,
+    private val screenNavigator: ScreenNavigator,
+) : ViewModel() {
 
     fun onAuthSuccess(oneTapOAuth: OneTapOAuth?, accessToken: AccessToken) {
         Log.d(TAG, "onAuthSuccess: accessToken=${accessToken}")
@@ -44,7 +49,7 @@ class AuthViewModel(private val saveVkAccessTokenUseCase: SaveVkAccessTokenUseCa
                 Log.e(TAG, "onAuthSuccess: ", it)
             }
             .onEach {
-                //TODO  навигируемся к новостям
+                screenNavigator.emit(NewsScreen)
             }
             .launchIn(viewModelScope)
     }
@@ -53,11 +58,17 @@ class AuthViewModel(private val saveVkAccessTokenUseCase: SaveVkAccessTokenUseCa
         Log.d("vkTag", "onAuthFail: vKIDAuthFail=${vKIDAuthFail.description}")
     }
 
-    class Factory(private val saveVkAccessTokenUseCase: SaveVkAccessTokenUseCase) :
+    class Factory(
+        private val saveVkAccessTokenUseCase: SaveVkAccessTokenUseCase,
+        private val screenNavigator: ScreenNavigator,
+    ) :
         ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return AuthViewModel(saveVkAccessTokenUseCase) as T
+            return AuthViewModel(
+                saveVkAccessTokenUseCase = saveVkAccessTokenUseCase,
+                screenNavigator = screenNavigator
+            ) as T
         }
     }
 }

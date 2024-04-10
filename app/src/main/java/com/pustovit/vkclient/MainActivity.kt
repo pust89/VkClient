@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme {
-                MainContainer(screen = viewModel.screenFlow.collectAsState(initial = SplashScreen))
+                MainContainer(screenState = viewModel.screenFlow.collectAsState(initial = SplashScreen))
             }
         }
     }

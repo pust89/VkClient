@@ -22,6 +22,3 @@ fun Bundle.getDecodedString(key: String): String? {
 fun Bundle.getDecodedString(key: String, defaultValue: String): String {
     return getDecodedString(key) ?: defaultValue
 }
-
-val <T>T.TAG: String where T : Any
-    get() = this::class.qualifiedName ?: "TAG"

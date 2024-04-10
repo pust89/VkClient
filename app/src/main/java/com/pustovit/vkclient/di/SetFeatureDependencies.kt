@@ -57,6 +57,8 @@ private fun setAuthFeatureDependencies(allApi: AllApi) {
 
                 override val dependencyHolder: DependencyHolder<out FeatureDependencies>
                     get() = this@AuthFeatureDependenciesHolder
+
+                override val screenNavigator: ScreenNavigator = allApi.screenNavigator
             }
     }
 

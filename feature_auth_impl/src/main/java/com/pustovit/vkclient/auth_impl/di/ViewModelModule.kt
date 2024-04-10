@@ -3,6 +3,7 @@ package com.pustovit.vkclient.auth_impl.di
 import com.pustovit.vkclient.auth_impl.presentation.AuthViewModel
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.injector.FeatureScope
+import com.pustovit.vkclient.screens.core.ScreenNavigator
 import dagger.Module
 import dagger.Provides
 
@@ -18,9 +19,11 @@ class ViewModelModule {
     @FeatureScope
     fun provideAuthViewModelFactory(
         saveVkAccessTokenUseCase: SaveVkAccessTokenUseCase,
+        screenNavigator: ScreenNavigator
     ): AuthViewModel.Factory {
         return AuthViewModel.Factory(
-            saveVkAccessTokenUseCase = saveVkAccessTokenUseCase
+            saveVkAccessTokenUseCase = saveVkAccessTokenUseCase,
+            screenNavigator = screenNavigator
         )
     }
 
