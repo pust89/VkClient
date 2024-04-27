@@ -9,7 +9,9 @@ import kotlinx.coroutines.flow.Flow
  * Time: 21:44
  */
 interface ScreenNavigator {
-    suspend fun <T : Screen> emit(screen: T)
-    fun listen(): Flow<Screen>
+    suspend fun <T : Screen> emit(screen: T, startNewGraph: Boolean = false)
+
+    fun listenScreens(): Flow<Screen>
+    fun listenGraphs(): Flow<Screen>
 
 }

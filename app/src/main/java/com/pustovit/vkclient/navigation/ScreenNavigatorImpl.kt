@@ -12,12 +12,22 @@ import kotlinx.coroutines.flow.MutableSharedFlow
  */
 internal class ScreenNavigatorImpl : ScreenNavigator {
 
-    private val screenSharedFlow = MutableSharedFlow<Screen>(extraBufferCapacity = Int.MAX_VALUE)
-    override suspend fun <T : Screen> emit(screen: T) {
-        screenSharedFlow.emit(screen)
+    private val screenSharedFlow = MutableSharedFlow<Screen>()
+    private val graphsSharedFlow = MutableSharedFlow<Screen>()
+
+    override suspend fun <T : Screen> emit(screen: T, startNewGraph: Boolean) {
+        if (startNewGraph) {
+            graphsSharedFlow.emit(screen)
+        } else {
+            screenSharedFlow.emit(screen)
+        }
     }
 
-    override fun listen(): Flow<Screen> {
+    override fun listenScreens(): Flow<Screen> {
         return screenSharedFlow
+    }
+
+    override fun listenGraphs(): Flow<Screen> {
+        return graphsSharedFlow
     }
 }
