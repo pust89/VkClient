@@ -32,14 +32,16 @@ fun MainContainer(
         graphPrefix = "graph_",
         start = SplashScreen,
         navHostController = navHostController
-    )
-    navHostController.navigate(screen.route)
-
-
-
-    val startDestinationRoute = navHostController.graph.startDestinationRoute
-    Log.d("nTag", "MainContainer: startDestinationRoute=$startDestinationRoute")
-    val currentDestinationRoute = navHostController.currentDestination?.route
+    ){
+        it.navigate(screen.route)
+    }
+//
+//
+//
+//
+//    val startDestinationRoute = navHostController.graph.startDestinationRoute
+//    Log.d("nTag", "MainContainer: startDestinationRoute=$startDestinationRoute")
+//    val currentDestinationRoute = navHostController.currentDestination?.route
 
 
 //    if (graphState.value.route == screen.route) {

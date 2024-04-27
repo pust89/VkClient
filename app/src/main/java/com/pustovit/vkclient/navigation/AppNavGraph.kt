@@ -28,13 +28,14 @@ import com.pustovit.vkclient.splash_impl.presentation.SplashScreen
 fun AppGraph(
     graphPrefix: String,
     start: Screen,
-    navHostController: NavHostController
-): NavGraph {
+    navHostController: NavHostController,
+    afterGraphSet:@Composable (NavHostController) -> Unit
+) {
 
     val builder = NavGraphBuilder(
         provider = navHostController.navigatorProvider,
         startDestination = start.route,
-        route = graphPrefix + start.route
+        route = null//graphPrefix + start.route
     )
     builder.navigation(
         startDestination = start.route,
@@ -43,11 +44,11 @@ fun AppGraph(
         applyAllScreens()
     }
 
-    return builder.build()
+    navHostController.graph = builder.build()
+    afterGraphSet(navHostController)
 }
 
 fun NavGraphBuilder.applyAllScreens(): NavGraphBuilder {
-    composable(SplashScreen.route) { SplashScreen() }
     composable(SplashScreen.route) { SplashScreen() }
     composable(AuthScreen.route) { AuthScreen() }
     composable(FavouriteScreen.route) { Text(text = FavouriteScreen::class.simpleName.orEmpty()) }
