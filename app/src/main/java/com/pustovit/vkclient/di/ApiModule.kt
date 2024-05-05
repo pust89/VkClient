@@ -13,7 +13,7 @@ import com.pustovit.vkclient.domain_api.DomainApi
 import com.pustovit.vkclient.domain_impl.di.DaggerDomainComponent
 import com.pustovit.vkclient.domain_impl.di.DomainDependencies
 import com.pustovit.vkclient.navigation.ScreenNavigatorImpl
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -3,7 +3,7 @@ package com.pustovit.vkclient.splash_impl.di
 import com.pustovit.vkclient.splash_impl.presentation.SplashViewModel
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
 import com.pustovit.vkclient.injector.FeatureScope
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import dagger.Module
 import dagger.Provides
 

@@ -2,7 +2,7 @@ package com.pustovit.vkclient.screens
 
 import androidx.navigation.NamedNavArgument
 import com.pustovit.vkclient.screens.Screen.Companion.DASH
-import com.pustovit.vkclient.screens.core.encodeAndAppend
+import com.pustovit.vkclient.screens.navigation.encodeAndAppend
 
 /**
  * Created by Pustovit V.V.

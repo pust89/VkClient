@@ -3,7 +3,7 @@ package com.pustovit.vkclient.auth_impl.di
 import com.pustovit.vkclient.auth_impl.presentation.AuthViewModel
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.injector.FeatureScope
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import dagger.Module
 import dagger.Provides
 

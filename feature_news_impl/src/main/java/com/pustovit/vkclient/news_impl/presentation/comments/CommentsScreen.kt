@@ -27,6 +27,7 @@ import com.pustovit.vkclient.news_impl.di.NewsFeatureComponent
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
 import com.pustovit.vkclient.screens.CommentsScreen
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CommentsScreen(
     args: CommentsScreen.Args

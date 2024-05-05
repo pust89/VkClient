@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.navigation.graph
+package com.pustovit.vkclient.screens.navigation.graph
 
 
 /**

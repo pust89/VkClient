@@ -2,7 +2,7 @@ package com.pustovit.vkclient.auth_impl.di
 
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 
 /**
  * Created by Pustovit V.V.

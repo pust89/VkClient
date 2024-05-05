@@ -5,7 +5,7 @@ import com.pustovit.vkclient.data_api.DataApi
 import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
 import com.pustovit.vkclient.domain_api.DomainApi
 import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import com.pustovit.vkclient.splash_api.SplashFeatureApi
 import javax.inject.Inject
 import javax.inject.Provider

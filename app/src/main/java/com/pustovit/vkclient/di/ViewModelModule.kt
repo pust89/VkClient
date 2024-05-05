@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.di
 
 import com.pustovit.vkclient.MainViewModel
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

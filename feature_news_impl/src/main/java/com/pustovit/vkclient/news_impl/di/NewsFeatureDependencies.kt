@@ -3,7 +3,7 @@ package com.pustovit.vkclient.news_impl.di
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 
 /**
  * Created by Pustovit V.V.

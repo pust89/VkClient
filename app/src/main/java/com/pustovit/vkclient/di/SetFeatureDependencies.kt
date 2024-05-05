@@ -10,7 +10,7 @@ import com.pustovit.vkclient.injector.DependencyHolder
 import com.pustovit.vkclient.injector.FeatureDependencies
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
 import com.pustovit.vkclient.news_impl.di.NewsFeatureDependencies
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import com.pustovit.vkclient.splash_impl.di.SplashFeatureComponentHolder
 import com.pustovit.vkclient.splash_impl.di.SplashFeatureDependencies
 

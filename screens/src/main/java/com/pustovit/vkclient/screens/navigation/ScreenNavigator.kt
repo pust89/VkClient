@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.screens.core
+package com.pustovit.vkclient.screens.navigation
 
 import androidx.navigation.NavOptions
 import kotlinx.coroutines.flow.Flow
@@ -9,11 +9,12 @@ import kotlinx.coroutines.flow.Flow
  * Time: 21:44
  */
 interface ScreenNavigator {
+
     fun listenNavIntent(): Flow<NavIntent>
+
     suspend fun navigateTo(route: String, navOptions: NavOptions? = null)
 
     suspend fun back()
 
     suspend fun backTo(route: String, inclusive: Boolean, saveState: Boolean)
-
 }

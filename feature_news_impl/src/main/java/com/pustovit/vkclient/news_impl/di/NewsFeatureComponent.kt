@@ -3,7 +3,7 @@ package com.pustovit.vkclient.news_impl.di
 import com.pustovit.vkclient.injector.FeatureScope
 import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
 import com.pustovit.vkclient.news_impl.presentation.feed_posts.NewsFeedViewModel
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import dagger.Component
 
 /**

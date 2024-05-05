@@ -6,7 +6,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.pustovit.vkclient.models.post.FeedPost
-import com.pustovit.vkclient.navigation.tabs.NavigationTab
+import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
 import com.pustovit.vkclient.screens.AuthScreen
 import com.pustovit.vkclient.screens.CommentsScreen
 import com.pustovit.vkclient.screens.NewsScreen
@@ -27,14 +27,5 @@ class NavigationState(
     }
     fun navigateTo(screen: Screen) {
         navHostController.navigate(screen.route)
-    }
-}
-
-@Composable
-fun rememberNavigationState(
-    navHostController: NavHostController = rememberNavController()
-): NavigationState {
-    return remember {
-        NavigationState(navHostController)
     }
 }

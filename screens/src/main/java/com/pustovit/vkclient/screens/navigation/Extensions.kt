@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.screens.core
+package com.pustovit.vkclient.screens.navigation
 
 import android.os.Bundle
 import java.util.Base64

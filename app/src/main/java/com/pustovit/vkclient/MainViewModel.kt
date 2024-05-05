@@ -2,7 +2,7 @@ package com.pustovit.vkclient
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 
 /**
  * Created by Pustovit V.V.

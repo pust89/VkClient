@@ -1,8 +1,8 @@
 package com.pustovit.vkclient.navigation
 
 import androidx.navigation.NavOptions
-import com.pustovit.vkclient.screens.core.NavIntent
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.NavIntent
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 

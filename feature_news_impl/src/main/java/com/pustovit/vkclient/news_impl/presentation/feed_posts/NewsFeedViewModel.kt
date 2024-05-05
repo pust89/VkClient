@@ -10,7 +10,7 @@ import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.StatisticItem
 import com.pustovit.vkclient.screens.CommentsScreen
-import com.pustovit.vkclient.screens.core.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapMerge
