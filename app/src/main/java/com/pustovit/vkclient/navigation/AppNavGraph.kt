@@ -25,27 +25,17 @@ import com.pustovit.vkclient.splash_impl.presentation.SplashScreen
 
 
 @Composable
-fun AppGraph(
-    graphPrefix: String,
-    start: Screen,
-    navHostController: NavHostController,
-    afterGraphSet:@Composable (NavHostController) -> Unit
-) {
-
+fun AppGraph(navHostController: NavHostController) {
     val builder = NavGraphBuilder(
         provider = navHostController.navigatorProvider,
-        startDestination = start.route,
-        route = null//graphPrefix + start.route
+        startDestination = SplashScreen.route,
+        route = "app_graph"
     )
-    builder.navigation(
-        startDestination = start.route,
-        route = graphPrefix + start.route
-    ) {
-        applyAllScreens()
-    }
 
-    navHostController.graph = builder.build()
-    afterGraphSet(navHostController)
+    builder.applyAllScreens()
+    NavHost(
+        navController = navHostController,
+        graph = builder.build())
 }
 
 fun NavGraphBuilder.applyAllScreens(): NavGraphBuilder {

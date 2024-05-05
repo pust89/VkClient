@@ -17,19 +17,29 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.pustovit.vkclient.models.post.PostComment
+import com.pustovit.vkclient.news_impl.di.NewsFeatureComponent
+import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
 import com.pustovit.vkclient.screens.CommentsScreen
 
 @Composable
 fun CommentsScreen(
     args: CommentsScreen.Args
 ) {
+    val component: NewsFeatureComponent = remember {
+        NewsFeatureComponentHolder.component
+    }
+
     val viewModel: CommentsViewModel = viewModel(
-        factory = CommentsViewModel.Factory(args = args)
+        factory = CommentsViewModel.Factory(
+            args = args,
+            screenNavigator = component.screenNavigator
+        )
     )
 
     val screenState = viewModel.screenState.collectAsState()

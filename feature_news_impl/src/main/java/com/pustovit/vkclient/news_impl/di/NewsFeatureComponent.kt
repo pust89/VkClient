@@ -3,6 +3,7 @@ package com.pustovit.vkclient.news_impl.di
 import com.pustovit.vkclient.injector.FeatureScope
 import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
 import com.pustovit.vkclient.news_impl.presentation.feed_posts.NewsFeedViewModel
+import com.pustovit.vkclient.screens.core.ScreenNavigator
 import dagger.Component
 
 /**
@@ -17,4 +18,5 @@ import dagger.Component
 )
 internal interface NewsFeatureComponent : NewsFeatureApi {
     val newsFeedViewModelFactory: NewsFeedViewModel.Factory
+    val screenNavigator: ScreenNavigator
 }

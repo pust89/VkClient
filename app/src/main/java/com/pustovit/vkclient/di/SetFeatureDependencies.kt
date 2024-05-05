@@ -37,6 +37,10 @@ private fun setNewsFeatureDependencies(allApi: AllApi) {
                     return allApi.domainApi.removePostUseCase()
                 }
 
+                override fun getScreenNavigator(): ScreenNavigator {
+                    return allApi.screenNavigator
+                }
+
                 override val dependencyHolder: DependencyHolder<out FeatureDependencies>
                     get() = this@NewsFeatureDependenciesHolder
             }

@@ -4,10 +4,12 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavOptions
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.models.auth.VKIDUser
 import com.pustovit.vkclient.models.auth.VkAccessToken
 import com.pustovit.vkclient.screens.NewsScreen
+import com.pustovit.vkclient.screens.SplashScreen
 import com.pustovit.vkclient.screens.core.ScreenNavigator
 import com.pustovit.vkclient.ui_common.ext.TAG
 import com.vk.id.AccessToken
@@ -46,16 +48,23 @@ class AuthViewModel(
             )
         )
             .catch {
-                Log.e(TAG, "onAuthSuccess: ", it)
+                Log.e(TAG, "onAuthSuccess: catch", it)
             }
             .onEach {
-                screenNavigator.emit(NewsScreen)
+                screenNavigator.navigateTo(
+                    route = NewsScreen.route,
+                    navOptions = NavOptions.Builder()
+                        .setPopUpTo(
+                            route = SplashScreen.route,
+                            inclusive = true
+                        )
+                        .build())
             }
             .launchIn(viewModelScope)
     }
 
     fun onAuthFail(oneTapOAuth: OneTapOAuth?, vKIDAuthFail: VKIDAuthFail) {
-        Log.d("vkTag", "onAuthFail: vKIDAuthFail=${vKIDAuthFail.description}")
+        Log.d(TAG, "onAuthFail: vKIDAuthFail=${vKIDAuthFail.description}")
     }
 
     class Factory(

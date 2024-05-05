@@ -3,6 +3,7 @@ package com.pustovit.vkclient.news_impl.di
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
+import com.pustovit.vkclient.screens.core.ScreenNavigator
 
 /**
  * Created by Pustovit V.V.
@@ -12,4 +13,5 @@ import com.pustovit.vkclient.injector.FeatureDependencies
 interface NewsFeatureDependencies : FeatureDependencies {
     fun getAllPostsUseCase(): GetAllPostsUseCase
     fun removePostUseCase(): RemovePostUseCase
+    fun getScreenNavigator(): ScreenNavigator
 }

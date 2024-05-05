@@ -13,8 +13,7 @@ class MainViewModel(
     private val screenNavigator: ScreenNavigator,
 ) : ViewModel() {
 
-    val screenFlow = screenNavigator.listenScreens()
-    val graphFlow = screenNavigator.listenGraphs()
+    val screenFlow = screenNavigator.listenNavIntent()
 
     class Factory(private val screenNavigator: ScreenNavigator) :
         ViewModelProvider.Factory {

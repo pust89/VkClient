@@ -4,20 +4,25 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavOptions
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.StatisticItem
+import com.pustovit.vkclient.screens.CommentsScreen
+import com.pustovit.vkclient.screens.core.ScreenNavigator
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class NewsFeedViewModel @Inject constructor(
+    private val screenNavigator: ScreenNavigator,
     private val getAllPostsUseCase: GetAllPostsUseCase,
-    private val removePostUseCase: RemovePostUseCase
+    private val removePostUseCase: RemovePostUseCase,
 ) : ViewModel() {
 
     private val initialState = NewsFeedScreenState.Loading
@@ -74,16 +79,35 @@ internal class NewsFeedViewModel @Inject constructor(
     }
 
     fun onCommentClick(feedPost: FeedPost) {
+        viewModelScope.launch {
 
+            val args = CommentsScreen.Args(
+                feedPostId = feedPost.id,
+                feedPostComment = feedPost.communityName
+            )
+
+            val route = CommentsScreen.getRouteWithArgs(args)
+
+            val navOptions = NavOptions.Builder()
+                .setLaunchSingleTop(true)
+                .build()
+
+            screenNavigator.navigateTo(
+                route = route,
+                navOptions = navOptions
+            )
+        }
     }
 
     class Factory(
+        private val screenNavigator: ScreenNavigator,
         private val getAllPostsUseCase: GetAllPostsUseCase,
-        private val removePostUseCase: RemovePostUseCase
+        private val removePostUseCase: RemovePostUseCase,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return NewsFeedViewModel(
+                screenNavigator = screenNavigator,
                 getAllPostsUseCase = getAllPostsUseCase,
                 removePostUseCase = removePostUseCase,
             ) as T

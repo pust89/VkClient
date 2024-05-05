@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.navigation
 
-import com.pustovit.vkclient.screens.Screen
+import androidx.navigation.NavOptions
+import com.pustovit.vkclient.screens.core.NavIntent
 import com.pustovit.vkclient.screens.core.ScreenNavigator
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -12,22 +13,33 @@ import kotlinx.coroutines.flow.MutableSharedFlow
  */
 internal class ScreenNavigatorImpl : ScreenNavigator {
 
-    private val screenSharedFlow = MutableSharedFlow<Screen>()
-    private val graphsSharedFlow = MutableSharedFlow<Screen>()
+    private val screenSharedFlow = MutableSharedFlow<NavIntent>()
 
-    override suspend fun <T : Screen> emit(screen: T, startNewGraph: Boolean) {
-        if (startNewGraph) {
-            graphsSharedFlow.emit(screen)
-        } else {
-            screenSharedFlow.emit(screen)
-        }
-    }
-
-    override fun listenScreens(): Flow<Screen> {
+    override fun listenNavIntent(): Flow<NavIntent> {
         return screenSharedFlow
     }
 
-    override fun listenGraphs(): Flow<Screen> {
-        return graphsSharedFlow
+    override suspend fun navigateTo(route: String, navOptions: NavOptions?) {
+        screenSharedFlow.emit(
+            NavIntent.NavigateTo(
+                route = route,
+                navOptions = navOptions
+            )
+        )
+    }
+
+    override suspend fun back() {
+        screenSharedFlow.emit(NavIntent.Back)
+    }
+
+    override suspend fun backTo(route: String, inclusive: Boolean, saveState: Boolean) {
+        screenSharedFlow.emit(
+            NavIntent.BackTo(
+                route = route,
+                inclusive = inclusive,
+                saveState = saveState
+            )
+        )
+
     }
 }
