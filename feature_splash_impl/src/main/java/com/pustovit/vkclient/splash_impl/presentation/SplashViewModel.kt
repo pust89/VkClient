@@ -41,12 +41,10 @@ class SplashViewModel(
     private fun onVkAccessToke(vkAccessToken: VkAccessToken?) {
         viewModelScope.launch {
             val route = if (vkAccessToken != null) {
-                //NavigationGraph.Home.route
-                NewsScreen.route
+                NavigationGraph.Home.route
             } else {
                 AuthScreen.route
             }
-
             screenNavigator.navigateTo(
                 route = route,
                 navOptions = NavOptions.Builder()

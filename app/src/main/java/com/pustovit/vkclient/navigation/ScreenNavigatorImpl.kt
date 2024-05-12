@@ -40,6 +40,5 @@ internal class ScreenNavigatorImpl : ScreenNavigator {
                 saveState = saveState
             )
         )
-
     }
 }

@@ -23,7 +23,7 @@ internal class FeedPostRepositoryImpl @Inject constructor() : FeedPostRepository
     }
 
     override fun getAll(): Flow<List<FeedPost>> = flow {
-        delay(3000)
+        delay(1500)
         emit(mock.toList())
     }.flowOn(Dispatchers.IO)
 

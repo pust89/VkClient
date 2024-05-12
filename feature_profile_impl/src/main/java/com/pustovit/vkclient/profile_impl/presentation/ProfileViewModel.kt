@@ -30,7 +30,6 @@ class ProfileViewModel(
 
     init {
         getCurrentUserUseCase()
-            .flowOn(Dispatchers.IO)
             .catch {
                 _userState.emit(ScreenState.Error(it.message.orEmpty()))
             }

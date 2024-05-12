@@ -8,9 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
-import com.pustovit.vkclient.navigation.AppGraph
 import com.pustovit.vkclient.screens.navigation.NavIntent
-import com.pustovit.vkclient.ui.ContentContainer
+import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
 import com.pustovit.vkclient.ui_common.theme.AppTheme
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -29,17 +28,16 @@ class MainActivity : ComponentActivity() {
         (application as App).appComponent.inject(this)
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
 
-            val navHostController: NavHostController = rememberNavController()
             AppTheme {
-
                 ContentContainer(
-                    navHostController = navHostController,
-                    onTabClick = viewModel::onTabClick
+                    navController = navController,
+                    onTabClick = viewModel::onTabClick,
                 )
 
                 SetNavigation(
-                    navHostController = navHostController,
+                    rootNavController = navController,
                     viewModel = viewModel
                 )
             }
@@ -49,30 +47,30 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SetNavigation(
-    navHostController: NavHostController,
+    rootNavController: NavHostController,
     viewModel: MainViewModel
 ) {
 
-    LaunchedEffect(key1 = 1) {
+    LaunchedEffect(true) {
         viewModel.screenFlow
-            .onEach {
-                when (it) {
+            .onEach { navIntent ->
+                when (navIntent) {
                     is NavIntent.NavigateTo -> {
-                        navHostController.navigate(
-                            route = it.route,
-                            navOptions = it.navOptions
+                        rootNavController.navigate(
+                            route = navIntent.route,
+                            navOptions = navIntent.navOptions
                         )
                     }
 
                     NavIntent.Back -> {
-                        navHostController.popBackStack()
+                        rootNavController.popBackStack()
                     }
 
                     is NavIntent.BackTo -> {
-                        navHostController.popBackStack(
-                            route = it.route,
-                            inclusive = it.inclusive,
-                            saveState = it.saveState
+                        rootNavController.popBackStack(
+                            route = navIntent.route,
+                            inclusive = navIntent.inclusive,
+                            saveState = navIntent.saveState
                         )
                     }
                 }

@@ -9,7 +9,6 @@ package com.pustovit.vkclient.screens.navigation.graph
 sealed class NavigationGraph(
     val route: String
 ) {
-
     object Home : NavigationGraph(HOME_NAVIGATION_ROUTE)
     object Favorite : NavigationGraph(FAVORITE_NAVIGATION_ROUTE)
     object Profile : NavigationGraph(PROFILE_NAVIGATION_ROUTE)

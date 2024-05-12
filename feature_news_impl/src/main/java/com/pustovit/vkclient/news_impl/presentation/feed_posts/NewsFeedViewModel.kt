@@ -1,5 +1,6 @@
 package com.pustovit.vkclient.news_impl.presentation.feed_posts
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -10,13 +11,13 @@ import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.StatisticItem
 import com.pustovit.vkclient.screens.CommentsScreen
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
 import com.pustovit.vkclient.ui_common.state.ScreenState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -34,7 +35,6 @@ internal class NewsFeedViewModel @Inject constructor(
 
     init {
         getAllPostsUseCase()
-            .flowOn(Dispatchers.IO)
             .catch {
                 _screenState.emit(ScreenState.Error(it.message.orEmpty()))
             }

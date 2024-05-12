@@ -11,6 +11,7 @@ import com.pustovit.vkclient.models.auth.VkAccessToken
 import com.pustovit.vkclient.screens.NewsScreen
 import com.pustovit.vkclient.screens.SplashScreen
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
 import com.pustovit.vkclient.ui_common.ext.TAG
 import com.vk.id.AccessToken
 import com.vk.id.VKIDAuthFail
@@ -52,13 +53,14 @@ class AuthViewModel(
             }
             .onEach {
                 screenNavigator.navigateTo(
-                    route = NewsScreen.route,
+                    route = NavigationGraph.Home.route,
                     navOptions = NavOptions.Builder()
                         .setPopUpTo(
                             route = SplashScreen.route,
                             inclusive = true
                         )
-                        .build())
+                        .build()
+                )
             }
             .launchIn(viewModelScope)
     }

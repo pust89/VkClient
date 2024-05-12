@@ -24,6 +24,7 @@ import com.pustovit.vkclient.splash_impl.presentation.SplashScreen
 
 @Composable
 fun AppGraph(navHostController: NavHostController) {
+
     val navGraphBuilder = NavGraphBuilder(
         provider = navHostController.navigatorProvider,
         startDestination = SplashScreen.route,
@@ -70,7 +71,6 @@ fun NavGraphBuilder.addTabsNavigation(): NavGraphBuilder {
 
     }
 
-
     navigation(
         startDestination = FavouriteScreen.route,
         route = NavigationTab.Favourite.graph.route
@@ -91,7 +91,7 @@ fun NavGraphBuilder.addTabsNavigation(): NavGraphBuilder {
 fun NavGraphBuilder.addContentScreens(): NavGraphBuilder {
     composable(NewsScreen.route) { NewsScreen() }
     composable(FavouriteScreen.route) { Text(text = FavouriteScreen::class.simpleName.orEmpty()) }
-    composable(ProfileScreen.route) { Text(text = ProfileScreen::class.simpleName.orEmpty()) }
+    composable(ProfileScreen.route) { ProfileScreen() }
 
     composable(
         route = CommentsScreen.route,

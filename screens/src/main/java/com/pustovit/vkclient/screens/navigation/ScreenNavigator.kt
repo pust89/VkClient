@@ -1,7 +1,10 @@
 package com.pustovit.vkclient.screens.navigation
 
 import androidx.navigation.NavOptions
+import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * Created by Pustovit V.V.
