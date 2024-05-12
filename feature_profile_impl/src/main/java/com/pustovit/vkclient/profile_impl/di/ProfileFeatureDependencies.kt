@@ -1,18 +1,19 @@
-package com.pustovit.vkclient.auth_impl.di
+package com.pustovit.vkclient.profile_impl.di
 
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
+import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 
 /**
  * Created by Pustovit V.V.
- * Date: 06.04.2024
- * Time: 20:05
+ * Date: 12.05.2024
+ * Time: 11:31
  */
-interface AuthFeatureDependencies : FeatureDependencies {
-
-    fun saveVkAccessTokenUseCase(): SaveVkAccessTokenUseCase
+interface ProfileFeatureDependencies : FeatureDependencies {
 
     val screenNavigator: ScreenNavigator
+
+    fun getCurrentUserUseCase(): GetCurrentUserUseCase
 
 }

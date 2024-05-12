@@ -25,7 +25,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideLocalDataSourceApi(dependencies: DataSourceDependencies): DataSourceApi {
+    fun provideDataSourceApi(dependencies: DataSourceDependencies): DataSourceApi {
         return DaggerDataSourceComponent
             .builder()
             .dataSourceDependencies(dependencies)

@@ -4,6 +4,7 @@ import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
+import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
 
 /**
  * Created by Pustovit V.V.
@@ -11,8 +12,10 @@ import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
  * Time: 20:08
  */
 interface DomainApi {
-    fun getAllPostsUseCase(): GetAllPostsUseCase
-    fun removePostUseCase(): RemovePostUseCase
+
     fun getVkAccessTokenUseCase(): GetVkAccessTokenUseCase
     fun saveVkAccessTokenUseCase(): SaveVkAccessTokenUseCase
+    fun getCurrentUserUseCase(): GetCurrentUserUseCase
+    fun getAllPostsUseCase(): GetAllPostsUseCase
+    fun removePostUseCase(): RemovePostUseCase
 }

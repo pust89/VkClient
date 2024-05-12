@@ -10,6 +10,7 @@ import androidx.navigation.navigation
 import com.pustovit.vkclient.auth_impl.presentation.AuthScreen
 import com.pustovit.vkclient.news_impl.presentation.comments.CommentsScreen
 import com.pustovit.vkclient.news_impl.presentation.feed_posts.NewsScreen
+import com.pustovit.vkclient.profile_impl.presentation.ProfileScreen
 import com.pustovit.vkclient.screens.AuthScreen
 import com.pustovit.vkclient.screens.CommentsScreen
 import com.pustovit.vkclient.screens.FavouriteScreen
@@ -81,7 +82,7 @@ fun NavGraphBuilder.addTabsNavigation(): NavGraphBuilder {
         startDestination = ProfileScreen.route,
         route = NavigationTab.Profile.graph.route
     ){
-        composable(ProfileScreen.route) { Text(text = ProfileScreen::class.simpleName.orEmpty()) }
+        composable(ProfileScreen.route) { ProfileScreen() }
     }
 
     return this

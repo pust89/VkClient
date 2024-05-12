@@ -14,6 +14,7 @@ import androidx.compose.material3.SwipeToDismissBoxValue
 import androidx.compose.material3.rememberSwipeToDismissBoxState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -22,8 +23,10 @@ import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.news_impl.di.DaggerNewsFeatureComponent
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponent
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
+import com.pustovit.vkclient.ui_common.compose.ErrorScreen
 import com.pustovit.vkclient.ui_common.compose.LoadingItem
 import com.pustovit.vkclient.ui_common.compose.LoadingScreen
+import com.pustovit.vkclient.ui_common.state.ScreenState
 import javax.inject.Inject
 
 @Composable
@@ -35,19 +38,19 @@ fun NewsScreen() {
 
     val viewModel: NewsFeedViewModel = viewModel(factory = component.newsFeedViewModelFactory)
 
-    val screenState = viewModel.screenState.collectAsState()
+    val screenState by viewModel.screenState.collectAsState()
 
-    when (val currentState = screenState.value) {
-        is NewsFeedScreenState.Posts -> {
-
+    when (val state = screenState) {
+        ScreenState.Loading -> LoadingScreen()
+        is ScreenState.Error -> ErrorScreen(errorMsg = state.errorMsg)
+        is ScreenState.Data -> {
             FeedPosts(
                 viewModel = viewModel,
-                posts = currentState.posts,
+                posts = state.data,
                 onCommentClickListener = viewModel::onCommentClick
             )
         }
 
-        NewsFeedScreenState.Loading -> LoadingScreen()
     }
 }
 

@@ -22,7 +22,6 @@ import androidx.compose.ui.unit.dp
 fun LoadingScreen( modifier: Modifier = Modifier) {
     Box(
         modifier = modifier
-            .padding()
             .fillMaxSize()
             .background(
                 color = MaterialTheme.colorScheme.primary, shape = RoundedCornerShape(4.dp)

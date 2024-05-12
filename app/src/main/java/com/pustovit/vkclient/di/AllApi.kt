@@ -5,6 +5,7 @@ import com.pustovit.vkclient.data_api.DataApi
 import com.pustovit.vkclient.data_source_api.DataSourceApi
 import com.pustovit.vkclient.domain_api.DomainApi
 import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
+import com.pustovit.vkclient.profile_api.ProfileFeatureApi
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import com.pustovit.vkclient.splash_api.SplashFeatureApi
 import javax.inject.Inject
@@ -20,7 +21,8 @@ class AllApi @Inject constructor(
     val dataApi: DataApi,
     val domainApi: DomainApi,
     val screenNavigator: ScreenNavigator,
-    val newsFeatureApi: Provider<NewsFeatureApi>,
     val authFeatureApi: Provider<AuthFeatureApi>,
+    val profileFeatureApi: Provider<ProfileFeatureApi>,
     val splashFeatureApi: Provider<SplashFeatureApi>,
+    val newsFeatureApi: Provider<NewsFeatureApi>,
 )

@@ -2,6 +2,7 @@ package com.pustovit.vkclient.data_api
 
 import com.pustovit.vkclient.data_api.repository.AuthRepository
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
+import com.pustovit.vkclient.data_api.repository.UserRepository
 
 /**
  * Created by Pustovit V.V.
@@ -10,7 +11,7 @@ import com.pustovit.vkclient.data_api.repository.FeedPostRepository
  */
 interface DataApi {
 
-    fun feedPostRepository(): FeedPostRepository
-
+    fun userRepository(): UserRepository
     fun authRepository(): AuthRepository
+    fun feedPostRepository(): FeedPostRepository
 }

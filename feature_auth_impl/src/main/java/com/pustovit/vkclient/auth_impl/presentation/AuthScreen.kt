@@ -16,7 +16,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.pustovit.vkclient.auth_imp.R
+import com.pustovit.vkclient.auth_impl.R
 import com.pustovit.vkclient.auth_impl.di.AuthFeatureComponent
 import com.pustovit.vkclient.auth_impl.di.AuthFeatureComponentHolder
 import com.vk.id.VKID

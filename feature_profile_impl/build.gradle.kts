@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.pustovit.vkclient.auth_impl"
+    namespace = "com.pustovit.vkclient.profile_impl"
     compileSdk = 34
 
     defaultConfig {
@@ -56,8 +56,7 @@ android {
 
 dependencies {
 
-    // Если используете One Tap на Compose, укажите эту зависимость.
-    implementation(project(mapOf("path" to ":feature_auth_api")))
+    implementation(project(mapOf("path" to ":feature_profile_api")))
 
     implementation( "com.google.dagger:dagger:2.51.1")
     kapt("com.google.dagger:dagger-compiler:2.51.1")

@@ -4,6 +4,8 @@ import com.pustovit.vkclient.auth_api.AuthFeatureApi
 import com.pustovit.vkclient.auth_impl.di.AuthFeatureComponentHolder
 import com.pustovit.vkclient.news_api.screens.NewsFeatureApi
 import com.pustovit.vkclient.news_impl.di.NewsFeatureComponentHolder
+import com.pustovit.vkclient.profile_api.ProfileFeatureApi
+import com.pustovit.vkclient.profile_impl.di.ProfileFeatureComponentHolder
 import com.pustovit.vkclient.splash_api.SplashFeatureApi
 import com.pustovit.vkclient.splash_impl.di.SplashFeatureComponentHolder
 import dagger.Module
@@ -20,8 +22,8 @@ class FeatureApiModule {
 
     @Provides
     @Singleton
-    fun provideNewsFeatureApi(): NewsFeatureApi {
-        return NewsFeatureComponentHolder.get()
+    fun provideSplashFeatureApi(): SplashFeatureApi {
+        return SplashFeatureComponentHolder.get()
     }
 
     @Provides
@@ -32,7 +34,14 @@ class FeatureApiModule {
 
     @Provides
     @Singleton
-    fun provideSplashFeatureApi(): SplashFeatureApi {
-        return SplashFeatureComponentHolder.get()
+    fun provideProfileFeatureApi(): ProfileFeatureApi {
+        return ProfileFeatureComponentHolder.get()
     }
+
+    @Provides
+    @Singleton
+    fun provideNewsFeatureApi(): NewsFeatureApi {
+        return NewsFeatureComponentHolder.get()
+    }
+
 }

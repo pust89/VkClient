@@ -12,7 +12,10 @@ import dagger.Component
 @FeatureScope
 @Component(
     dependencies = [DomainDependencies::class],
-    modules = [NewsUseCaseModule::class,
-        AuthUseCaseModule::class],
+    modules = [
+        AuthUseCaseModule::class,
+        UserUseCaseModule::class,
+        NewsUseCaseModule::class,
+    ],
 )
 interface DomainComponent : DomainApi
