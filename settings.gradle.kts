@@ -26,8 +26,8 @@ include(":secrets.gradle.kts")
 
 // Core
 include(":app")
-include(":data_local_source_impl")
-include(":data_local_source_api")
+include(":data_source_impl")
+include(":data_source_api")
 include(":data_api")
 include(":data_impl")
 include(":models")

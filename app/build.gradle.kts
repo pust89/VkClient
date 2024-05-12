@@ -69,8 +69,8 @@ dependencies {
 
     implementation(project(mapOf("path" to ":injector")))
     implementation(project(mapOf("path" to ":models")))
-    implementation(project(mapOf("path" to ":data_local_source_api")))
-    implementation(project(mapOf("path" to ":data_local_source_impl")))
+    implementation(project(mapOf("path" to ":data_source_api")))
+    implementation(project(mapOf("path" to ":data_source_impl")))
     implementation(project(mapOf("path" to ":data_api")))
     implementation(project(mapOf("path" to ":data_impl")))
     implementation(project(mapOf("path" to ":domain_api")))

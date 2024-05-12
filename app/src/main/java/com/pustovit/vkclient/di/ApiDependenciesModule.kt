@@ -5,10 +5,9 @@ import com.pustovit.vkclient.data_api.DataApi
 import com.pustovit.vkclient.data_api.repository.AuthRepository
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
 import com.pustovit.vkclient.data_impl.di.DataDependencies
-import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
-import com.pustovit.vkclient.data_local_api.auth.AuthLocalDataSource
-import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependencies
-//import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependencies
+import com.pustovit.vkclient.data_source_api.DataSourceApi
+import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
+import com.pustovit.vkclient.data_source_impl.di.DataSourceDependencies
 import com.pustovit.vkclient.domain_impl.di.DomainDependencies
 import dagger.Module
 import dagger.Provides
@@ -24,8 +23,8 @@ class ApiDependenciesModule {
 
     @Provides
     @Singleton
-    fun provideLocalDataSourceDependencies(context: Context): LocalDataSourceDependencies {
-        return object : LocalDataSourceDependencies {
+    fun provideDataSourceDependencies(context: Context): DataSourceDependencies {
+        return object : DataSourceDependencies {
             override fun context(): Context {
                 return context
             }
@@ -34,10 +33,10 @@ class ApiDependenciesModule {
 
     @Provides
     @Singleton
-    fun provideDataDependencies(localDataSourceApi: LocalDataSourceApi): DataDependencies {
+    fun provideDataDependencies(dataSourceApi: DataSourceApi): DataDependencies {
         return object : DataDependencies {
             override fun authLocalDataSource(): AuthLocalDataSource {
-                return localDataSourceApi.authLocalDataSource()
+                return dataSourceApi.authLocalDataSource()
             }
         }
     }

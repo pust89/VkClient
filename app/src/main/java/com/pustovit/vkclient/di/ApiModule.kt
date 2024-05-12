@@ -3,12 +3,9 @@ package com.pustovit.vkclient.di
 import com.pustovit.vkclient.data_api.DataApi
 import com.pustovit.vkclient.data_impl.di.DaggerDataComponent
 import com.pustovit.vkclient.data_impl.di.DataDependencies
-import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
-import com.pustovit.vkclient.data_local_source_impl.di.DaggerLocalDataSourceComponent
-import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependencies
-//import com.pustovit.vkclient.data_local_api.LocalDataSourceApi
-//import com.pustovit.vkclient.data_local_source_impl.di.DaggerLocalDataSourceComponent
-//import com.pustovit.vkclient.data_local_source_impl.di.LocalDataSourceDependencies
+import com.pustovit.vkclient.data_source_api.DataSourceApi
+import com.pustovit.vkclient.data_source_impl.di.DaggerDataSourceComponent
+import com.pustovit.vkclient.data_source_impl.di.DataSourceDependencies
 import com.pustovit.vkclient.domain_api.DomainApi
 import com.pustovit.vkclient.domain_impl.di.DaggerDomainComponent
 import com.pustovit.vkclient.domain_impl.di.DomainDependencies
@@ -28,10 +25,10 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideLocalDataSourceApi(dependencies: LocalDataSourceDependencies): LocalDataSourceApi {
-        return DaggerLocalDataSourceComponent
+    fun provideLocalDataSourceApi(dependencies: DataSourceDependencies): DataSourceApi {
+        return DaggerDataSourceComponent
             .builder()
-            .localDataSourceDependencies(dependencies)
+            .dataSourceDependencies(dependencies)
             .build()
     }
 

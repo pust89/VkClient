@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.data_impl.repository.auth
 
 import com.pustovit.vkclient.data_api.repository.AuthRepository
-import com.pustovit.vkclient.data_local_api.auth.AuthLocalDataSource
+import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import com.pustovit.vkclient.models.auth.VkAccessToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

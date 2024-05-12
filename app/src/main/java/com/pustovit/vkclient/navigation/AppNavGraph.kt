@@ -23,19 +23,19 @@ import com.pustovit.vkclient.splash_impl.presentation.SplashScreen
 
 @Composable
 fun AppGraph(navHostController: NavHostController) {
-    val builder = NavGraphBuilder(
+    val navGraphBuilder = NavGraphBuilder(
         provider = navHostController.navigatorProvider,
         startDestination = SplashScreen.route,
         route = "app_graph"
     )
 
-    builder.addOnboardingScreens()
+    navGraphBuilder.addOnboardingScreens()
 
-    builder.addTabsNavigation()
+    navGraphBuilder.addTabsNavigation()
 
     NavHost(
         navController = navHostController,
-        graph = builder.build()
+        graph = navGraphBuilder.build()
     )
 }
 
