@@ -41,16 +41,17 @@ class SplashViewModel(
     private fun onVkAccessToke(vkAccessToken: VkAccessToken?) {
         viewModelScope.launch {
             val route = if (vkAccessToken != null) {
-                NavigationGraph.Home.route
+                NavigationGraph.Content.route
             } else {
                 AuthScreen.route
             }
+
             screenNavigator.navigateTo(
                 route = route,
                 navOptions = NavOptions.Builder()
                     .setPopUpTo(
                         route = SplashScreen.route,
-                        inclusive = true
+                        inclusive = true,
                     )
                     .build()
             )

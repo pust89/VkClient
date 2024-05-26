@@ -7,6 +7,7 @@ sealed class NavigationTab(
     val graph: NavigationGraph,
     val titleResId: Int,
 ) {
+
     object Home : NavigationTab(
         graph = NavigationGraph.Home,
         titleResId = R.string.navigation_item_news,

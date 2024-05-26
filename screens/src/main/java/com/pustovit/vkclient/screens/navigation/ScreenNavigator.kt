@@ -15,9 +15,16 @@ interface ScreenNavigator {
 
     fun listenNavIntent(): Flow<NavIntent>
 
-    suspend fun navigateTo(route: String, navOptions: NavOptions? = null)
+    suspend fun navigateTo(route: String, navOptions: NavOptions? = defaultNavOptions)
 
     suspend fun back()
 
     suspend fun backTo(route: String, inclusive: Boolean, saveState: Boolean)
+
+    val defaultNavOptions: NavOptions
+        get() = NavOptions.Builder().apply {
+            setRestoreState(true)
+            setLaunchSingleTop(true)
+        }.build()
+
 }

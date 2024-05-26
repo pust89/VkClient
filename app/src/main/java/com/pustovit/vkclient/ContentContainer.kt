@@ -34,9 +34,6 @@ fun ContentContainer(
     navController: NavHostController,
     onTabClick: (tab: NavigationTab, navHostController: NavHostController) -> Unit,
 ) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    Log.d("navTag", "ContentContainer: ${navBackStackEntry?.destination?.parent} ")
-
     Scaffold(
         bottomBar = {
             VkClientBottomAppBar(
@@ -100,5 +97,4 @@ private fun NavigationTab.isSelected(navBackStackEntry: NavBackStackEntry?): Boo
         it.route == this.graph.route
     } ?: false
 }
-
 

@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptions
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
@@ -93,13 +94,8 @@ internal class NewsFeedViewModel @Inject constructor(
 
             val route = CommentsScreen.getRouteWithArgs(args)
 
-            val navOptions = NavOptions.Builder()
-                .setLaunchSingleTop(true)
-                .build()
-
             screenNavigator.navigateTo(
                 route = route,
-                navOptions = navOptions
             )
         }
     }

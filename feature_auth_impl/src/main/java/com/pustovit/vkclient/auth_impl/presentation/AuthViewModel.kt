@@ -53,11 +53,11 @@ class AuthViewModel(
             }
             .onEach {
                 screenNavigator.navigateTo(
-                    route = NavigationGraph.Home.route,
+                    route = NavigationGraph.Content.route,
                     navOptions = NavOptions.Builder()
                         .setPopUpTo(
-                            route = SplashScreen.route,
-                            inclusive = true
+                            route =  com.pustovit.vkclient.screens.AuthScreen.route,
+                            inclusive = true,
                         )
                         .build()
                 )

@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.screens.navigation
 
 import androidx.navigation.NavOptions
+import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
 
 /**
  * Created by Pustovit V.V.

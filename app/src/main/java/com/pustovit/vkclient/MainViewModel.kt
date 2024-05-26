@@ -1,16 +1,22 @@
 package com.pustovit.vkclient
 
+import android.util.Log
+import androidx.collection.forEach
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.NavOptionsBuilder
+import androidx.navigation.get
 import com.pustovit.vkclient.screens.NewsScreen
+import com.pustovit.vkclient.screens.Screen
 import com.pustovit.vkclient.screens.SplashScreen
 import com.pustovit.vkclient.screens.navigation.NavIntent
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
 import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.concatWith
@@ -46,15 +52,15 @@ class MainViewModel(
 
     fun onTabClick(tab: NavigationTab, navHostController: NavHostController) {
         viewModelScope.launch {
-
             val navOptionsBuilder = NavOptions.Builder()
-            navOptionsBuilder.setRestoreState(true)
-            navOptionsBuilder.setLaunchSingleTop(true)
             navOptionsBuilder.setPopUpTo(
-                destinationId = navHostController.graph.findStartDestination().id,
+                route = NavigationGraph.Content.route,
                 inclusive = false,
                 saveState = true
             )
+            navOptionsBuilder.setRestoreState(true)
+            navOptionsBuilder.setLaunchSingleTop(true)
+
             screenNavigator.navigateTo(
                 route = tab.graph.route,
                 navOptions = navOptionsBuilder.build()

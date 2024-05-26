@@ -9,7 +9,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.pustovit.vkclient.screens.navigation.NavIntent
-import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
 import com.pustovit.vkclient.ui_common.theme.AppTheme
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -37,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 )
 
                 SetNavigation(
-                    rootNavController = navController,
+                    navHostController = navController,
                     viewModel = viewModel
                 )
             }
@@ -47,7 +46,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun SetNavigation(
-    rootNavController: NavHostController,
+    navHostController: NavHostController,
     viewModel: MainViewModel
 ) {
 
@@ -56,23 +55,20 @@ fun SetNavigation(
             .onEach { navIntent ->
                 when (navIntent) {
                     is NavIntent.NavigateTo -> {
-                        rootNavController.navigate(
+                        navHostController.navigate(
                             route = navIntent.route,
                             navOptions = navIntent.navOptions
                         )
                     }
 
-                    NavIntent.Back -> {
-                        rootNavController.popBackStack()
-                    }
+                    NavIntent.Back -> navHostController.popBackStack()
 
-                    is NavIntent.BackTo -> {
-                        rootNavController.popBackStack(
-                            route = navIntent.route,
-                            inclusive = navIntent.inclusive,
-                            saveState = navIntent.saveState
-                        )
-                    }
+                    is NavIntent.BackTo -> navHostController.popBackStack(
+                        route = navIntent.route,
+                        inclusive = navIntent.inclusive,
+                        saveState = navIntent.saveState
+                    )
+
                 }
 
             }.launchIn(this)
