@@ -11,4 +11,5 @@ import kotlinx.coroutines.flow.Flow
 interface AuthRepository {
     fun getVkAccessToken(): Flow<VkAccessToken?>
     fun saveVkAccessToken(token: VkAccessToken): Flow<Unit>
+    fun clearVkAccessToken(): Flow<Unit>
 }

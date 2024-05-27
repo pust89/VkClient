@@ -1,5 +1,6 @@
 package com.pustovit.vkclient.profile_impl.di
 
+import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
@@ -15,5 +16,7 @@ interface ProfileFeatureDependencies : FeatureDependencies {
     val screenNavigator: ScreenNavigator
 
     fun getCurrentUserUseCase(): GetCurrentUserUseCase
+
+    fun getLogoutUseCase(): LogoutUseCase
 
 }

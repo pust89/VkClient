@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.profile_impl.presentation
+package com.pustovit.vkclient.profile_impl.presentation.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -7,11 +7,9 @@ import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
 import com.pustovit.vkclient.models.user.User
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import com.pustovit.vkclient.ui_common.state.ScreenState
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
@@ -25,16 +23,16 @@ class ProfileViewModel(
     private val getCurrentUserUseCase: GetCurrentUserUseCase,
 ) : ViewModel() {
 
-    private val _userState = MutableStateFlow<ScreenState<User>>(ScreenState.Loading)
-    val screenState = _userState.asStateFlow()
+    private val _screenState = MutableStateFlow<ScreenState<User>>(ScreenState.Loading)
+    val screenState = _screenState.asStateFlow()
 
     init {
         getCurrentUserUseCase()
             .catch {
-                _userState.emit(ScreenState.Error(it.message.orEmpty()))
+                _screenState.emit(ScreenState.Error(it.message.orEmpty()))
             }
             .onEach { user ->
-                _userState.emit(ScreenState.Data(user))
+                _screenState.emit(ScreenState.Data(user))
             }
             .launchIn(viewModelScope)
     }

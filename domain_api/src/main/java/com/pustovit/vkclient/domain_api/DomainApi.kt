@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.domain_api
 
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
+import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
@@ -15,6 +16,7 @@ interface DomainApi {
 
     fun getVkAccessTokenUseCase(): GetVkAccessTokenUseCase
     fun saveVkAccessTokenUseCase(): SaveVkAccessTokenUseCase
+    fun logoutUseCase(): LogoutUseCase
     fun getCurrentUserUseCase(): GetCurrentUserUseCase
     fun getAllPostsUseCase(): GetAllPostsUseCase
     fun removePostUseCase(): RemovePostUseCase

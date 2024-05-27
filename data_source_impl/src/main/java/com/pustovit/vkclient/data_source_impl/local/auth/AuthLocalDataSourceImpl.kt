@@ -33,6 +33,12 @@ internal class AuthLocalDataSourceImpl(
         }
     }
 
+    override suspend fun clearVkAccessToken() {
+        sharedPreferences.edit(true){
+            this.remove(VK_ACCESS_TOKEN_LOCAL_KEY)
+        }
+    }
+
     private companion object {
         const val VK_ACCESS_TOKEN_LOCAL_KEY = "VK_ACCESS_TOKEN_LOCAL_KEY"
     }

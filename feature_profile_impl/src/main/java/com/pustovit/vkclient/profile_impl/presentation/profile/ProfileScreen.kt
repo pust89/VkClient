@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.profile_impl.presentation
+package com.pustovit.vkclient.profile_impl.presentation.profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

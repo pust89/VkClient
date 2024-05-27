@@ -2,7 +2,8 @@ package com.pustovit.vkclient.profile_impl.di
 
 import com.pustovit.vkclient.injector.FeatureScope
 import com.pustovit.vkclient.profile_api.ProfileFeatureApi
-import com.pustovit.vkclient.profile_impl.presentation.ProfileViewModel
+import com.pustovit.vkclient.profile_impl.presentation.profile.ProfileViewModel
+import com.pustovit.vkclient.profile_impl.presentation.settings.SettingsViewModel
 import dagger.Component
 
 /**
@@ -19,5 +20,6 @@ import dagger.Component
 internal interface ProfileFeatureComponent : ProfileFeatureApi {
 
     fun profileViewModelFactory(): ProfileViewModel.Factory
+    fun settingsViewModelFactory(): SettingsViewModel.Factory
 
 }

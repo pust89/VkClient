@@ -3,6 +3,7 @@ package com.pustovit.vkclient.di
 import com.pustovit.vkclient.auth_impl.di.AuthFeatureComponentHolder
 import com.pustovit.vkclient.auth_impl.di.AuthFeatureDependencies
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
+import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
@@ -74,14 +75,19 @@ private fun setProfileFeatureDependencies(allApi: AllApi) {
     class ProfileFeatureDependenciesHolder : DependencyHolder<ProfileFeatureDependencies> {
         override val dependencies: ProfileFeatureDependencies
             get() = object : ProfileFeatureDependencies {
-                override fun getCurrentUserUseCase(): GetCurrentUserUseCase {
-                    return allApi.domainApi.getCurrentUserUseCase()
-                }
 
                 override val dependencyHolder: DependencyHolder<out FeatureDependencies>
                     get() = this@ProfileFeatureDependenciesHolder
 
                 override val screenNavigator: ScreenNavigator = allApi.screenNavigator
+
+                override fun getCurrentUserUseCase(): GetCurrentUserUseCase {
+                    return allApi.domainApi.getCurrentUserUseCase()
+                }
+
+                override fun getLogoutUseCase(): LogoutUseCase {
+                    return allApi.domainApi.logoutUseCase()
+                }
             }
     }
 

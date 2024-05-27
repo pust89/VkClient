@@ -27,4 +27,8 @@ internal class AuthRepositoryImpl @Inject constructor(
     override fun saveVkAccessToken(token: VkAccessToken): Flow<Unit> = flow {
         emit(authLocalDataSource.saveVkAccessToken(token))
     }.flowOn(Dispatchers.IO)
+
+    override fun clearVkAccessToken(): Flow<Unit> = flow {
+        emit(authLocalDataSource.clearVkAccessToken())
+    }.flowOn(Dispatchers.IO)
 }

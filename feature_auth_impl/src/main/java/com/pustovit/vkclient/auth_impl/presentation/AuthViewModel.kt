@@ -8,8 +8,6 @@ import androidx.navigation.NavOptions
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
 import com.pustovit.vkclient.models.auth.VKIDUser
 import com.pustovit.vkclient.models.auth.VkAccessToken
-import com.pustovit.vkclient.screens.NewsScreen
-import com.pustovit.vkclient.screens.SplashScreen
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
 import com.pustovit.vkclient.ui_common.ext.TAG
