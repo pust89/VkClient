@@ -1,14 +1,13 @@
-package com.pustovit.vkclient.profile_impl.presentation.profile
+package com.pustovit.vkclient.profile_impl.presentation.settings
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -31,19 +30,24 @@ import com.pustovit.vkclient.ui_common.state.ScreenState
 
 /**
  * Created by Pustovit V.V.
- * Date: 12.05.2024
- * Time: 11:29
+ * Date: 27.05.2024
+ * Time: 14:33
  */
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProfileScreen() {
+fun UserSettingsScreen() {
 
     val component: ProfileFeatureComponent = remember {
         ProfileFeatureComponentHolder.component
     }
 
-    val viewModel: ProfileViewModel = viewModel(factory = component.profileViewModelFactory())
+    val viewModel: UserSettingsViewModel = viewModel(factory = component.userSettingsViewModelFactory())
     val state = viewModel.screenState.collectAsState()
+
+    BackHandler {
+        viewModel.onBackPressed()
+    }
 
     when (val data = state.value) {
         ScreenState.Loading -> LoadingScreen()
@@ -51,19 +55,10 @@ fun ProfileScreen() {
         is ScreenState.Data -> {
             Scaffold(
                 topBar = {
-                    TopAppBar(title = { Text(text = "Your profile") },
-                        actions = {
-                            Icon(
-                                Icons.Default.Settings,
-                                contentDescription = null,
-                                modifier = Modifier.clickable {
-                                    viewModel.onSettingsClick()
-                                }
-                            )
-                        })
+                    TopAppBar(title = { Text(text = "Settings") })
                 }
             ) { paddingValues ->
-                val user = data.data
+                val userSettings = data.data
                 Column(
                     modifier = Modifier
                         .padding(paddingValues)
@@ -71,15 +66,16 @@ fun ProfileScreen() {
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Icon(Icons.Outlined.Build, contentDescription = null)
-                    Text(
-                        text = stringResource(R.string.label_name),
-                        style = MaterialTheme.typography.labelMedium
-                    )
-                    Text(text = user.name, style = MaterialTheme.typography.bodyMedium)
+                    Button(onClick = { viewModel.onLogoutClick()}) {
+                        Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = null)
+
+                        Text(
+                            text = stringResource(R.string.exit),
+                            style = MaterialTheme.typography.titleMedium
+                        )
+                    }
                 }
             }
         }
     }
 }
-

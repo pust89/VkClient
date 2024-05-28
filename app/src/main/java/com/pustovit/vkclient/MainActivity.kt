@@ -54,6 +54,7 @@ fun SetNavigation(
         viewModel.screenFlow
             .onEach { navIntent ->
                 when (navIntent) {
+
                     is NavIntent.NavigateTo -> {
                         navHostController.navigate(
                             route = navIntent.route,
@@ -62,6 +63,7 @@ fun SetNavigation(
                     }
 
                     NavIntent.Back -> navHostController.popBackStack()
+                    NavIntent.NavigateUp -> navHostController.navigateUp()
 
                     is NavIntent.BackTo -> navHostController.popBackStack(
                         route = navIntent.route,

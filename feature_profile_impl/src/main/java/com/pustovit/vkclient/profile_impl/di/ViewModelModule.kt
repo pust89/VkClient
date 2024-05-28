@@ -4,7 +4,7 @@ import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
 import com.pustovit.vkclient.injector.FeatureScope
 import com.pustovit.vkclient.profile_impl.presentation.profile.ProfileViewModel
-import com.pustovit.vkclient.profile_impl.presentation.settings.SettingsViewModel
+import com.pustovit.vkclient.profile_impl.presentation.settings.UserSettingsViewModel
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import dagger.Module
 import dagger.Provides
@@ -31,11 +31,11 @@ class ViewModelModule {
 
     @Provides
     @FeatureScope
-    fun provideSettingsViewModelFactory(
+    fun provideUserSettingsViewModelFactory(
         screenNavigator: ScreenNavigator,
         logoutUseCase: LogoutUseCase,
-    ): SettingsViewModel.Factory {
-        return SettingsViewModel.Factory(
+    ): UserSettingsViewModel.Factory {
+        return UserSettingsViewModel.Factory(
             screenNavigator = screenNavigator,
             logoutUseCase = logoutUseCase,
         )

@@ -19,6 +19,8 @@ interface ScreenNavigator {
 
     suspend fun back()
 
+    suspend fun navigateUp()
+
     suspend fun backTo(route: String, inclusive: Boolean, saveState: Boolean)
 
     val defaultNavOptions: NavOptions

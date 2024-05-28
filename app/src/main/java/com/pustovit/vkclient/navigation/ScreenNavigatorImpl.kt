@@ -33,6 +33,10 @@ internal class ScreenNavigatorImpl : ScreenNavigator {
         screenSharedFlow.emit(NavIntent.Back)
     }
 
+    override suspend fun navigateUp() {
+        screenSharedFlow.emit(NavIntent.NavigateUp)
+    }
+
     override suspend fun backTo(route: String, inclusive: Boolean, saveState: Boolean) {
         screenSharedFlow.emit(
             NavIntent.BackTo(

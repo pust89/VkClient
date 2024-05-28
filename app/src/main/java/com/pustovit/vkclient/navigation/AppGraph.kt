@@ -11,12 +11,14 @@ import com.pustovit.vkclient.auth_impl.presentation.AuthScreen
 import com.pustovit.vkclient.news_impl.presentation.comments.CommentsScreen
 import com.pustovit.vkclient.news_impl.presentation.feed_posts.NewsScreen
 import com.pustovit.vkclient.profile_impl.presentation.profile.ProfileScreen
+import com.pustovit.vkclient.profile_impl.presentation.settings.UserSettingsScreen
 import com.pustovit.vkclient.screens.AuthScreen
 import com.pustovit.vkclient.screens.CommentsScreen
 import com.pustovit.vkclient.screens.FavouriteScreen
 import com.pustovit.vkclient.screens.NewsScreen
 import com.pustovit.vkclient.screens.ProfileScreen
 import com.pustovit.vkclient.screens.SplashScreen
+import com.pustovit.vkclient.screens.UserSettingsScreen
 import com.pustovit.vkclient.screens.navigation.getDecodedString
 import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
 import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
@@ -88,6 +90,7 @@ fun NavGraphBuilder.addContentNavigation(): NavGraphBuilder {
             route = NavigationTab.Profile.graph.route
         ) {
             composable(ProfileScreen.route) { ProfileScreen() }
+            composable(UserSettingsScreen.route) { UserSettingsScreen() }
         }
     }
 

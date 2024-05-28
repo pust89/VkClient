@@ -2,6 +2,7 @@
 
 package com.pustovit.vkclient.news_impl.presentation.feed_posts
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

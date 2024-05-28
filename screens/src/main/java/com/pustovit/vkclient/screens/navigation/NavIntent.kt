@@ -15,6 +15,9 @@ sealed interface NavIntent {
     ) : NavIntent
 
     object Back : NavIntent
+
+    object NavigateUp : NavIntent
+
     data class BackTo(val route: String, val inclusive: Boolean, val saveState: Boolean) : NavIntent
 }
 
