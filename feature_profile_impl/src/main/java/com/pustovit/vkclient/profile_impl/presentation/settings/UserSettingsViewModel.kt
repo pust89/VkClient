@@ -7,8 +7,8 @@ import androidx.navigation.NavOptions
 import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.models.user.UserSettings
 import com.pustovit.vkclient.screens.AuthScreen
-import com.pustovit.vkclient.screens.SplashScreen
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
+import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
 import com.pustovit.vkclient.ui_common.state.ScreenState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -52,9 +52,8 @@ class UserSettingsViewModel(
                 }
                 .onEach {
                    val navOptions =  NavOptions.Builder().apply {
-                        setRestoreState(false)
                         setLaunchSingleTop(true)
-                            .setPopUpTo("app_graph",true)
+                            .setPopUpTo(NavigationGraph.AppGraph.route,true)
                     }.build()
                     screenNavigator.navigateTo(
                         AuthScreen.route,

@@ -31,7 +31,7 @@ fun AppGraph(navHostController: NavHostController) {
     val navGraphBuilder = NavGraphBuilder(
         provider = navHostController.navigatorProvider,
         startDestination = SplashScreen.route,
-        route = "app_graph"
+        route = NavigationGraph.AppGraph.route
     )
 
     navGraphBuilder.addOnboardingScreens()

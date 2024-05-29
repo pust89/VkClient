@@ -9,12 +9,14 @@ package com.pustovit.vkclient.screens.navigation.graph
 sealed class NavigationGraph(
     val route: String
 ) {
+    object AppGraph : NavigationGraph(APP_NAVIGATION_ROUTE)
     object Content : NavigationGraph(CONTENT_NAVIGATION_ROUTE)
     object Home : NavigationGraph(HOME_NAVIGATION_ROUTE)
     object Favorite : NavigationGraph(FAVORITE_NAVIGATION_ROUTE)
     object Profile : NavigationGraph(PROFILE_NAVIGATION_ROUTE)
 
     private companion object {
+        const val APP_NAVIGATION_ROUTE = "app_graph"
         const val CONTENT_NAVIGATION_ROUTE = "content_navigation_route"
         const val HOME_NAVIGATION_ROUTE = "home_navigation_route"
         const val FAVORITE_NAVIGATION_ROUTE = "favorite_navigation_route"
