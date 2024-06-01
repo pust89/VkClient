@@ -25,7 +25,7 @@ class BaseAuthInterceptor(
             .build()
 
         val authenticatedRequest = originalRequest.newBuilder()
-            .header("Authorization", "Bearer123 ${authLocalDataSource.getVkAccessToken()?.token}")
+            .header("Authorization", "Bearer ${authLocalDataSource.getVkAccessToken()?.token}")
             .url(urlWithApiVersion)
             .build()
 
