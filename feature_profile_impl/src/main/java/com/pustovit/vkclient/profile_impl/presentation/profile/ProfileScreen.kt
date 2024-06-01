@@ -1,6 +1,5 @@
 package com.pustovit.vkclient.profile_impl.presentation.profile
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,6 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pustovit.vkclient.profile_impl.R
 import com.pustovit.vkclient.profile_impl.di.ProfileFeatureComponent
 import com.pustovit.vkclient.profile_impl.di.ProfileFeatureComponentHolder
+import com.pustovit.vkclient.ui_common.R_STRINGS
 import com.pustovit.vkclient.ui_common.compose.ErrorScreen
 import com.pustovit.vkclient.ui_common.compose.LoadingScreen
 import com.pustovit.vkclient.ui_common.state.ScreenState
@@ -34,6 +34,10 @@ import com.pustovit.vkclient.ui_common.state.ScreenState
  * Date: 12.05.2024
  * Time: 11:29
  */
+//TODO
+// 1 Свайп-рефреш
+// 2 Аватар
+// 3 Получать и отображать больше информации о юзере
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfileScreen() {
@@ -47,11 +51,13 @@ fun ProfileScreen() {
 
     when (val data = state.value) {
         ScreenState.Loading -> LoadingScreen()
-        is ScreenState.Error -> ErrorScreen(errorMsg = data.errorMsg)
+        is ScreenState.Error -> ErrorScreen(errorMsg = data.errorMsg){
+            viewModel.loadUser()
+        }
         is ScreenState.Data -> {
             Scaffold(
                 topBar = {
-                    TopAppBar(title = { Text(text = "Your profile") },
+                    TopAppBar(title = { Text(text = stringResource(R.string.you_profile)) },
                         actions = {
                             Icon(
                                 Icons.Default.Settings,
@@ -73,10 +79,15 @@ fun ProfileScreen() {
                 ) {
                     Icon(Icons.Outlined.Build, contentDescription = null)
                     Text(
-                        text = stringResource(R.string.label_name),
+                        text = stringResource(R_STRINGS.first_name),
                         style = MaterialTheme.typography.labelMedium
                     )
-                    Text(text = user.name, style = MaterialTheme.typography.bodyMedium)
+                    Text(text = user.firstName, style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        text = stringResource(R_STRINGS.last_name),
+                        style = MaterialTheme.typography.labelMedium
+                    )
+                    Text(text = user.lastName, style = MaterialTheme.typography.titleMedium)
                 }
             }
         }

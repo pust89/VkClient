@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Date: 09.04.2024
  * Time: 21:46
  */
-class AuthLocalDataSourceMapper @Inject constructor() {
+class AuthModelMapper @Inject constructor() {
 
     private val gson = Gson()
     internal fun mapString(localModel: VkAccessTokenLocal?): String =

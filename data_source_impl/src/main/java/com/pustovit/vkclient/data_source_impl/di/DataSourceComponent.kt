@@ -12,6 +12,9 @@ import dagger.Component
 @FeatureScope
 @Component(
     dependencies = [DataSourceDependencies::class],
-    modules = [DataSourceModule::class]
+    modules = [LocalDataSourceModule::class,
+        RemoteDataSourceModule::class,
+        ApiModule::class,
+        ServiceModule::class]
 )
 interface DataSourceComponent : DataSourceApi

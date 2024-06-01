@@ -4,7 +4,6 @@ import com.pustovit.vkclient.data_api.repository.AuthRepository
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import com.pustovit.vkclient.models.auth.VkAccessToken
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -20,7 +19,6 @@ internal class AuthRepositoryImpl @Inject constructor(
 ) : AuthRepository {
 
     override fun getVkAccessToken(): Flow<VkAccessToken?> = flow {
-        delay(1500)
         emit(authLocalDataSource.getVkAccessToken())
     }.flowOn(Dispatchers.IO)
 

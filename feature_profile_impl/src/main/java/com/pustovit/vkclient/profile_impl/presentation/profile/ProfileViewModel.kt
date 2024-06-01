@@ -34,14 +34,7 @@ class ProfileViewModel(
     val screenState = _screenState.asStateFlow()
 
     init {
-        getCurrentUserUseCase()
-            .catch {
-                _screenState.emit(ScreenState.Error(it.message.orEmpty()))
-            }
-            .onEach { user ->
-                _screenState.emit(ScreenState.Data(user))
-            }
-            .launchIn(viewModelScope)
+        loadUser()
     }
 
     fun onSettingsClick() {
@@ -50,6 +43,17 @@ class ProfileViewModel(
                 route = UserSettingsScreen.route,
             )
         }
+    }
+
+    fun loadUser() {
+        getCurrentUserUseCase()
+            .catch {
+                _screenState.emit(ScreenState.Error(it.message.orEmpty()))
+            }
+            .onEach { user ->
+                _screenState.emit(ScreenState.Data(user))
+            }
+            .launchIn(viewModelScope)
     }
 
     class Factory(

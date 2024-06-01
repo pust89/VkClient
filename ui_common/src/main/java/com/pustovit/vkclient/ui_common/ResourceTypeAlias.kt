@@ -6,3 +6,4 @@ package com.pustovit.vkclient.ui_common
  * Time: 22:38
  */
 typealias CORE_R_DRAWABLE = R.drawable
+typealias R_STRINGS = R.string

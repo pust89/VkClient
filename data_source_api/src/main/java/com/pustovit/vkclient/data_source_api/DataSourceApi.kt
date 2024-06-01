@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.data_source_api
 
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
+import com.pustovit.vkclient.data_source_api.remote.UserRemoteDataSource
 
 /**
  * Created by Pustovit V.V.
@@ -10,4 +11,5 @@ import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 interface DataSourceApi {
 
     fun authLocalDataSource(): AuthLocalDataSource
+    fun userRemoteDataSource(): UserRemoteDataSource
 }

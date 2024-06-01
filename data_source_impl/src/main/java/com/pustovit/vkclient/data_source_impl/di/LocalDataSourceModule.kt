@@ -5,7 +5,7 @@ import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.pustovit.vkclient.data_source_impl.local.auth.AuthLocalDataSourceImpl
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
-import com.pustovit.vkclient.data_source_impl.local.auth.mapper.AuthLocalDataSourceMapper
+import com.pustovit.vkclient.data_source_impl.local.auth.mapper.AuthModelMapper
 import com.pustovit.vkclient.injector.FeatureScope
 import dagger.Module
 import dagger.Provides
@@ -16,7 +16,7 @@ import dagger.Provides
  * Time: 22:14
  */
 @Module
-internal class DataSourceModule {
+internal class LocalDataSourceModule {
     @FeatureScope
     @Provides
     fun provideSharePreferences(context: Context): SharedPreferences {
@@ -27,7 +27,7 @@ internal class DataSourceModule {
     @Provides
     fun provideAuthLocalDataSource(
         sharedPreferences: SharedPreferences,
-        mapper: AuthLocalDataSourceMapper
+        mapper: AuthModelMapper
     ): AuthLocalDataSource {
         return AuthLocalDataSourceImpl(
             sharedPreferences = sharedPreferences,

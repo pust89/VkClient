@@ -9,11 +9,9 @@ import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
 import com.pustovit.vkclient.models.auth.VkAccessToken
 import com.pustovit.vkclient.screens.AuthScreen
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
-import com.pustovit.vkclient.screens.NewsScreen
 import com.pustovit.vkclient.screens.SplashScreen
 import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
-import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
-import com.pustovit.vkclient.ui_common.ext.TAG
+import com.pustovit.vkclient.ui_common.ext.loggError
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -33,13 +31,14 @@ class SplashViewModel(
         getVkAccessTokenUseCase.invoke()
             .onEach(::onVkAccessToke)
             .catch {
-                Log.e(TAG, "init: ", it)
+                it.loggError()
             }
             .launchIn(viewModelScope)
     }
 
     private fun onVkAccessToke(vkAccessToken: VkAccessToken?) {
         viewModelScope.launch {
+            Log.d("TAG", "onVkAccessToke: $vkAccessToken")
             val route = if (vkAccessToken != null) {
                 NavigationGraph.Content.route
             } else {

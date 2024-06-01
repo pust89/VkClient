@@ -10,7 +10,7 @@ import com.pustovit.vkclient.models.auth.VKIDUser
 import com.pustovit.vkclient.models.auth.VkAccessToken
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import com.pustovit.vkclient.screens.navigation.graph.NavigationGraph
-import com.pustovit.vkclient.ui_common.ext.TAG
+import com.pustovit.vkclient.ui_common.ext.loggError
 import com.vk.id.AccessToken
 import com.vk.id.VKIDAuthFail
 import com.vk.id.onetap.common.OneTapOAuth
@@ -29,7 +29,6 @@ class AuthViewModel(
 ) : ViewModel() {
 
     fun onAuthSuccess(oneTapOAuth: OneTapOAuth?, accessToken: AccessToken) {
-        Log.d(TAG, "onAuthSuccess: accessToken=${accessToken}")
         saveVkAccessTokenUseCase.invoke(
             token = VkAccessToken(
                 token = accessToken.token,
@@ -47,7 +46,7 @@ class AuthViewModel(
             )
         )
             .catch {
-                Log.e(TAG, "onAuthSuccess: catch", it)
+                it.loggError()
             }
             .onEach {
                 screenNavigator.navigateTo(
@@ -64,7 +63,7 @@ class AuthViewModel(
     }
 
     fun onAuthFail(oneTapOAuth: OneTapOAuth?, vKIDAuthFail: VKIDAuthFail) {
-        Log.d(TAG, "onAuthFail: vKIDAuthFail=${vKIDAuthFail.description}")
+        Log.e("TAG", "onAuthFail: vKIDAuthFail=${vKIDAuthFail.description}")
     }
 
     class Factory(

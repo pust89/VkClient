@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.data_source_impl.di
 
 import android.content.Context
+import com.pustovit.vkclient.data_source_api.build.BuildSettings
 
 /**
  * Created by Pustovit V.V.
@@ -9,4 +10,5 @@ import android.content.Context
  */
 interface DataSourceDependencies {
     fun context(): Context
+    fun buildSettings(): BuildSettings
 }

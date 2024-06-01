@@ -6,6 +6,9 @@ package com.pustovit.vkclient.models.user
  * Time: 11:18
  */
 data class User(
-    val name:String,
-) {
-}
+    val id: Int,
+    val firstName: String,
+    val lastName: String,
+    val isClosed: Boolean,
+    val canAccessClosed: Boolean,
+)

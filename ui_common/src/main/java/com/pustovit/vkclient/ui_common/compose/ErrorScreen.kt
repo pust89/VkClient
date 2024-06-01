@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Build
+import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +17,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.pustovit.vkclient.ui_common.R
 
 /**
  * Created by Pustovit V.V.
@@ -23,7 +26,10 @@ import androidx.compose.ui.Modifier
  * Time: 12:46
  */
 @Composable
-fun ErrorScreen(errorMsg: String, modifier: Modifier = Modifier) {
+fun ErrorScreen(
+    errorMsg: String, modifier: Modifier = Modifier,
+    retry: (() -> Unit)? = null
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -33,6 +39,13 @@ fun ErrorScreen(errorMsg: String, modifier: Modifier = Modifier) {
     ) {
         Icon(Icons.Outlined.Build, contentDescription = null)
         Text(text = errorMsg, style = MaterialTheme.typography.titleMedium)
-
+        if (retry != null) {
+            Button(onClick = { retry.invoke() }) {
+                Text(
+                    text = stringResource(id = R.string.retry),
+                    style = MaterialTheme.typography.titleMedium
+                )
+            }
+        }
     }
 }

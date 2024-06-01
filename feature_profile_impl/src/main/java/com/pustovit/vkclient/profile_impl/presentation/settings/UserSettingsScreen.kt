@@ -24,6 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.pustovit.vkclient.profile_impl.R
 import com.pustovit.vkclient.profile_impl.di.ProfileFeatureComponent
 import com.pustovit.vkclient.profile_impl.di.ProfileFeatureComponentHolder
+import com.pustovit.vkclient.ui_common.R_STRINGS
 import com.pustovit.vkclient.ui_common.compose.ErrorScreen
 import com.pustovit.vkclient.ui_common.compose.LoadingScreen
 import com.pustovit.vkclient.ui_common.state.ScreenState
@@ -70,7 +71,7 @@ fun UserSettingsScreen() {
                         Icon(Icons.AutoMirrored.Filled.ExitToApp, contentDescription = null)
 
                         Text(
-                            text = stringResource(R.string.exit),
+                            text = stringResource(R_STRINGS.exit),
                             style = MaterialTheme.typography.titleMedium
                         )
                     }

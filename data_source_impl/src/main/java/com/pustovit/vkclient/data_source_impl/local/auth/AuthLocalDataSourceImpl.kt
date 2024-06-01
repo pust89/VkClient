@@ -4,7 +4,7 @@ package com.pustovit.vkclient.data_source_impl.local.auth
 import android.content.SharedPreferences
 import androidx.core.content.edit
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
-import com.pustovit.vkclient.data_source_impl.local.auth.mapper.AuthLocalDataSourceMapper
+import com.pustovit.vkclient.data_source_impl.local.auth.mapper.AuthModelMapper
 import com.pustovit.vkclient.models.auth.VkAccessToken
 
 /**
@@ -14,7 +14,7 @@ import com.pustovit.vkclient.models.auth.VkAccessToken
  */
 internal class AuthLocalDataSourceImpl(
     private val sharedPreferences: SharedPreferences,
-    private val mapper: AuthLocalDataSourceMapper
+    private val mapper: AuthModelMapper
 ) : AuthLocalDataSource {
 
     override suspend fun getVkAccessToken(): VkAccessToken? {
