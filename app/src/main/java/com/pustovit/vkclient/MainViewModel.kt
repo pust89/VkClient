@@ -11,6 +11,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.get
+import com.pustovit.vkclient.screens.AuthScreen
 import com.pustovit.vkclient.screens.NewsScreen
 import com.pustovit.vkclient.screens.Screen
 import com.pustovit.vkclient.screens.SplashScreen
@@ -24,6 +25,7 @@ import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flatMapMerge
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.launch
 
@@ -39,6 +41,19 @@ class MainViewModel(
     val screenFlow = screenNavigator
         .listenNavIntent()
 
+    val showBottomBar = screenNavigator.listenNavIntent().map {
+        if (it is NavIntent.NavigateTo) {
+            when (it.route) {
+                SplashScreen.route,
+                AuthScreen.route -> false
+
+                else -> true
+            }
+        } else {
+            true
+        }
+    }
+
 
     class Factory(private val screenNavigator: ScreenNavigator) :
         ViewModelProvider.Factory {
@@ -50,7 +65,7 @@ class MainViewModel(
         }
     }
 
-    fun onTabClick(tab: NavigationTab, navHostController: NavHostController) {
+    fun onTabClick(tab: NavigationTab) {
         viewModelScope.launch {
             val navOptionsBuilder = NavOptions.Builder()
             navOptionsBuilder.setPopUpTo(

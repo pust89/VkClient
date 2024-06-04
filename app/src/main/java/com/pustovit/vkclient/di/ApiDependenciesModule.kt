@@ -8,7 +8,7 @@ import com.pustovit.vkclient.data_api.repository.FeedPostRepository
 import com.pustovit.vkclient.data_api.repository.UserRepository
 import com.pustovit.vkclient.data_impl.di.DataDependencies
 import com.pustovit.vkclient.data_source_api.DataSourceApi
-import com.pustovit.vkclient.data_source_api.build.BuildSettings
+import com.pustovit.vkclient.models.build.BuildSettings
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import com.pustovit.vkclient.data_source_api.remote.UserRemoteDataSource
 import com.pustovit.vkclient.data_source_impl.di.DataSourceDependencies
@@ -27,21 +27,30 @@ class ApiDependenciesModule {
 
     @Provides
     @Singleton
-    fun provideDataSourceDependencies(context: Context): DataSourceDependencies {
+    fun provideBuildSettings(): BuildSettings {
+        return object : BuildSettings {
+            override val baseUrl: String
+                get() = "https://api.vk.com/method/"
+            override val apiVersion: String
+                get() = "5.236"
+            override val buildVariant: BuildSettings.BuildVariant
+                get() = BuildSettings.BuildVariant.Debug//TODO сэтать из BuildConfig!
+        }
+    }
+
+    @Provides
+    @Singleton
+    fun provideDataSourceDependencies(
+        context: Context,
+        buildSettings: BuildSettings
+    ): DataSourceDependencies {
         return object : DataSourceDependencies {
             override fun context(): Context {
                 return context
             }
 
             override fun buildSettings(): BuildSettings {
-                return object : BuildSettings {
-                    override val baseUrl: String
-                        get() = "https://api.vk.com/method/"
-                    override val apiVersion: String
-                        get() = "5.236"
-                    override val buildVariant: BuildSettings.BuildVariant
-                        get() = BuildSettings.BuildVariant.Debug//TODO сэтать из BuildConfig!
-                }
+                return buildSettings
             }
         }
     }

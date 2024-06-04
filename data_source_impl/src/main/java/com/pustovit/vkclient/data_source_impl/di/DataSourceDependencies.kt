@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.data_source_impl.di
 
 import android.content.Context
-import com.pustovit.vkclient.data_source_api.build.BuildSettings
+import com.pustovit.vkclient.models.build.BuildSettings
 
 /**
  * Created by Pustovit V.V.

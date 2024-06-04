@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.data_source_api.build
+package com.pustovit.vkclient.models.build
 
 /**
  * Created by Pustovit V.V.

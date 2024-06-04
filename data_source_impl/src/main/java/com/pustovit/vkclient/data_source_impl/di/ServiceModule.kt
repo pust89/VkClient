@@ -1,6 +1,6 @@
 package com.pustovit.vkclient.data_source_impl.di
 
-import com.pustovit.vkclient.data_source_api.build.BuildSettings
+import com.pustovit.vkclient.models.build.BuildSettings
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import com.pustovit.vkclient.data_source_impl.service.BaseAuthInterceptor
 import com.pustovit.vkclient.injector.FeatureScope

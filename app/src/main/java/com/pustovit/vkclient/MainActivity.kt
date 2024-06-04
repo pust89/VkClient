@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.pustovit.vkclient.screens.navigation.NavIntent
@@ -33,6 +34,7 @@ class MainActivity : ComponentActivity() {
                 ContentContainer(
                     navController = navController,
                     onTabClick = viewModel::onTabClick,
+                    showBottomBar = viewModel.showBottomBar.collectAsState(initial = false)
                 )
 
                 SetNavigation(

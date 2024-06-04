@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.data_source_impl.service
 
 import android.util.Log
-import com.pustovit.vkclient.data_source_api.build.BuildSettings
+import com.pustovit.vkclient.models.build.BuildSettings
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor

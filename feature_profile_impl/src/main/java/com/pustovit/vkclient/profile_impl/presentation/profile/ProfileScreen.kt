@@ -42,8 +42,7 @@ import com.pustovit.vkclient.ui_common.state.ScreenState
  * Date: 12.05.2024
  * Time: 11:29
  */
-//TODO Свайп-рефреш
-//TODO Аватар
+    //TODO Аватар
 //TODO Получать и отображать больше информации о юзере
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

@@ -1,6 +1,5 @@
 package com.pustovit.vkclient
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -14,6 +13,7 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -32,14 +32,17 @@ import com.pustovit.vkclient.screens.navigation.tabs.NavigationTab
 @Composable
 fun ContentContainer(
     navController: NavHostController,
-    onTabClick: (tab: NavigationTab, navHostController: NavHostController) -> Unit,
+    onTabClick: (NavigationTab) -> Unit,
+    showBottomBar: State<Boolean>,
 ) {
     Scaffold(
         bottomBar = {
-            VkClientBottomAppBar(
-                navHostController = navController,
-                onTabClick = onTabClick
-            )
+            if (showBottomBar.value) {
+                VkClientBottomAppBar(
+                    navHostController = navController,
+                    onTabClick = onTabClick
+                )
+            }
         }
     ) { paddingValues ->
         Box(
@@ -56,7 +59,7 @@ fun ContentContainer(
 @Composable
 private fun VkClientBottomAppBar(
     navHostController: NavHostController,
-    onTabClick: (tab: NavigationTab, navHostController: NavHostController) -> Unit,
+    onTabClick: (NavigationTab) -> Unit,
 ) {
     BottomAppBar {
         val navBackStackEntry by navHostController.currentBackStackEntryAsState()
@@ -73,7 +76,7 @@ private fun VkClientBottomAppBar(
                 selected = isSelected,
                 onClick = {
                     if (isSelected.not()) {
-                        onTabClick(tab, navHostController)
+                        onTabClick(tab)
                     }
                 },
                 icon = {
