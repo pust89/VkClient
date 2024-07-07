@@ -6,13 +6,14 @@ import androidx.core.content.edit
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import com.pustovit.vkclient.data_source_impl.local.auth.mapper.AuthModelMapper
 import com.pustovit.vkclient.models.auth.VkAccessToken
+import javax.inject.Inject
 
 /**
  * Created by Pustovit V.V.
  * Date: 03.04.2024
  * Time: 22:13
  */
-internal class AuthLocalDataSourceImpl(
+internal class AuthLocalDataSourceImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences,
     private val mapper: AuthModelMapper
 ) : AuthLocalDataSource {
@@ -34,7 +35,7 @@ internal class AuthLocalDataSourceImpl(
     }
 
     override suspend fun clearVkAccessToken() {
-        sharedPreferences.edit(true){
+        sharedPreferences.edit(true) {
             this.remove(VK_ACCESS_TOKEN_LOCAL_KEY)
         }
     }

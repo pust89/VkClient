@@ -1,4 +1,4 @@
-package com.pustovit.vkclient.data_source_impl.service
+package com.pustovit.vkclient.data_source_impl.remote.base
 
 
 import com.pustovit.vkclient.models.error.VkError

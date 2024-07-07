@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.data_source_impl.remote.user.api
 
 import com.pustovit.vkclient.data_source_impl.remote.user.model.UserDto
-import com.pustovit.vkclient.data_source_impl.service.VkResponse
+import com.pustovit.vkclient.data_source_impl.remote.base.VkResponse
 import retrofit2.http.GET
 
 /**

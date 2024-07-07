@@ -17,6 +17,8 @@ import dagger.Component
     modules = [ViewModelModule::class]
 )
 internal interface NewsFeatureComponent : NewsFeatureApi {
+
     val newsFeedViewModelFactory: NewsFeedViewModel.Factory
+
     val screenNavigator: ScreenNavigator
 }

@@ -10,6 +10,6 @@ import kotlinx.coroutines.flow.Flow
  */
 
 interface FeedPostRepository {
-    fun getAll(): Flow<List<FeedPost>>
+    fun getFeedPosts(): Flow<List<FeedPost>>
     fun remove(feedPost: FeedPost): Flow<Boolean>
 }

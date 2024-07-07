@@ -1,6 +1,6 @@
 package com.pustovit.vkclient.news_impl.di
 
-import com.pustovit.vkclient.domain_api.news.GetAllPostsUseCase
+import com.pustovit.vkclient.domain_api.news.GetFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.FeatureScope
 import com.pustovit.vkclient.news_impl.presentation.feed_posts.NewsFeedViewModel
@@ -20,11 +20,11 @@ internal class ViewModelModule {
     @Provides
     fun provideFactory(
         screenNavigator: ScreenNavigator,
-        getAllPostsUseCase: GetAllPostsUseCase,
+        getFeedPostsUseCase: GetFeedPostsUseCase,
         removePostUseCase: RemovePostUseCase,
     ) = NewsFeedViewModel.Factory(
         screenNavigator = screenNavigator,
-        getAllPostsUseCase = getAllPostsUseCase,
+        getFeedPostsUseCase = getFeedPostsUseCase,
         removePostUseCase = removePostUseCase,
     )
 }

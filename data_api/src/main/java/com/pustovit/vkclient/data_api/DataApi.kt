@@ -12,6 +12,9 @@ import com.pustovit.vkclient.data_api.repository.UserRepository
 interface DataApi {
 
     fun userRepository(): UserRepository
+
     fun authRepository(): AuthRepository
+
     fun feedPostRepository(): FeedPostRepository
+
 }

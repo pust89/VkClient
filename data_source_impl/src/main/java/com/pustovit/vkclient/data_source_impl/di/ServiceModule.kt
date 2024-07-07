@@ -21,6 +21,7 @@ import java.util.concurrent.TimeUnit
  */
 @Module
 internal class ServiceModule {
+
     @Provides
     @FeatureScope
     fun providesBaseAuthInterceptor(
@@ -73,7 +74,6 @@ internal class ServiceModule {
         okHttpClient: OkHttpClient,
     ): Retrofit {
         return Retrofit.Builder()
-            //.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(MoshiConverterFactory.create(moshi).withNullSerialization())
             .baseUrl(buildSettings.baseUrl)
             .client(okHttpClient)

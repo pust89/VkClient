@@ -9,6 +9,9 @@ import com.pustovit.vkclient.models.build.BuildSettings
  * Time: 22:21
  */
 interface DataSourceDependencies {
+
     fun context(): Context
+
     fun buildSettings(): BuildSettings
+
 }

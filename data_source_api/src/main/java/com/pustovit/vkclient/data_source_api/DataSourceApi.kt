@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.data_source_api
 
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
+import com.pustovit.vkclient.data_source_api.remote.FeedPostRemoteDataSource
 import com.pustovit.vkclient.data_source_api.remote.UserRemoteDataSource
 
 /**
@@ -12,4 +13,5 @@ interface DataSourceApi {
 
     fun authLocalDataSource(): AuthLocalDataSource
     fun userRemoteDataSource(): UserRemoteDataSource
+    fun feedPostRemoteDataSource(): FeedPostRemoteDataSource
 }
