@@ -11,13 +11,13 @@ import androidx.navigation.navArgument
  * Time: 21:18
  */
 sealed interface Screen {
-     val screenName: String
-     val route: String
+    val screenName: String
+    val route: String
 
-     val arguments: List<NamedNavArgument>
+    val arguments: List<NamedNavArgument>
         get() = emptyList()
 
-     fun buildRouteWithArgs(vararg arguments: String): String {
+    fun buildRouteWithArgs(vararg arguments: String): String {
         return buildString {
             append(screenName)
             arguments.forEach { argumentName ->
@@ -26,7 +26,7 @@ sealed interface Screen {
         }
     }
 
-     fun MutableList<NamedNavArgument>.addIntArgument(
+    fun MutableList<NamedNavArgument>.addIntArgument(
         argName: String,
         builder: NavArgumentBuilder.() -> Unit = {}
     ) {
@@ -38,7 +38,7 @@ sealed interface Screen {
         }
     }
 
-     fun MutableList<NamedNavArgument>.addStringArgument(
+    fun MutableList<NamedNavArgument>.addStringArgument(
         argName: String,
         builder: NavArgumentBuilder.() -> Unit = {}
     ) {

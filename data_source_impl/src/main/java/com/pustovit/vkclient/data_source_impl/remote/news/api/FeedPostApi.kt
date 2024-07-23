@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.data_source_impl.remote.news.api
 
 import com.pustovit.vkclient.data_source_impl.remote.base.VkResponse
-import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostDto
+import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostResponseDto
 import retrofit2.http.GET
 
 /**
@@ -11,6 +11,6 @@ import retrofit2.http.GET
  */
 interface FeedPostApi {
 
-    @GET("users.get")
-    suspend fun getFeedPosts(): VkResponse<List<FeedPostDto>>
+    @GET("newsfeed.get?filters=post,photo")
+    suspend fun getFeedPosts(): VkResponse<FeedPostResponseDto>
 }

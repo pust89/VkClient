@@ -1,6 +1,5 @@
 package com.pustovit.vkclient.navigation
 
-import androidx.navigation.NavHostController
 import androidx.navigation.NavOptions
 import com.pustovit.vkclient.screens.navigation.NavIntent
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator

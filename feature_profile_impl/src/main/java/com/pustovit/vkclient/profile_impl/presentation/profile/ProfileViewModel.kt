@@ -45,7 +45,7 @@ class ProfileViewModel(
         }
     }
 
-    fun refreshUser() {
+    fun refresh() {
         viewModelScope.launch {
             Log.d("TAG", "refreshUser: called")
             _isRefreshing.emit(true)

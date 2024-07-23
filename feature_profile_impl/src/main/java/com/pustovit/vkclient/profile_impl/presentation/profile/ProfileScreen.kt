@@ -83,7 +83,7 @@ fun ProfileScreen() {
                     .padding(paddingValues)
                     .fillMaxSize(),
                 content = { CurrentUserScreen(user = data.data, viewModel = viewModel) },
-                onRefresh = { viewModel.refreshUser() },
+                onRefresh = { viewModel.refresh() },
                 isRefreshing = isRefreshingState.value
             )
 

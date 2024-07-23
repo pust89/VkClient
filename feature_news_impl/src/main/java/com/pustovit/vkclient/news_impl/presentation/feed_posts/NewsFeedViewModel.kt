@@ -1,5 +1,6 @@
 package com.pustovit.vkclient.news_impl.presentation.feed_posts
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -29,7 +31,14 @@ internal class NewsFeedViewModel @Inject constructor(
     private val _screenState = MutableStateFlow<ScreenState<List<FeedPost>>>(ScreenState.Loading)
     val screenState: StateFlow<ScreenState<List<FeedPost>>> = _screenState.asStateFlow()
 
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing = _isRefreshing.asStateFlow()
+
     init {
+        load()
+    }
+
+    fun load() {
         getFeedPostsUseCase()
             .catch {
                 _screenState.emit(ScreenState.Error(it.message.orEmpty()))
@@ -92,6 +101,24 @@ internal class NewsFeedViewModel @Inject constructor(
             screenNavigator.navigateTo(
                 route = route,
             )
+        }
+    }
+
+    fun refresh() {
+        viewModelScope.launch {
+            _isRefreshing.emit(true)
+            getFeedPostsUseCase()
+                .catch {
+                    _screenState.emit(ScreenState.Error(it.message.orEmpty()))
+                }
+                .onEach { user ->
+                    _screenState.emit(ScreenState.Data(user))
+
+                }
+                .onCompletion {
+                    _isRefreshing.emit(false)
+                }
+                .launchIn(viewModelScope)
         }
     }
 
