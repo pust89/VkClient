@@ -7,12 +7,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -52,7 +54,7 @@ fun PostCard(
             )
             Spacer(modifier = Modifier.height(8.dp))
             Statistics(
-                statistics = feedPost.statistics,
+                feedPost = feedPost,
                 onLikeClickListener = onLikeClickListener,
                 onCommentClickListener = onCommentClickListener,
                 onShareClickListener = onShareClickListener,
@@ -100,12 +102,13 @@ private fun PostHeader(
 
 @Composable
 private fun Statistics(
-    statistics: List<StatisticItem>,
+    feedPost: FeedPost,
     onLikeClickListener: (StatisticItem) -> Unit,
     onShareClickListener: (StatisticItem) -> Unit,
     onViewsClickListener: (StatisticItem) -> Unit,
     onCommentClickListener: (StatisticItem) -> Unit,
 ) {
+    val statistics = feedPost.statistics
     Row {
         Row(
             modifier = Modifier.weight(1f)
@@ -140,9 +143,21 @@ private fun Statistics(
                 }
             )
             val likesItem = statistics.getItemByType(StatisticType.LIKES)
+
+            val likeIcon = if (feedPost.isLiked) {
+                CORE_R_DRAWABLE.ic_liked
+            } else {
+                CORE_R_DRAWABLE.ic_like
+            }
+            val iconTint = if (feedPost.isLiked) {
+                Color.Red
+            } else {
+                LocalContentColor.current
+            }
             IconWithText(
-                iconResId = CORE_R_DRAWABLE.ic_like,
+                iconResId = likeIcon,
                 text = likesItem.displayValue,
+                iconTint = iconTint,
                 onItemClickListener = {
                     onLikeClickListener(likesItem)
                 }
@@ -159,7 +174,8 @@ private fun List<StatisticItem>.getItemByType(type: StatisticType): StatisticIte
 private fun IconWithText(
     iconResId: Int,
     text: String,
-    onItemClickListener: () -> Unit
+    onItemClickListener: () -> Unit,
+    iconTint: Color = LocalContentColor.current
 ) {
     Row(
         modifier = Modifier.clickable {
@@ -168,8 +184,10 @@ private fun IconWithText(
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
+            modifier = Modifier.size(20.dp),
             painter = painterResource(id = iconResId),
             contentDescription = null,
+            tint = iconTint,
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(

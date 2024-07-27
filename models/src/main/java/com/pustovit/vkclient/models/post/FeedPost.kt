@@ -13,5 +13,6 @@ data class FeedPost(
         StatisticItem(type = StatisticType.REPOSTS, 7),
         StatisticItem(type = StatisticType.COMMENTS, 8),
         StatisticItem(type = StatisticType.LIKES, 27)
-    )
+    ),
+    val isLiked: Boolean = true,
 )
