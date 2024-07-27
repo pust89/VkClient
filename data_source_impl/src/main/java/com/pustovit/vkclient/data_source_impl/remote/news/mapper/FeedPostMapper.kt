@@ -3,9 +3,8 @@ package com.pustovit.vkclient.data_source_impl.remote.news.mapper
 import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostDto
 import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostContentDto
 import com.pustovit.vkclient.data_source_impl.remote.news.model.GroupDto
+import com.pustovit.vkclient.models.post.Attachment
 import com.pustovit.vkclient.models.post.FeedPost
-import com.pustovit.vkclient.models.post.StatisticItem
-import com.pustovit.vkclient.models.post.StatisticType
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -30,51 +29,46 @@ internal class FeedPostMapper @Inject constructor() {
             val groupDto = groups.find { groupDto ->
                 groupDto.id == feedPostDto.sourceId?.absoluteValue
             } ?: continue
-
-            resultList += map(feedPostDto, groupDto)
+            
+            map(feedPostDto, groupDto)?.let(resultList::add)
         }
 
         return resultList
     }
 
-    private fun map(dto: FeedPostDto, group: GroupDto): FeedPost {
+    private fun map(dto: FeedPostDto, group: GroupDto): FeedPost? {
 
         return FeedPost(
-            id = dto.id ?: 0,
+            id = dto.id ?: return null,
             type = dto.type.orEmpty(),
             communityName = group.name.orEmpty(),
             communityImageUrl = group.photo200.orEmpty(),
+            ownerId = dto.ownerId ?: 0,
             publicationDate = getPublicationDate(dto),
             contentText = dto.text.orEmpty(),
-            contentImageUrl = getContentPhotoUrl(dto),
-            statistics = getStatistics(dto),
-            isLiked = getIsLiked(dto)
+            attachment = getAttachment(dto),
+            viewsCount = dto.views?.count ?: 0,
+            repostsCount = dto.reposts?.count ?: 0,
+            commentsCount = dto.comments?.count ?: 0,
+            likes = getLikes(dto),
         )
     }
 
-    private fun getContentPhotoUrl(dto: FeedPostDto): String {
-        return dto.attachments?.getOrNull(0)?.photo?.sizes?.last()?.url.orEmpty()
-    }
-
-    private fun getStatistics(dto: FeedPostDto): List<StatisticItem> {
-        return buildList {
-            this += StatisticItem(
-                type = StatisticType.VIEWS,
-                count = dto.views?.count ?: 0
-            )
-            this += StatisticItem(
-                type = StatisticType.LIKES,
-                count = dto.likes?.count ?: 0
+    private fun getAttachment(dto: FeedPostDto): Attachment? {
+        val firstAttachment = dto.attachments?.getOrNull(0) ?: return null
+        return when (firstAttachment.type) {
+            "photo" -> Attachment.Photo(
+                id = firstAttachment.photo?.id ?: 0,
+                ownerId = firstAttachment.photo?.ownerId ?: 0,
+                imageUrl = firstAttachment.photo?.sizes?.last()?.url.orEmpty()
             )
 
-            this += StatisticItem(
-                type = StatisticType.COMMENTS,
-                count = dto.comments?.count ?: 0
+            "video" -> Attachment.Video(
+                id = firstAttachment.video?.id ?: 0,
+                ownerId = firstAttachment.video?.ownerId ?: 0,
             )
-            this += StatisticItem(
-                type = StatisticType.REPOSTS,
-                count = dto.reposts?.count ?: 0
-            )
+
+            else -> null
         }
     }
 
@@ -91,7 +85,10 @@ internal class FeedPostMapper @Inject constructor() {
         } ?: ""
     }
 
-    private fun getIsLiked(dto: FeedPostDto): Boolean {
-        return dto.likes?.userLikes == 1
+    private fun getLikes(dto: FeedPostDto): FeedPost.Likes {
+        return FeedPost.Likes(
+            count = dto.likes?.count ?: 0,
+            isLiked = dto.likes?.userLikes == 1
+        )
     }
 }

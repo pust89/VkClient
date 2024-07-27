@@ -19,9 +19,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.pustovit.vkclient.models.post.Attachment
 import com.pustovit.vkclient.models.post.FeedPost
-import com.pustovit.vkclient.models.post.StatisticItem
-import com.pustovit.vkclient.models.post.StatisticType
 import com.pustovit.vkclient.ui_common.CORE_R_DRAWABLE
 
 
@@ -29,10 +28,10 @@ import com.pustovit.vkclient.ui_common.CORE_R_DRAWABLE
 fun PostCard(
     modifier: Modifier = Modifier,
     feedPost: FeedPost,
-    onLikeClickListener: (StatisticItem) -> Unit,
-    onShareClickListener: (StatisticItem) -> Unit,
-    onViewsClickListener: (StatisticItem) -> Unit,
-    onCommentClickListener: (StatisticItem) -> Unit,
+    onLikeClickListener: (FeedPost) -> Unit,
+    onShareClickListener: (FeedPost) -> Unit,
+    onViewsClickListener: (FeedPost) -> Unit,
+    onCommentClickListener: (FeedPost) -> Unit,
 ) {
     Card(
         modifier = modifier
@@ -44,14 +43,13 @@ fun PostCard(
             Spacer(modifier = Modifier.height(8.dp))
             Text(text = feedPost.contentText, style = MaterialTheme.typography.titleMedium)
             Spacer(modifier = Modifier.height(8.dp))
-            AsyncImage(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp),
-                model = feedPost.contentImageUrl,
-                contentDescription = null,
-                contentScale = ContentScale.FillWidth
-            )
+
+            when (val attachment = feedPost.attachment) {
+                is Attachment.Photo -> PhotoAttachment(attachment)
+                is Attachment.Video -> VideoAttachment(attachment)
+                else -> Unit
+            }
+
             Spacer(modifier = Modifier.height(8.dp))
             Statistics(
                 feedPost = feedPost,
@@ -63,11 +61,30 @@ fun PostCard(
         }
     }
 }
+@Composable
+private fun PhotoAttachment(photo: Attachment.Photo){
+    AsyncImage(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp),
+        model = photo.imageUrl,
+        contentDescription = null,
+        contentScale = ContentScale.FillWidth
+    )
+}
 
 @Composable
-private fun PostHeader(
-    feedPost: FeedPost
-) {
+private fun VideoAttachment(video: Attachment.Video){
+    Text(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(200.dp),
+        text = "Some video..."
+    )
+}
+
+@Composable
+private fun PostHeader(feedPost: FeedPost) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -103,22 +120,21 @@ private fun PostHeader(
 @Composable
 private fun Statistics(
     feedPost: FeedPost,
-    onLikeClickListener: (StatisticItem) -> Unit,
-    onShareClickListener: (StatisticItem) -> Unit,
-    onViewsClickListener: (StatisticItem) -> Unit,
-    onCommentClickListener: (StatisticItem) -> Unit,
+    onLikeClickListener: (FeedPost) -> Unit,
+    onShareClickListener: (FeedPost) -> Unit,
+    onViewsClickListener: (FeedPost) -> Unit,
+    onCommentClickListener: (FeedPost) -> Unit,
 ) {
-    val statistics = feedPost.statistics
     Row {
         Row(
             modifier = Modifier.weight(1f)
         ) {
-            val viewsItem = statistics.getItemByType(StatisticType.VIEWS)
+
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_views_count,
-                text = viewsItem.displayValue,
+                text = feedPost.viewsCount.displayValue,
                 onItemClickListener = {
-                    onViewsClickListener(viewsItem)
+                    onViewsClickListener(feedPost)
                 }
             )
         }
@@ -126,48 +142,44 @@ private fun Statistics(
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            val repostsItem = statistics.getItemByType(StatisticType.REPOSTS)
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_share,
-                text = repostsItem.displayValue,
+                text = feedPost.repostsCount.displayValue,
                 onItemClickListener = {
-                    onShareClickListener(repostsItem)
+                    onShareClickListener(feedPost)
                 }
             )
-            val commentItem = statistics.getItemByType(StatisticType.COMMENTS)
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_comment,
-                text = commentItem.displayValue,
+                text = feedPost.commentsCount.displayValue,
                 onItemClickListener = {
-                    onCommentClickListener(commentItem)
+                    onCommentClickListener(feedPost)
                 }
             )
-            val likesItem = statistics.getItemByType(StatisticType.LIKES)
 
-            val likeIcon = if (feedPost.isLiked) {
+            val likes = feedPost.likes
+            val likeIcon = if (likes.isLiked) {
                 CORE_R_DRAWABLE.ic_liked
             } else {
                 CORE_R_DRAWABLE.ic_like
             }
-            val iconTint = if (feedPost.isLiked) {
+
+            val iconTint = if (likes.isLiked) {
                 Color.Red
             } else {
                 LocalContentColor.current
             }
+
             IconWithText(
                 iconResId = likeIcon,
-                text = likesItem.displayValue,
+                text = likes.count.displayValue,
                 iconTint = iconTint,
                 onItemClickListener = {
-                    onLikeClickListener(likesItem)
+                    onLikeClickListener(feedPost)
                 }
             )
         }
     }
-}
-
-private fun List<StatisticItem>.getItemByType(type: StatisticType): StatisticItem {
-    return this.find { it.type == type } ?: throw IllegalStateException()
 }
 
 @Composable
@@ -195,3 +207,13 @@ private fun IconWithText(
         )
     }
 }
+
+private val Int.displayValue: String
+    get() = if (this > 100_000) {
+        String.format("%sK", (this / 1000))
+    } else if (this > 1000) {
+        String.format("%.1fK", (this / 1000f))
+    } else {
+        this.toString()
+    }
+

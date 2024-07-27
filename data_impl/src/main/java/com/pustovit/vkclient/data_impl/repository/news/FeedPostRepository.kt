@@ -19,8 +19,8 @@ internal class FeedPostRepositoryImpl @Inject constructor(
 ) : FeedPostRepository {
 
 
-    override fun getRecommendedFeedPosts(startFrom: String?): Flow<List<FeedPost>> = flow {
-        emit(feedPostRemoteDataSource.getRecommendedFeedPosts(startFrom))
+    override fun getFeedPosts(startFrom: String?): Flow<List<FeedPost>> = flow {
+        emit(feedPostRemoteDataSource.getFeedPosts(startFrom))
     }.flowOn(Dispatchers.IO)
 
     override fun remove(feedPost: FeedPost): Flow<Boolean> = flow {

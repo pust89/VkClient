@@ -5,6 +5,8 @@ import com.pustovit.vkclient.auth_impl.di.AuthFeatureDependencies
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
+import com.pustovit.vkclient.domain_api.likes.AddLikeUseCase
+import com.pustovit.vkclient.domain_api.likes.DeleteLikeUseCase
 import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
@@ -111,6 +113,14 @@ private fun setNewsFeatureDependencies(allApi: AllApi) {
 
                 override fun getScreenNavigator(): ScreenNavigator {
                     return allApi.screenNavigator
+                }
+
+                override fun addLikeUseCase(): AddLikeUseCase {
+                    return allApi.domainApi.addLikeUseCase()
+                }
+
+                override fun deleteLikeUseCase(): DeleteLikeUseCase {
+                    return allApi.domainApi.deleteLikeUseCase()
                 }
 
                 override val dependencyHolder: DependencyHolder<out FeatureDependencies>

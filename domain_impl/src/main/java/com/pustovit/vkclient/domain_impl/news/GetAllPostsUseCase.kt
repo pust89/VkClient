@@ -16,6 +16,6 @@ internal class GetRecommendedFeedPostsUseCaseImpl @Inject constructor(
 ) : GetRecommendedFeedPostsUseCase {
 
     override fun invoke(startFrom: String?): Flow<List<FeedPost>> {
-        return feedPostRepository.getRecommendedFeedPosts(startFrom)
+        return feedPostRepository.getFeedPosts(startFrom)
     }
 }

@@ -9,5 +9,5 @@ import com.pustovit.vkclient.models.post.FeedPost
  */
 interface FeedPostRemoteDataSource {
 
-    suspend fun getRecommendedFeedPosts(startFrom: String?): List<FeedPost>
+    suspend fun getFeedPosts(startFrom: String?): List<FeedPost>
 }

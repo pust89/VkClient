@@ -101,18 +101,20 @@ private fun FeedPosts(
                 enableDismissFromStartToEnd = false,
                 backgroundContent = { LoadingItem() }) {
                 PostCard(
+
                     feedPost = feedPost,
-                    onViewsClickListener = { statisticItem ->
-                        viewModel.updateCount(feedPost, statisticItem)
+
+                    onViewsClickListener = {
                     },
-                    onShareClickListener = { statisticItem ->
-                        viewModel.updateCount(feedPost, statisticItem)
+
+                    onShareClickListener = {
                     },
+
                     onCommentClickListener = {
                         onCommentClickListener(feedPost)
                     },
-                    onLikeClickListener = { statisticItem ->
-                        viewModel.updateCount(feedPost, statisticItem)
+                    onLikeClickListener = { feedPost ->
+                        viewModel.onLikeClick(feedPost)
                     },
                 )
             }

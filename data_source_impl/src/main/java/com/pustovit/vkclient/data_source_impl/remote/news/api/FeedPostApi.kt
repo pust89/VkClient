@@ -12,8 +12,9 @@ import retrofit2.http.Query
  */
 internal interface FeedPostApi {
 
-    @GET("newsfeed.getRecommended")
-    suspend fun getRecommendedFeedPosts(
+
+    @GET("newsfeed.get")
+    suspend fun getFeedPosts(
         @Query("start_from") startFrom: String?
     ): VkResponse<FeedPostContentDto>
 }

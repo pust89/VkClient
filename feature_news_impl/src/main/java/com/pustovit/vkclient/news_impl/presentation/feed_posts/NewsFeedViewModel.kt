@@ -8,7 +8,6 @@ import com.pustovit.vkclient.domain_api.likes.DeleteLikeUseCase
 import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.models.post.FeedPost
-import com.pustovit.vkclient.models.post.StatisticItem
 import com.pustovit.vkclient.screens.CommentsScreen
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
 import com.pustovit.vkclient.ui_common.state.ScreenState
@@ -52,33 +51,6 @@ internal class NewsFeedViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-    fun updateCount(feedPost: FeedPost, item: StatisticItem) {
-//        val currentState = screenState.value
-//        if (currentState !is NewsFeedScreenState.Posts) return
-//
-//        val oldPosts = currentState.posts.toMutableList()
-//        val oldStatistics = feedPost.statistics
-//        val newStatistics = oldStatistics.toMutableList().apply {
-//            replaceAll { oldItem ->
-//                if (oldItem.type == item.type) {
-//                    oldItem.copy(count = oldItem.count + 1)
-//                } else {
-//                    oldItem
-//                }
-//            }
-//        }
-//        val newFeedPost = feedPost.copy(statistics = newStatistics)
-//        val newPosts = oldPosts.apply {
-//            replaceAll {
-//                if (it.id == newFeedPost.id) {
-//                    newFeedPost
-//                } else {
-//                    it
-//                }
-//            }
-//        }
-//        _screenState.value = NewsFeedScreenState.Posts(posts = newPosts)
-    }
 
     fun remove(feedPost: FeedPost) {
 //        removePostUseCase(feedPost)
@@ -114,15 +86,55 @@ internal class NewsFeedViewModel @Inject constructor(
                 .catch {
                     _screenState.emit(ScreenState.Error(it.message.orEmpty()))
                 }
-                .onEach { user ->
-                    _screenState.emit(ScreenState.Data(user))
-
+                .onEach { posts ->
+                    _screenState.emit(ScreenState.Data(posts))
                 }
                 .onCompletion {
                     _isRefreshing.emit(false)
                 }
                 .launchIn(viewModelScope)
         }
+    }
+
+    fun onLikeClick(feedPost: FeedPost) {
+        viewModelScope.launch {
+            if (feedPost.likes.isLiked) {
+                deleteLikeUseCase(
+                    type = feedPost.type,
+                    ownerId = feedPost.ownerId,
+                    itemId = feedPost.id
+                )
+            } else {
+                addLikeUseCase(
+                    type = feedPost.type,
+                    ownerId = feedPost.ownerId,
+                    itemId = feedPost.id
+                )
+            }.catch {
+                _screenState.emit(ScreenState.Error(it.message.orEmpty()))
+            }.onEach { newCount ->
+                val updatedState = calculateUpdateStateByLikes(newCount, feedPost)
+                _screenState.emit(ScreenState.Data(updatedState))
+            }
+                .launchIn(viewModelScope)
+        }
+    }
+
+    private fun calculateUpdateStateByLikes(newCount: Int, feedPost: FeedPost): List<FeedPost> {
+        return (_screenState.value as? ScreenState.Data<List<FeedPost>>)?.let { screenState ->
+            screenState.data.map {
+                if (it.id != feedPost.id) {
+                    it
+                } else {
+                    it.copy(
+                        likes = FeedPost.Likes(
+                            count = newCount,
+                            isLiked = !feedPost.likes.isLiked
+                        )
+                    )
+                }
+            }
+        } ?: emptyList()
     }
 
     class Factory(
