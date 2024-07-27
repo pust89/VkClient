@@ -5,6 +5,7 @@ import com.pustovit.vkclient.data_source_impl.remote.base.process
 import com.pustovit.vkclient.data_source_impl.remote.news.api.FeedPostApi
 import com.pustovit.vkclient.data_source_impl.remote.news.mapper.FeedPostMapper
 import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.models.post.Page
 import javax.inject.Inject
 
 /**
@@ -17,7 +18,7 @@ internal class FeedPostRemoteDataSourceImpl @Inject constructor(
     private val mapper: FeedPostMapper,
 ) : FeedPostRemoteDataSource {
 
-    override suspend fun getFeedPosts(startFrom: String?): List<FeedPost> {
+    override suspend fun getFeedPosts(startFrom: String?): Page<FeedPost> {
         return api.getFeedPosts(startFrom).process(mapper::map)
     }
 }

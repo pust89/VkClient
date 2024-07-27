@@ -5,9 +5,14 @@ import kotlinx.coroutines.flow.Flow
 
 /**
  * Created by Pustovit V.V.
- * Date: 31.03.2024
- * Time: 9:46
+ * Date: 27.07.2024
+ * Time: 16:28
  */
-interface GetRecommendedFeedPostsUseCase {
-    operator fun invoke(startFrom: String? = null): Flow<List<FeedPost>>
+interface FeedPostPageSource {
+
+    fun getFeedPosts(): Flow<List<FeedPost>>
+
+    suspend fun loadFirst()
+
+    suspend fun loadNext()
 }

@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.data_source_api.remote
 
 import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.models.post.Page
 
 /**
  * Created by Pustovit V.V.
@@ -9,5 +10,5 @@ import com.pustovit.vkclient.models.post.FeedPost
  */
 interface FeedPostRemoteDataSource {
 
-    suspend fun getFeedPosts(startFrom: String?): List<FeedPost>
+    suspend fun getFeedPosts(startFrom: String?): Page<FeedPost>
 }

@@ -5,6 +5,7 @@ import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostContentD
 import com.pustovit.vkclient.data_source_impl.remote.news.model.GroupDto
 import com.pustovit.vkclient.models.post.Attachment
 import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.models.post.Page
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -18,7 +19,8 @@ import kotlin.math.absoluteValue
  */
 internal class FeedPostMapper @Inject constructor() {
 
-    fun map(dto: FeedPostContentDto?): List<FeedPost> {
+    fun map(dto: FeedPostContentDto?): Page<FeedPost> {
+
         val resultList = mutableListOf<FeedPost>()
         val posts = dto?.items.orEmpty()
         val groups = dto?.groups.orEmpty()
@@ -29,11 +31,14 @@ internal class FeedPostMapper @Inject constructor() {
             val groupDto = groups.find { groupDto ->
                 groupDto.id == feedPostDto.sourceId?.absoluteValue
             } ?: continue
-            
+
             map(feedPostDto, groupDto)?.let(resultList::add)
         }
 
-        return resultList
+        return Page(
+            items = resultList,
+            nextFrom = dto?.nextFrom
+        )
     }
 
     private fun map(dto: FeedPostDto, group: GroupDto): FeedPost? {

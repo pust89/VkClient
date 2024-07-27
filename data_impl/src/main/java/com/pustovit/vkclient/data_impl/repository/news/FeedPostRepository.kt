@@ -3,6 +3,7 @@ package com.pustovit.vkclient.data_impl.repository.news
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
 import com.pustovit.vkclient.data_source_api.remote.FeedPostRemoteDataSource
 import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.models.post.Page
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -19,7 +20,7 @@ internal class FeedPostRepositoryImpl @Inject constructor(
 ) : FeedPostRepository {
 
 
-    override fun getFeedPosts(startFrom: String?): Flow<List<FeedPost>> = flow {
+    override fun getFeedPosts(startFrom: String?): Flow<Page<FeedPost>> = flow {
         emit(feedPostRemoteDataSource.getFeedPosts(startFrom))
     }.flowOn(Dispatchers.IO)
 

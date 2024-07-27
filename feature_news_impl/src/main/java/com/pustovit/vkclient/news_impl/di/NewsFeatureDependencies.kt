@@ -2,7 +2,7 @@ package com.pustovit.vkclient.news_impl.di
 
 import com.pustovit.vkclient.domain_api.likes.AddLikeUseCase
 import com.pustovit.vkclient.domain_api.likes.DeleteLikeUseCase
-import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
+import com.pustovit.vkclient.domain_api.news.FeedPostPageSource
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
@@ -14,7 +14,7 @@ import com.pustovit.vkclient.screens.navigation.ScreenNavigator
  */
 interface NewsFeatureDependencies : FeatureDependencies {
 
-    fun getAllPostsUseCase(): GetRecommendedFeedPostsUseCase
+    fun feedPostPageSource(): FeedPostPageSource
 
     fun removePostUseCase(): RemovePostUseCase
 

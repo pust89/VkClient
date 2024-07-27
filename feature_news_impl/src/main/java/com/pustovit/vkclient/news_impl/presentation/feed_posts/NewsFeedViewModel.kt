@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.pustovit.vkclient.domain_api.likes.AddLikeUseCase
 import com.pustovit.vkclient.domain_api.likes.DeleteLikeUseCase
-import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
+import com.pustovit.vkclient.domain_api.news.FeedPostPageSource
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.screens.CommentsScreen
@@ -16,14 +16,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class NewsFeedViewModel @Inject constructor(
     private val screenNavigator: ScreenNavigator,
-    private val getRecommendedFeedPostsUseCase: GetRecommendedFeedPostsUseCase,
+    private val feedPostPageSource: FeedPostPageSource,
     private val removePostUseCase: RemovePostUseCase,
     private val addLikeUseCase: AddLikeUseCase,
     private val deleteLikeUseCase: DeleteLikeUseCase,
@@ -37,20 +36,41 @@ internal class NewsFeedViewModel @Inject constructor(
     val isRefreshing = _isRefreshing.asStateFlow()
 
     init {
-        load()
-    }
-
-    fun load() {
-        getRecommendedFeedPostsUseCase()
+        feedPostPageSource.getFeedPosts()
             .catch {
                 _screenState.emit(ScreenState.Error(it.message.orEmpty()))
+                _isRefreshing.emit(false)
             }
-            .onEach { list ->
-                _screenState.emit(ScreenState.Data(list))
+            .onEach { feedPosts ->
+
+                val newState = when (val currentState = _screenState.value) {
+
+                    is ScreenState.Data -> currentState.copy(
+                        data = currentState.data + feedPosts
+                    )
+
+                    is ScreenState.Error,
+                    ScreenState.Loading -> ScreenState.Data(feedPosts)
+
+                }
+                _screenState.emit(newState)
+                _isRefreshing.emit(false)
             }
             .launchIn(viewModelScope)
+        loadFirst()
     }
 
+    fun loadNext() {
+        viewModelScope.launch {
+            feedPostPageSource.loadNext()
+        }
+    }
+
+    fun loadFirst() {
+        viewModelScope.launch {
+            feedPostPageSource.loadFirst()
+        }
+    }
 
     fun remove(feedPost: FeedPost) {
 //        removePostUseCase(feedPost)
@@ -73,26 +93,16 @@ internal class NewsFeedViewModel @Inject constructor(
 
             val route = CommentsScreen.getRouteWithArgs(args)
 
-            screenNavigator.navigateTo(
-                route = route,
-            )
+            screenNavigator.navigateTo(route = route)
         }
     }
 
     fun refresh() {
         viewModelScope.launch {
             _isRefreshing.emit(true)
-            getRecommendedFeedPostsUseCase()
-                .catch {
-                    _screenState.emit(ScreenState.Error(it.message.orEmpty()))
-                }
-                .onEach { posts ->
-                    _screenState.emit(ScreenState.Data(posts))
-                }
-                .onCompletion {
-                    _isRefreshing.emit(false)
-                }
-                .launchIn(viewModelScope)
+            val newState = ScreenState.Data(emptyList<FeedPost>())
+            _screenState.emit(newState)
+            loadFirst()
         }
     }
 
@@ -113,14 +123,14 @@ internal class NewsFeedViewModel @Inject constructor(
             }.catch {
                 _screenState.emit(ScreenState.Error(it.message.orEmpty()))
             }.onEach { newCount ->
-                val updatedState = calculateUpdateStateByLikes(newCount, feedPost)
-                _screenState.emit(ScreenState.Data(updatedState))
+                val newList = calculateUpdatedListByLikes(newCount, feedPost)
+                _screenState.emit(ScreenState.Data(newList))
             }
                 .launchIn(viewModelScope)
         }
     }
 
-    private fun calculateUpdateStateByLikes(newCount: Int, feedPost: FeedPost): List<FeedPost> {
+    private fun calculateUpdatedListByLikes(newCount: Int, feedPost: FeedPost): List<FeedPost> {
         return (_screenState.value as? ScreenState.Data<List<FeedPost>>)?.let { screenState ->
             screenState.data.map {
                 if (it.id != feedPost.id) {
@@ -139,7 +149,7 @@ internal class NewsFeedViewModel @Inject constructor(
 
     class Factory(
         private val screenNavigator: ScreenNavigator,
-        private val getRecommendedFeedPostsUseCase: GetRecommendedFeedPostsUseCase,
+        private val feedPostPageSource: FeedPostPageSource,
         private val removePostUseCase: RemovePostUseCase,
         private val addLikeUseCase: AddLikeUseCase,
         private val deleteLikeUseCase: DeleteLikeUseCase,
@@ -149,7 +159,7 @@ internal class NewsFeedViewModel @Inject constructor(
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return NewsFeedViewModel(
                 screenNavigator = screenNavigator,
-                getRecommendedFeedPostsUseCase = getRecommendedFeedPostsUseCase,
+                feedPostPageSource = feedPostPageSource,
                 removePostUseCase = removePostUseCase,
                 addLikeUseCase = addLikeUseCase,
                 deleteLikeUseCase = deleteLikeUseCase,

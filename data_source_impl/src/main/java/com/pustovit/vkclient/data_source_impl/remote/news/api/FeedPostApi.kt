@@ -12,9 +12,9 @@ import retrofit2.http.Query
  */
 internal interface FeedPostApi {
 
-
-    @GET("newsfeed.get")
+    @GET("newsfeed.get?count=10")
     suspend fun getFeedPosts(
         @Query("start_from") startFrom: String?
     ): VkResponse<FeedPostContentDto>
+
 }

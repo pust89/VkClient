@@ -1,6 +1,7 @@
 package com.pustovit.vkclient.data_api.repository
 
 import com.pustovit.vkclient.models.post.FeedPost
+import com.pustovit.vkclient.models.post.Page
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -11,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface FeedPostRepository {
 
-    fun getFeedPosts(startFrom: String?): Flow<List<FeedPost>>
+    fun getFeedPosts(startFrom: String?): Flow<Page<FeedPost>>
 
     fun remove(feedPost: FeedPost): Flow<Boolean>
 }

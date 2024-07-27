@@ -1,8 +1,8 @@
 package com.pustovit.vkclient.domain_impl.di
 
-import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
+import com.pustovit.vkclient.domain_api.news.FeedPostPageSource
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
-import com.pustovit.vkclient.domain_impl.news.GetRecommendedFeedPostsUseCaseImpl
+import com.pustovit.vkclient.domain_impl.news.FeedPostPageSourceImpl
 import com.pustovit.vkclient.domain_impl.news.RemovePostUseCaseImpl
 import com.pustovit.vkclient.injector.FeatureScope
 import dagger.Binds
@@ -18,9 +18,8 @@ internal interface NewsUseCaseModule {
 
     @Binds
     @FeatureScope
-    fun bindGetAllPostsUseCase(useCase: GetRecommendedFeedPostsUseCaseImpl): GetRecommendedFeedPostsUseCase
+    fun bindRemovePostUseCase(useCase: RemovePostUseCaseImpl): RemovePostUseCase
 
     @Binds
-    @FeatureScope
-    fun bindRemovePostUseCase(useCase: RemovePostUseCaseImpl): RemovePostUseCase
+    fun bindFeedPostPageSource(source: FeedPostPageSourceImpl):FeedPostPageSource
 }
