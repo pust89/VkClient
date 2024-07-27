@@ -15,9 +15,11 @@ import dagger.Module
  */
 @Module
 internal interface NewsUseCaseModule {
+
     @Binds
     @FeatureScope
     fun bindGetAllPostsUseCase(useCase: GetRecommendedFeedPostsUseCaseImpl): GetRecommendedFeedPostsUseCase
+
     @Binds
     @FeatureScope
     fun bindRemovePostUseCase(useCase: RemovePostUseCaseImpl): RemovePostUseCase

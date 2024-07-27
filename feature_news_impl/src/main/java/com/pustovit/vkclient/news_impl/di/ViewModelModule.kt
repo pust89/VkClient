@@ -1,5 +1,7 @@
 package com.pustovit.vkclient.news_impl.di
 
+import com.pustovit.vkclient.domain_api.likes.AddLikeUseCase
+import com.pustovit.vkclient.domain_api.likes.DeleteLikeUseCase
 import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.FeatureScope
@@ -22,9 +24,13 @@ internal class ViewModelModule {
         screenNavigator: ScreenNavigator,
         getRecommendedFeedPostsUseCase: GetRecommendedFeedPostsUseCase,
         removePostUseCase: RemovePostUseCase,
+        addLikeUseCase: AddLikeUseCase,
+        deleteLikeUseCase: DeleteLikeUseCase,
     ) = NewsFeedViewModel.Factory(
         screenNavigator = screenNavigator,
         getRecommendedFeedPostsUseCase = getRecommendedFeedPostsUseCase,
         removePostUseCase = removePostUseCase,
+        addLikeUseCase = addLikeUseCase,
+        deleteLikeUseCase = deleteLikeUseCase,
     )
 }

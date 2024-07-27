@@ -14,6 +14,7 @@ import javax.inject.Inject
 internal class GetCurrentUserUseCaseImpl @Inject constructor(
     private val userRepository: UserRepository
 ) : GetCurrentUserUseCase {
+
     override fun invoke(): Flow<User> {
         return userRepository.getCurrentUser()
     }

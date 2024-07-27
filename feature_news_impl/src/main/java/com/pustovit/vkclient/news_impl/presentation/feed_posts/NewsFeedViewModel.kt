@@ -3,6 +3,8 @@ package com.pustovit.vkclient.news_impl.presentation.feed_posts
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.pustovit.vkclient.domain_api.likes.AddLikeUseCase
+import com.pustovit.vkclient.domain_api.likes.DeleteLikeUseCase
 import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.models.post.FeedPost
@@ -24,6 +26,8 @@ internal class NewsFeedViewModel @Inject constructor(
     private val screenNavigator: ScreenNavigator,
     private val getRecommendedFeedPostsUseCase: GetRecommendedFeedPostsUseCase,
     private val removePostUseCase: RemovePostUseCase,
+    private val addLikeUseCase: AddLikeUseCase,
+    private val deleteLikeUseCase: DeleteLikeUseCase,
 ) : ViewModel() {
 
 
@@ -125,13 +129,18 @@ internal class NewsFeedViewModel @Inject constructor(
         private val screenNavigator: ScreenNavigator,
         private val getRecommendedFeedPostsUseCase: GetRecommendedFeedPostsUseCase,
         private val removePostUseCase: RemovePostUseCase,
+        private val addLikeUseCase: AddLikeUseCase,
+        private val deleteLikeUseCase: DeleteLikeUseCase,
     ) : ViewModelProvider.Factory {
+
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return NewsFeedViewModel(
                 screenNavigator = screenNavigator,
                 getRecommendedFeedPostsUseCase = getRecommendedFeedPostsUseCase,
                 removePostUseCase = removePostUseCase,
+                addLikeUseCase = addLikeUseCase,
+                deleteLikeUseCase = deleteLikeUseCase,
             ) as T
         }
     }

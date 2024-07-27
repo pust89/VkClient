@@ -14,6 +14,7 @@ import javax.inject.Inject
 internal class RemovePostUseCaseImpl @Inject constructor(
     private val feedPostRepository: FeedPostRepository
 ) : RemovePostUseCase {
+
     override fun invoke(feedPost: FeedPost): Flow<Boolean> {
         return feedPostRepository.remove(feedPost)
     }

@@ -5,6 +5,7 @@ import androidx.core.os.BuildCompat
 import com.pustovit.vkclient.data_api.DataApi
 import com.pustovit.vkclient.data_api.repository.AuthRepository
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
+import com.pustovit.vkclient.data_api.repository.LikesRepository
 import com.pustovit.vkclient.data_api.repository.UserRepository
 import com.pustovit.vkclient.data_impl.di.DataDependencies
 import com.pustovit.vkclient.data_source_api.DataSourceApi
@@ -94,6 +95,10 @@ class ApiDependenciesModule {
 
             override fun feedPostRepository(): FeedPostRepository {
                 return dataApi.feedPostRepository()
+            }
+
+            override fun likesRepository(): LikesRepository {
+                return dataApi.likesRepository()
             }
         }
     }

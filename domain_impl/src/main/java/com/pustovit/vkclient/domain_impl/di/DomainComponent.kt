@@ -16,6 +16,7 @@ import dagger.Component
         AuthUseCaseModule::class,
         UserUseCaseModule::class,
         NewsUseCaseModule::class,
+        LikesUseCaseModule::class,
     ],
 )
 interface DomainComponent : DomainApi

@@ -3,6 +3,8 @@ package com.pustovit.vkclient.domain_api
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
+import com.pustovit.vkclient.domain_api.likes.AddLikeUseCase
+import com.pustovit.vkclient.domain_api.likes.DeleteLikeUseCase
 import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
@@ -15,9 +17,18 @@ import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
 interface DomainApi {
 
     fun getVkAccessTokenUseCase(): GetVkAccessTokenUseCase
+
     fun saveVkAccessTokenUseCase(): SaveVkAccessTokenUseCase
+
     fun logoutUseCase(): LogoutUseCase
+
     fun getCurrentUserUseCase(): GetCurrentUserUseCase
+
     fun getAllPostsUseCase(): GetRecommendedFeedPostsUseCase
+
     fun removePostUseCase(): RemovePostUseCase
+
+    fun addLikeUseCase(): AddLikeUseCase
+
+    fun deleteLikeUseCase(): DeleteLikeUseCase
 }
