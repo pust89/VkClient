@@ -6,8 +6,11 @@ import com.pustovit.vkclient.data_source_impl.remote.news.model.GroupDto
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.StatisticItem
 import com.pustovit.vkclient.models.post.StatisticType
+import java.text.SimpleDateFormat
 import java.time.Instant
 import java.time.format.DateTimeFormatter
+import java.util.Date
+import java.util.Locale
 import javax.inject.Inject
 import kotlin.math.absoluteValue
 
@@ -75,10 +78,16 @@ internal class FeedPostMapper @Inject constructor() {
         }
     }
 
-    private fun getPublicationDate(dto: FeedPostDto):String{
+    private fun getPublicationDate(dto: FeedPostDto): String {
         return dto.date?.let {
-            DateTimeFormatter.ISO_INSTANT
-                .format(Instant.ofEpochSecond(it))
+            try {
+                val date = Date(it * 1000 )
+                return SimpleDateFormat("d MMMM yyyy, hh:mm", Locale.getDefault())
+                    .format(date)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                ""
+            }
         } ?: ""
     }
 }

@@ -9,5 +9,5 @@ import kotlinx.coroutines.flow.Flow
  * Time: 9:46
  */
 interface GetRecommendedFeedPostsUseCase {
-    operator fun invoke(): Flow<List<FeedPost>>
+    operator fun invoke(startFrom: String? = null): Flow<List<FeedPost>>
 }

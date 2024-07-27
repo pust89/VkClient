@@ -14,7 +14,8 @@ import javax.inject.Inject
 internal class GetRecommendedFeedPostsUseCaseImpl @Inject constructor(
     private val feedPostRepository: FeedPostRepository
 ) : GetRecommendedFeedPostsUseCase {
-    override fun invoke(): Flow<List<FeedPost>> {
-        return feedPostRepository.getRecommendedFeedPosts()
+
+    override fun invoke(startFrom: String?): Flow<List<FeedPost>> {
+        return feedPostRepository.getRecommendedFeedPosts(startFrom)
     }
 }

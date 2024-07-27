@@ -113,7 +113,7 @@ private fun Statistics(
             val viewsItem = statistics.getItemByType(StatisticType.VIEWS)
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_views_count,
-                text = viewsItem.count.toString(),
+                text = viewsItem.displayValue,
                 onItemClickListener = {
                     onViewsClickListener(viewsItem)
                 }
@@ -123,18 +123,18 @@ private fun Statistics(
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            val REPOSTSItem = statistics.getItemByType(StatisticType.REPOSTS)
+            val repostsItem = statistics.getItemByType(StatisticType.REPOSTS)
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_share,
-                text = REPOSTSItem.count.toString(),
+                text = repostsItem.displayValue,
                 onItemClickListener = {
-                    onShareClickListener(REPOSTSItem)
+                    onShareClickListener(repostsItem)
                 }
             )
             val commentItem = statistics.getItemByType(StatisticType.COMMENTS)
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_comment,
-                text = commentItem.count.toString(),
+                text = commentItem.displayValue,
                 onItemClickListener = {
                     onCommentClickListener(commentItem)
                 }
@@ -142,7 +142,7 @@ private fun Statistics(
             val likesItem = statistics.getItemByType(StatisticType.LIKES)
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_like,
-                text = likesItem.count.toString(),
+                text = likesItem.displayValue,
                 onItemClickListener = {
                     onLikeClickListener(likesItem)
                 }
