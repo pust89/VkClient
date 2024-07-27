@@ -10,7 +10,7 @@ data class FeedPost(
     val contentImageUrl: String = "https://placehold.co/600x400.png",
     val statistics: List<StatisticItem> = listOf(
         StatisticItem(type = StatisticType.VIEWS, 966),
-        StatisticItem(type = StatisticType.SHARES, 7),
+        StatisticItem(type = StatisticType.REPOSTS, 7),
         StatisticItem(type = StatisticType.COMMENTS, 8),
         StatisticItem(type = StatisticType.LIKES, 27)
     )

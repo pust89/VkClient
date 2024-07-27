@@ -6,5 +6,5 @@ data class StatisticItem(
 )
 
 enum class StatisticType {
-    VIEWS, COMMENTS, SHARES, LIKES
+    VIEWS, COMMENTS, REPOSTS, LIKES
 }

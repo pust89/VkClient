@@ -5,11 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Copyright(
-    @Json(name = "link")
-    val link: String?,
-    @Json(name = "name")
-    val name: String?,
-    @Json(name = "type")
-    val type: String?
+internal data class AuthorAdDto(
+    @Json(name = "advertiser_info_url")
+    val advertiserInfoUrl: String?
 )

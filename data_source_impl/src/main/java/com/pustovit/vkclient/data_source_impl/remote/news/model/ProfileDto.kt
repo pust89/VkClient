@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Profile(
+internal data class ProfileDto(
     @Json(name = "can_access_closed")
     val canAccessClosed: Boolean?,
     @Json(name = "first_name")
@@ -21,7 +21,7 @@ data class Profile(
     @Json(name = "online_app")
     val onlineApp: Int?,
     @Json(name = "online_info")
-    val onlineInfo: OnlineInfo?,
+    val onlineInfo: OnlineInfoDto?,
     @Json(name = "online_mobile")
     val onlineMobile: Int?,
     @Json(name = "photo_100")

@@ -5,15 +5,15 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class FeedPostResponseDto(
+internal data class FeedPostResponseDto(
     @Json(name = "groups")
-    val groups: List<Group>?,
+    val groups: List<GroupDto>?,
     @Json(name = "items")
     val items: List<FeedPostDto>?,
     @Json(name = "next_from")
     val nextFrom: String?,
     @Json(name = "profiles")
-    val profiles: List<Profile>?,
+    val profiles: List<ProfileDto>?,
     @Json(name = "reaction_sets")
-    val reactionSets: List<ReactionSet>?
+    val reactionSets: List<ReactionSetDto>?
 )

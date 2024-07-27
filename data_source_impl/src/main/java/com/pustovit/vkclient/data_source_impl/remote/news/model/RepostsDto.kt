@@ -5,7 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Title(
-    @Json(name = "color")
-    val color: Color?
+internal data class RepostsDto(
+    @Json(name = "count")
+    val count: Int?,
+    @Json(name = "user_reposted")
+    val userReposted: Int?
 )

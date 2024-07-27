@@ -123,12 +123,12 @@ private fun Statistics(
             modifier = Modifier.weight(1f),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            val sharesItem = statistics.getItemByType(StatisticType.SHARES)
+            val REPOSTSItem = statistics.getItemByType(StatisticType.REPOSTS)
             IconWithText(
                 iconResId = CORE_R_DRAWABLE.ic_share,
-                text = sharesItem.count.toString(),
+                text = REPOSTSItem.count.toString(),
                 onItemClickListener = {
-                    onShareClickListener(sharesItem)
+                    onShareClickListener(REPOSTSItem)
                 }
             )
             val commentItem = statistics.getItemByType(StatisticType.COMMENTS)

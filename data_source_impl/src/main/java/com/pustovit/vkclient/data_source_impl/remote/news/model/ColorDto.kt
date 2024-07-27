@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Background(
-    @Json(name = "dark")
-    val dark: String?,
-    @Json(name = "light")
-    val light: String?
+internal data class ColorDto(
+    @Json(name = "background")
+    val background: BackgroundDto?,
+    @Json(name = "foreground")
+    val foreground: ForegroundDto?
 )

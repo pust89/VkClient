@@ -5,13 +5,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Asset(
+internal data class AssetDto(
     @Json(name = "animation_url")
     val animationUrl: String?,
     @Json(name = "images")
-    val images: List<ImageX>?,
+    val images: List<ImageXDto>?,
     @Json(name = "title")
-    val title: Title?,
+    val title: TitleDto?,
     @Json(name = "title_color")
-    val titleColor: TitleColor?
+    val titleColor: TitleColorDto?
 )

@@ -5,21 +5,21 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class FeedPostDto(
+internal data class FeedPostDto(
     @Json(name = "attachments")
-    val attachments: List<Attachment>?,
+    val attachments: List<AttachmentDto>?,
     @Json(name = "author_ad")
-    val authorAd: AuthorAd?,
+    val authorAd: AuthorAdDto?,
     @Json(name = "carousel_offset")
     val carouselOffset: Int?,
     @Json(name = "comments")
-    val comments: Comments?,
+    val comments: CommentsDto?,
     @Json(name = "copyright")
-    val copyright: Copyright?,
+    val copyright: CopyrightDto?,
     @Json(name = "date")
     val date: Int?,
     @Json(name = "donut")
-    val donut: Donut?,
+    val donut: DonutDto?,
     @Json(name = "edited")
     val edited: Int?,
     @Json(name = "id")
@@ -29,7 +29,7 @@ data class FeedPostDto(
     @Json(name = "is_favorite")
     val isFavorite: Boolean?,
     @Json(name = "likes")
-    val likes: Likes?,
+    val likes: LikesDto?,
     @Json(name = "marked_as_ads")
     val markedAsAds: Int?,
     @Json(name = "owner_id")
@@ -37,15 +37,15 @@ data class FeedPostDto(
     @Json(name = "post_id")
     val postId: Int?,
     @Json(name = "post_source")
-    val postSource: PostSource?,
+    val postSource: PostSourceDto?,
     @Json(name = "post_type")
     val postType: String?,
     @Json(name = "reaction_set_id")
     val reactionSetId: String?,
     @Json(name = "reactions")
-    val reactions: Reactions?,
+    val reactions: ReactionsDto?,
     @Json(name = "reposts")
-    val reposts: Reposts?,
+    val reposts: RepostsDto?,
     @Json(name = "signer_id")
     val signerId: Int?,
     @Json(name = "source_id")
@@ -55,5 +55,5 @@ data class FeedPostDto(
     @Json(name = "type")
     val type: String?,
     @Json(name = "views")
-    val views: Views?
+    val views: ViewsDto?
 )

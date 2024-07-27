@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Date: 01.06.2024
  * Time: 18:11
  */
-class UserModelMapper @Inject constructor() {
+internal class UserModelMapper @Inject constructor() {
 
     fun map(dto: List<UserDto>?): User {
         val userDto =  dto?.firstOrNull()?: throw VkError(errorCode = 0, message = "User is null")

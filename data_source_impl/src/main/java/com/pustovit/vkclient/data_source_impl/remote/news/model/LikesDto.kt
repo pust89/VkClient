@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Likes(
+internal data class LikesDto(
     @Json(name = "can_like")
     val canLike: Int?,
     @Json(name = "can_publish")

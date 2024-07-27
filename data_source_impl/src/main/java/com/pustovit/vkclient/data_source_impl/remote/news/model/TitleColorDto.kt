@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Reactions(
-    @Json(name = "count")
-    val count: Int?,
-    @Json(name = "items")
-    val items: List<ItemX>?
+internal data class TitleColorDto(
+    @Json(name = "dark")
+    val dark: String?,
+    @Json(name = "light")
+    val light: String?
 )

@@ -13,7 +13,7 @@ import retrofit2.Retrofit
  * Time: 20:19
  */
 @Module
-class ApiModule {
+internal class ApiModule {
 
     @Provides
     @FeatureScope

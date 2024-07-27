@@ -5,13 +5,13 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Image(
+internal data class OrigPhotoDto(
     @Json(name = "height")
     val height: Int?,
+    @Json(name = "type")
+    val type: String?,
     @Json(name = "url")
     val url: String?,
     @Json(name = "width")
-    val width: Int?,
-    @Json(name = "with_padding")
-    val withPadding: Int?
+    val width: Int?
 )

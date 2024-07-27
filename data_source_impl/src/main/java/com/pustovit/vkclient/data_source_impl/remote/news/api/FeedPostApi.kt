@@ -9,8 +9,8 @@ import retrofit2.http.GET
  * Date: 07.07.2024
  * Time: 18:07
  */
-interface FeedPostApi {
-    
+internal interface FeedPostApi {
+
     @GET("newsfeed.getRecommended")
     suspend fun getFeedPosts(): VkResponse<FeedPostResponseDto>
 }

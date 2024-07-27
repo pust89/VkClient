@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Video(
+internal data class VideoDto(
     @Json(name = "access_key")
     val accessKey: String?,
     @Json(name = "can_add")
@@ -31,13 +31,13 @@ data class Video(
     @Json(name = "duration")
     val duration: Int?,
     @Json(name = "first_frame")
-    val firstFrame: List<FirstFrame?>?,
+    val firstFrame: List<FirstFrameDto?>?,
     @Json(name = "height")
     val height: Int?,
     @Json(name = "id")
     val id: Int?,
     @Json(name = "image")
-    val image: List<Image?>?,
+    val image: List<ImageDto?>?,
     @Json(name = "is_favorite")
     val isFavorite: Boolean?,
     @Json(name = "local_views")

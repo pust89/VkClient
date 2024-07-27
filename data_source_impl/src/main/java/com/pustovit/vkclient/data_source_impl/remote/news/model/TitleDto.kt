@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Tags(
-    @Json(name = "count")
-    val count: Int?
+internal data class TitleDto(
+    @Json(name = "color")
+    val color: ColorDto?
 )

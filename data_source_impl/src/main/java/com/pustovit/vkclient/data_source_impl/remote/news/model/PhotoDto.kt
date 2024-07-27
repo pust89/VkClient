@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Photo(
+internal data class PhotoDto(
     @Json(name = "access_key")
     val accessKey: String?,
     @Json(name = "album_id")
@@ -21,15 +21,15 @@ data class Photo(
     @Json(name = "long")
     val long: Double?,
     @Json(name = "orig_photo")
-    val origPhoto: OrigPhoto?,
+    val origPhoto: OrigPhotoDto?,
     @Json(name = "owner_id")
     val ownerId: Int?,
     @Json(name = "post_id")
     val postId: Int?,
     @Json(name = "sizes")
-    val sizes: List<Size?>?,
+    val sizes: List<SizeDto?>?,
     @Json(name = "tags")
-    val tags: Tags?,
+    val tags: TagsDto?,
     @Json(name = "text")
     val text: String?,
     @Json(name = "user_id")

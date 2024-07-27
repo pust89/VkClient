@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class OnlineInfo(
+internal data class OnlineInfoDto(
     @Json(name = "app_id")
     val appId: Int?,
     @Json(name = "is_mobile")

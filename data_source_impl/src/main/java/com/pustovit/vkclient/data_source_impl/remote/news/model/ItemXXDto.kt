@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ItemXX(
+internal data class ItemXXDto(
     @Json(name = "asset")
-    val asset: Asset?,
+    val asset: AssetDto?,
     @Json(name = "id")
     val id: Int?,
     @Json(name = "title")

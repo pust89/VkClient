@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class TitleColor(
-    @Json(name = "dark")
-    val dark: String?,
-    @Json(name = "light")
-    val light: String?
+internal data class ItemXDto(
+    @Json(name = "count")
+    val count: Int?,
+    @Json(name = "id")
+    val id: Int?
 )

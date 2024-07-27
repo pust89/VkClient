@@ -5,9 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class ReactionSet(
+internal data class ReactionSetDto(
     @Json(name = "id")
     val id: String?,
     @Json(name = "items")
-    val items: List<ItemXX>?
+    val items: List<ItemXXDto>?
 )

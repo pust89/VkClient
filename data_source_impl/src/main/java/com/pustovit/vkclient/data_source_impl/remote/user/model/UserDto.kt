@@ -9,7 +9,7 @@ import com.squareup.moshi.JsonClass
  * Time: 18:08
  */
 @JsonClass(generateAdapter = true)
-data class UserDto(
+internal data class UserDto(
     @Json(name = "can_access_closed")
     val canAccessClosed: Boolean?,
     @Json(name = "first_name")

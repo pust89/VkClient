@@ -5,11 +5,9 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class Attachment(
-    @Json(name = "photo")
-    val photo: Photo?,
-    @Json(name = "type")
-    val type: String?,
-    @Json(name = "video")
-    val video: Video?
+internal data class ForegroundDto(
+    @Json(name = "dark")
+    val dark: String?,
+    @Json(name = "light")
+    val light: String?
 )

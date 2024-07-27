@@ -9,7 +9,7 @@ import retrofit2.http.GET
  * Date: 01.06.2024
  * Time: 18:07
  */
-interface UserApi {
+internal interface UserApi {
 
     @GET("users.get")
     suspend fun getCurrentUser(): VkResponse<List<UserDto>>

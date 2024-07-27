@@ -5,9 +5,11 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class PostSource(
-    @Json(name = "platform")
-    val platform: String?,
+internal data class CopyrightDto(
+    @Json(name = "link")
+    val link: String?,
+    @Json(name = "name")
+    val name: String?,
     @Json(name = "type")
     val type: String?
 )
