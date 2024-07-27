@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
  * Date: 31.03.2024
  * Time: 9:46
  */
-interface GetFeedPostsUseCase {
+interface GetRecommendedFeedPostsUseCase {
     operator fun invoke(): Flow<List<FeedPost>>
 }

@@ -5,7 +5,7 @@ import com.pustovit.vkclient.auth_impl.di.AuthFeatureDependencies
 import com.pustovit.vkclient.domain_api.auth.GetVkAccessTokenUseCase
 import com.pustovit.vkclient.domain_api.auth.LogoutUseCase
 import com.pustovit.vkclient.domain_api.auth.SaveVkAccessTokenUseCase
-import com.pustovit.vkclient.domain_api.news.GetFeedPostsUseCase
+import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.domain_api.user.GetCurrentUserUseCase
 import com.pustovit.vkclient.injector.DependencyHolder
@@ -101,7 +101,7 @@ private fun setNewsFeatureDependencies(allApi: AllApi) {
     class NewsFeatureDependenciesHolder : DependencyHolder<NewsFeatureDependencies> {
         override val dependencies: NewsFeatureDependencies
             get() = object : NewsFeatureDependencies {
-                override fun getAllPostsUseCase(): GetFeedPostsUseCase {
+                override fun getAllPostsUseCase(): GetRecommendedFeedPostsUseCase {
                     return allApi.domainApi.getAllPostsUseCase()
                 }
 

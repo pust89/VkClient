@@ -1,10 +1,9 @@
 package com.pustovit.vkclient.news_impl.presentation.feed_posts
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.pustovit.vkclient.domain_api.news.GetFeedPostsUseCase
+import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.StatisticItem
@@ -23,7 +22,7 @@ import javax.inject.Inject
 
 internal class NewsFeedViewModel @Inject constructor(
     private val screenNavigator: ScreenNavigator,
-    private val getFeedPostsUseCase: GetFeedPostsUseCase,
+    private val getRecommendedFeedPostsUseCase: GetRecommendedFeedPostsUseCase,
     private val removePostUseCase: RemovePostUseCase,
 ) : ViewModel() {
 
@@ -39,7 +38,7 @@ internal class NewsFeedViewModel @Inject constructor(
     }
 
     fun load() {
-        getFeedPostsUseCase()
+        getRecommendedFeedPostsUseCase()
             .catch {
                 _screenState.emit(ScreenState.Error(it.message.orEmpty()))
             }
@@ -107,7 +106,7 @@ internal class NewsFeedViewModel @Inject constructor(
     fun refresh() {
         viewModelScope.launch {
             _isRefreshing.emit(true)
-            getFeedPostsUseCase()
+            getRecommendedFeedPostsUseCase()
                 .catch {
                     _screenState.emit(ScreenState.Error(it.message.orEmpty()))
                 }
@@ -124,14 +123,14 @@ internal class NewsFeedViewModel @Inject constructor(
 
     class Factory(
         private val screenNavigator: ScreenNavigator,
-        private val getFeedPostsUseCase: GetFeedPostsUseCase,
+        private val getRecommendedFeedPostsUseCase: GetRecommendedFeedPostsUseCase,
         private val removePostUseCase: RemovePostUseCase,
     ) : ViewModelProvider.Factory {
         @Suppress("UNCHECKED_CAST")
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             return NewsFeedViewModel(
                 screenNavigator = screenNavigator,
-                getFeedPostsUseCase = getFeedPostsUseCase,
+                getRecommendedFeedPostsUseCase = getRecommendedFeedPostsUseCase,
                 removePostUseCase = removePostUseCase,
             ) as T
         }

@@ -12,5 +12,5 @@ import retrofit2.http.GET
 internal interface FeedPostApi {
 
     @GET("newsfeed.getRecommended")
-    suspend fun getFeedPosts(): VkResponse<FeedPostContentDto>
+    suspend fun getRecommendedFeedPosts(): VkResponse<FeedPostContentDto>
 }

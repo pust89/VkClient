@@ -1,6 +1,6 @@
 package com.pustovit.vkclient.news_impl.di
 
-import com.pustovit.vkclient.domain_api.news.GetFeedPostsUseCase
+import com.pustovit.vkclient.domain_api.news.GetRecommendedFeedPostsUseCase
 import com.pustovit.vkclient.domain_api.news.RemovePostUseCase
 import com.pustovit.vkclient.injector.FeatureDependencies
 import com.pustovit.vkclient.screens.navigation.ScreenNavigator
@@ -12,7 +12,7 @@ import com.pustovit.vkclient.screens.navigation.ScreenNavigator
  */
 interface NewsFeatureDependencies : FeatureDependencies {
 
-    fun getAllPostsUseCase(): GetFeedPostsUseCase
+    fun getAllPostsUseCase(): GetRecommendedFeedPostsUseCase
 
     fun removePostUseCase(): RemovePostUseCase
 

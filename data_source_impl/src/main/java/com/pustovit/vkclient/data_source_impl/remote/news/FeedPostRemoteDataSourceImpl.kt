@@ -17,7 +17,7 @@ internal class FeedPostRemoteDataSourceImpl @Inject constructor(
     private val mapper: FeedPostMapper,
 ) : FeedPostRemoteDataSource {
 
-    override suspend fun getFeedPosts(): List<FeedPost> {
-        return api.getFeedPosts().process(mapper::map)
+    override suspend fun getRecommendedFeedPosts(): List<FeedPost> {
+        return api.getRecommendedFeedPosts().process(mapper::map)
     }
 }
