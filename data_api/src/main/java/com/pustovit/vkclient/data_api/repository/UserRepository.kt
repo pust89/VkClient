@@ -9,5 +9,6 @@ import kotlinx.coroutines.flow.Flow
  * Time: 11:17
  */
 interface UserRepository {
+
     fun getCurrentUser(): Flow<User>
 }

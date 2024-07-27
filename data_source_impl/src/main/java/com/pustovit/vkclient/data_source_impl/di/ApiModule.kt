@@ -1,5 +1,6 @@
 package com.pustovit.vkclient.data_source_impl.di
 
+import com.pustovit.vkclient.data_source_impl.remote.likes.api.LikesApi
 import com.pustovit.vkclient.data_source_impl.remote.news.api.FeedPostApi
 import com.pustovit.vkclient.data_source_impl.remote.user.api.UserApi
 import com.pustovit.vkclient.injector.FeatureScope
@@ -25,5 +26,11 @@ internal class ApiModule {
     @FeatureScope
     fun providesFeedPostApi(retrofit: Retrofit): FeedPostApi {
         return retrofit.create(FeedPostApi::class.java)
+    }
+
+    @Provides
+    @FeatureScope
+    fun providesLikesApi(retrofit: Retrofit): LikesApi {
+        return retrofit.create(LikesApi::class.java)
     }
 }

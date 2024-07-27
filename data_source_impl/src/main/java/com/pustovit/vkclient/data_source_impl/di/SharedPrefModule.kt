@@ -14,6 +14,7 @@ import dagger.Provides
  */
 @Module
 internal class SharedPrefModule {
+
     @Provides
     @FeatureScope
     fun provideSharePreferences(context: Context): SharedPreferences {

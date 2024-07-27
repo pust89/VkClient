@@ -40,7 +40,8 @@ internal class FeedPostMapper @Inject constructor() {
     private fun map(dto: FeedPostDto, group: GroupDto): FeedPost {
 
         return FeedPost(
-            id = dto.id.toString(),
+            id = dto.id ?: 0,
+            type = dto.type.orEmpty(),
             communityName = group.name.orEmpty(),
             communityImageUrl = group.photo200.orEmpty(),
             publicationDate = getPublicationDate(dto),

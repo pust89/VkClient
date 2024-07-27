@@ -8,7 +8,10 @@ import com.pustovit.vkclient.models.auth.VkAccessToken
  * Time: 21:58
  */
 interface AuthLocalDataSource {
+
     suspend fun getVkAccessToken(): VkAccessToken?
+
     suspend fun saveVkAccessToken(token: VkAccessToken)
+
     suspend fun clearVkAccessToken()
 }

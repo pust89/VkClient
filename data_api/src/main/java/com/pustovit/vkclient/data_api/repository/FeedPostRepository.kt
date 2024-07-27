@@ -10,6 +10,8 @@ import kotlinx.coroutines.flow.Flow
  */
 
 interface FeedPostRepository {
+
     fun getRecommendedFeedPosts(startFrom: String?): Flow<List<FeedPost>>
+
     fun remove(feedPost: FeedPost): Flow<Boolean>
 }

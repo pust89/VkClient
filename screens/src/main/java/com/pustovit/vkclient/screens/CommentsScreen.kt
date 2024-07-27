@@ -21,7 +21,7 @@ object CommentsScreen : Screen {
         )
 
     override val arguments: List<NamedNavArgument> = buildList {
-        addStringArgument(ARG_FEED_POST_ID)
+        addIntArgument(ARG_FEED_POST_ID)
         addStringArgument(ARG_FEED_POST_CONTENT_TEXT)
     }
 
@@ -29,14 +29,14 @@ object CommentsScreen : Screen {
         return buildString {
             append(screenName)
             append(DASH)
-            encodeAndAppend(args.feedPostId)
+            append(args.feedPostId)
             append(DASH)
             encodeAndAppend(args.feedPostComment)
         }
     }
 
     data class Args(
-        val feedPostId: String,
+        val feedPostId: Int,
         val feedPostComment: String
     )
 }

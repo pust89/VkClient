@@ -1,7 +1,9 @@
 package com.pustovit.vkclient.data_source_impl.di
 
 import com.pustovit.vkclient.data_source_api.remote.FeedPostRemoteDataSource
+import com.pustovit.vkclient.data_source_api.remote.LikesRemoteDataSource
 import com.pustovit.vkclient.data_source_api.remote.UserRemoteDataSource
+import com.pustovit.vkclient.data_source_impl.remote.likes.LikesRemoteDataSourceImpl
 import com.pustovit.vkclient.data_source_impl.remote.news.FeedPostRemoteDataSourceImpl
 import com.pustovit.vkclient.data_source_impl.remote.user.UserRemoteDataSourceImpl
 import com.pustovit.vkclient.data_source_impl.remote.user.api.UserApi
@@ -26,4 +28,8 @@ internal interface RemoteDataSourceModule {
     @Binds
     @FeatureScope
     fun bindsFeedPostRemoteDataSource(source: FeedPostRemoteDataSourceImpl): FeedPostRemoteDataSource
+
+    @Binds
+    @FeatureScope
+    fun bindsLikesRemoteDataSource(source: LikesRemoteDataSourceImpl): LikesRemoteDataSource
 }

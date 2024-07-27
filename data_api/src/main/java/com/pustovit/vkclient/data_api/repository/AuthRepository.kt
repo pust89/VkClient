@@ -9,7 +9,10 @@ import kotlinx.coroutines.flow.Flow
  * Time: 21:42
  */
 interface AuthRepository {
+
     fun getVkAccessToken(): Flow<VkAccessToken?>
+
     fun saveVkAccessToken(token: VkAccessToken): Flow<Unit>
+
     fun clearVkAccessToken(): Flow<Unit>
 }

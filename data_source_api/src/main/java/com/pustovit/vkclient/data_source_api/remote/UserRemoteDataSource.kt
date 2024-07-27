@@ -8,5 +8,6 @@ import com.pustovit.vkclient.models.user.User
  * Time: 11:21
  */
 interface UserRemoteDataSource {
+
     suspend fun getCurrentUser(): User
 }

@@ -2,7 +2,8 @@ package com.pustovit.vkclient.models.post
 
 
 data class FeedPost(
-    val id: String = "",
+    val id: Int = 0,
+    val type: String = "",
     val communityName: String = "/dev/null",
     val publicationDate: String = "14:00",
     val communityImageUrl: String = "https://placehold.co/600x400.png",

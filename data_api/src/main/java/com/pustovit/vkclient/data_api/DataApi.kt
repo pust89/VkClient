@@ -2,6 +2,7 @@ package com.pustovit.vkclient.data_api
 
 import com.pustovit.vkclient.data_api.repository.AuthRepository
 import com.pustovit.vkclient.data_api.repository.FeedPostRepository
+import com.pustovit.vkclient.data_api.repository.LikesRepository
 import com.pustovit.vkclient.data_api.repository.UserRepository
 
 /**
@@ -17,4 +18,5 @@ interface DataApi {
 
     fun feedPostRepository(): FeedPostRepository
 
+    fun likesRepository(): LikesRepository
 }

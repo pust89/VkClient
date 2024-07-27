@@ -11,6 +11,7 @@ import com.pustovit.vkclient.data_source_api.DataSourceApi
 import com.pustovit.vkclient.models.build.BuildSettings
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import com.pustovit.vkclient.data_source_api.remote.FeedPostRemoteDataSource
+import com.pustovit.vkclient.data_source_api.remote.LikesRemoteDataSource
 import com.pustovit.vkclient.data_source_api.remote.UserRemoteDataSource
 import com.pustovit.vkclient.data_source_impl.di.DataSourceDependencies
 import com.pustovit.vkclient.domain_impl.di.DomainDependencies
@@ -70,6 +71,10 @@ class ApiDependenciesModule {
 
             override fun feedPostRemoteDataSource(): FeedPostRemoteDataSource {
                 return dataSourceApi.feedPostRemoteDataSource()
+            }
+
+            override fun likesRemoteDataSource(): LikesRemoteDataSource {
+                return dataSourceApi.likesRemoteDataSource()
             }
         }
     }

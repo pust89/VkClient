@@ -2,6 +2,7 @@ package com.pustovit.vkclient.data_impl.di
 
 import com.pustovit.vkclient.data_source_api.local.auth.AuthLocalDataSource
 import com.pustovit.vkclient.data_source_api.remote.FeedPostRemoteDataSource
+import com.pustovit.vkclient.data_source_api.remote.LikesRemoteDataSource
 import com.pustovit.vkclient.data_source_api.remote.UserRemoteDataSource
 
 /**
@@ -16,4 +17,6 @@ interface DataDependencies {
     fun userRemoteDataSource(): UserRemoteDataSource
 
     fun feedPostRemoteDataSource(): FeedPostRemoteDataSource
+
+    fun likesRemoteDataSource(): LikesRemoteDataSource
 }
