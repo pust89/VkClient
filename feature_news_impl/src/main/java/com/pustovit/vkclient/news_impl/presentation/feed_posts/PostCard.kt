@@ -74,7 +74,7 @@ private fun PostHeader(
             modifier = Modifier
                 .size(50.dp)
                 .clip(CircleShape),
-            model = feedPost.avatarUrl,
+            model = feedPost.communityImageUrl,
             contentDescription = null
         )
         Spacer(modifier = Modifier.width(8.dp))

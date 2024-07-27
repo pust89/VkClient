@@ -68,8 +68,8 @@ fun NavGraphBuilder.addContentNavigation(): NavGraphBuilder {
                 arguments = CommentsScreen.arguments,
             ) { navBackStackEntry ->
                 val args = CommentsScreen.Args(
-                    feedPostId = navBackStackEntry.arguments?.getInt(CommentsScreen.ARG_FEED_POST_ID)
-                        ?: 99,
+                    feedPostId = navBackStackEntry.arguments?.getDecodedString(CommentsScreen.ARG_FEED_POST_ID)
+                        .orEmpty(),
                     feedPostComment = navBackStackEntry.arguments?.getDecodedString(CommentsScreen.ARG_FEED_POST_CONTENT_TEXT)
                         .orEmpty()
                 )

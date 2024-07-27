@@ -1,7 +1,7 @@
 package com.pustovit.vkclient.data_source_impl.remote.news.api
 
 import com.pustovit.vkclient.data_source_impl.remote.base.VkResponse
-import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostResponseDto
+import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostContentDto
 import retrofit2.http.GET
 
 /**
@@ -12,5 +12,5 @@ import retrofit2.http.GET
 internal interface FeedPostApi {
 
     @GET("newsfeed.getRecommended")
-    suspend fun getFeedPosts(): VkResponse<FeedPostResponseDto>
+    suspend fun getFeedPosts(): VkResponse<FeedPostContentDto>
 }

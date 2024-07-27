@@ -1,11 +1,15 @@
 package com.pustovit.vkclient.data_source_impl.remote.news.mapper
 
 import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostDto
-import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostResponseDto
+import com.pustovit.vkclient.data_source_impl.remote.news.model.FeedPostContentDto
+import com.pustovit.vkclient.data_source_impl.remote.news.model.GroupDto
 import com.pustovit.vkclient.models.post.FeedPost
 import com.pustovit.vkclient.models.post.StatisticItem
 import com.pustovit.vkclient.models.post.StatisticType
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 import javax.inject.Inject
+import kotlin.math.absoluteValue
 
 /**
  * Created by Pustovit V.V.
@@ -14,14 +18,31 @@ import javax.inject.Inject
  */
 internal class FeedPostMapper @Inject constructor() {
 
-    fun map(dto: FeedPostResponseDto?): List<FeedPost> {
-        return dto?.items?.map(::map) ?: emptyList()
+    fun map(dto: FeedPostContentDto?): List<FeedPost> {
+        val resultList = mutableListOf<FeedPost>()
+        val posts = dto?.items.orEmpty()
+        val groups = dto?.groups.orEmpty()
+
+        for (i in posts.indices) {
+            val feedPostDto = posts[i]
+
+            val groupDto = groups.find { groupDto ->
+                groupDto.id == feedPostDto.sourceId?.absoluteValue
+            } ?: continue
+
+            resultList += map(feedPostDto, groupDto)
+        }
+
+        return resultList
     }
 
-    private fun map(dto: FeedPostDto): FeedPost {
+    private fun map(dto: FeedPostDto, group: GroupDto): FeedPost {
+
         return FeedPost(
-            id = dto.id ?: 0,
-            communityName = "communityName",
+            id = dto.id.toString(),
+            communityName = group.name.orEmpty(),
+            communityImageUrl = group.photo200.orEmpty(),
+            publicationDate = getPublicationDate(dto),
             contentText = dto.text.orEmpty(),
             contentImageUrl = getContentPhotoUrl(dto),
             statistics = getStatistics(dto)
@@ -52,5 +73,12 @@ internal class FeedPostMapper @Inject constructor() {
                 count = dto.reposts?.count ?: 0
             )
         }
+    }
+
+    private fun getPublicationDate(dto: FeedPostDto):String{
+        return dto.date?.let {
+            DateTimeFormatter.ISO_INSTANT
+                .format(Instant.ofEpochSecond(it))
+        } ?: ""
     }
 }

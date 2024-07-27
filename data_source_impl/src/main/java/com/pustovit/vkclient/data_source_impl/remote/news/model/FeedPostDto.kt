@@ -17,7 +17,7 @@ internal data class FeedPostDto(
     @Json(name = "copyright")
     val copyright: CopyrightDto?,
     @Json(name = "date")
-    val date: Int?,
+    val date: Long?,
     @Json(name = "donut")
     val donut: DonutDto?,
     @Json(name = "edited")

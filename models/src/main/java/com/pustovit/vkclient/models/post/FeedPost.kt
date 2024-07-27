@@ -2,10 +2,10 @@ package com.pustovit.vkclient.models.post
 
 
 data class FeedPost(
-    val id: Int = 0,
+    val id: String = "",
     val communityName: String = "/dev/null",
     val publicationDate: String = "14:00",
-    val avatarUrl: String = "https://placehold.co/600x400.png",
+    val communityImageUrl: String = "https://placehold.co/600x400.png",
     val contentText: String = "Lo//?123-!\rem ipsum dolor sit amet, consectetur adipiscing elit.",
     val contentImageUrl: String = "https://placehold.co/600x400.png",
     val statistics: List<StatisticItem> = listOf(

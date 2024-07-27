@@ -23,7 +23,7 @@ class CommentsViewModel(
         loadComments(args.feedPostId)
     }
 
-    private fun loadComments(feedPostId: Int) {
+    private fun loadComments(feedPostId: String) {
         val comments = mutableListOf<PostComment>().apply {
             repeat(10) {
                 add(PostComment(id = it))
