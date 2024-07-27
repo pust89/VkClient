@@ -26,14 +26,8 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         appComponent.inject(this)
-        // initTimber()
         setFeatureDependencies(allApi)
     }
 
-//    private fun initTimber() {
-//        if (BuildConfig.DEBUG) {
-//            Timber.plant(Timber.DebugTree())
-//        }
-//    }
 }
 

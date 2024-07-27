@@ -79,7 +79,6 @@ fun ProfileScreen() {
 
             is ScreenState.Data -> PullToRefreshBox(
                 modifier = Modifier
-                    .background(Color.Green)
                     .padding(paddingValues)
                     .fillMaxSize(),
                 content = { CurrentUserScreen(user = data.data, viewModel = viewModel) },

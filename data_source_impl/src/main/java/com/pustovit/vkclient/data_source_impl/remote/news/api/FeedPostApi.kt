@@ -10,7 +10,7 @@ import retrofit2.http.GET
  * Time: 18:07
  */
 interface FeedPostApi {
-
-    @GET("newsfeed.get?filters=post,photo")
+    
+    @GET("newsfeed.getRecommended")
     suspend fun getFeedPosts(): VkResponse<FeedPostResponseDto>
 }

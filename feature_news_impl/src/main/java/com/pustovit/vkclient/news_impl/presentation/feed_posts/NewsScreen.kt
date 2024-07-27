@@ -48,7 +48,6 @@ fun NewsScreen() {
         }
         is ScreenState.Data -> PullToRefreshBox(
             modifier = Modifier
-                .background(Color.Green)
                 .fillMaxSize(),
             content = {
                 FeedPosts(
