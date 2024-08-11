@@ -8,15 +8,14 @@ plugins {
 
 android {
     namespace = "com.pustovit.vkclient"
-    compileSdk = 34
-    buildToolsVersion = "33.0.1"
+    compileSdk = Configs.compileSdk
 
     defaultConfig {
-        applicationId = "com.pustovit.vkclient"
-        minSdk = 28
-        targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        applicationId =  Configs.applicationId
+        minSdk = Configs.minSdk
+        targetSdk = Configs.targetSdk
+        versionCode = Configs.versionCode
+        versionName = Configs.versionName
 
         val properties = Properties()
         properties.load(project.rootProject.file("local.properties").inputStream())
@@ -51,7 +50,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = Configs.kotlinCompilerExtensionVersion
     }
 
     packaging {
@@ -62,17 +61,17 @@ android {
 
     java{
         toolchain{
-            languageVersion.set(JavaLanguageVersion.of(17))
+            languageVersion.set(Configs.languageVersion)
         }
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = Configs.jvmTarget
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = Configs.sourceCompatibility
+        targetCompatibility = Configs.targetCompatibility
     }
 
 }
