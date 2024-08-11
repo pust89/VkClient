@@ -19,7 +19,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "VkClient"
-include(":secrets.gradle.kts")
 
 // Core
 include(":app")
