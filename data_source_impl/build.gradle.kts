@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.pustovit.vkclient.data_source_impl"
-    compileSdk = 34
+    compileSdk = Configs.compileSdk
 
     defaultConfig {
         minSdk = 28
@@ -16,8 +16,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = Configs.sourceCompatibility
+        targetCompatibility = Configs.targetCompatibility
     }
 
 }

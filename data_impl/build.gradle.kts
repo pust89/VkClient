@@ -5,8 +5,8 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+    sourceCompatibility = Configs.sourceCompatibility
+    targetCompatibility = Configs.targetCompatibility
 }
 dependencies {
     implementation(project(mapOf("path" to ":data_api")))
